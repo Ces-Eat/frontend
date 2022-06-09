@@ -1,46 +1,131 @@
-*, *:before, *:after{
+@font-face {
+  font-family: "UberMove";
+  src: url("/fonts/UberMoveTextBold.otf") format("opentype");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "UberMove";
+  src: url("/fonts/UberMoveTextLight.otf") format("opentype");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "UberMove";
+  src: url("/fonts/UberMoveTextMedium.otf") format("opentype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "UberMove";
+  src: url("/fonts/UberMoveTextRegular.otf") format("opentype");
+  font-weight: 400;
+}
+
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
-html, body, div, span, object, iframe, figure, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, code, em, img, small, strike, strong, sub, sup, tt, b, u, i, ol, ul, li, fieldset, form, label, table, caption, tbody, tfoot, thead, tr, th, td, main, canvas, embed, footer, header, nav, section, video{
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  font-family: "UberMove", Arial, Helvetica, sans-serif;
   vertical-align: baseline;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   text-size-adjust: none;
 }
 
-footer, header, nav, section, main{
+footer,
+header,
+nav,
+section,
+main {
   display: block;
 }
 
-body{
+body {
   line-height: 1;
 }
 
-ol, ul{
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q{
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after, q:before, q:after{
-  content: '';
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
   content: none;
 }
 
-table{
+table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-input{
+input {
   -webkit-appearance: none;
   border-radius: 0;
 }
