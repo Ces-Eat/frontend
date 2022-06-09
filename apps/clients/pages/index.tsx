@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Button } from "ui";
+import { Button, Card } from "ui";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => (
@@ -13,6 +13,7 @@ const Home: NextPage = () => (
     </Head>
 
     <Button />
+    <Card src="/favicon.ico" alt="Logo NextJS" />
 
     <main className={styles.main}>
       <h1 className={styles.title}>
