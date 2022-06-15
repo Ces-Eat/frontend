@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import NotificationContext from "./NotificationContext";
-import { IAction, IActionType, INotification } from "../types/notifications";
+import { IAction, IActionType, INotification } from "../types";
 
 const NotificationsProvider: React.FC = ({ children }) => {
   const [notifications, dispatch] = useReducer(

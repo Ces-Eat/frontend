@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { v4 } from "uuid";
 import NotificationContext from "../contexts/NotificationContext";
-import { IActionType, INotificationType } from "../types/notifications";
+import { IActionType, INotificationType } from "../types";
 
 const useNotificationCenter = () => {
   const dispatch = useContext(NotificationContext);
