@@ -1,5 +1,8 @@
+import { Container } from "@mui/material";
 import React, { useReducer } from "react";
-import NotificationContext from "./NotificationContext";
+import s from "./NotificationProvider.module.scss";
+import NotificationContext from "../contexts/NotificationContext";
+import Notification from "./Notification";
 import { IAction, IActionType, INotification } from "../types";
 
 const NotificationsProvider: React.FC = ({ children }) => {
@@ -19,12 +22,11 @@ const NotificationsProvider: React.FC = ({ children }) => {
 
   return (
     <NotificationContext.Provider value={dispatch}>
-      <p>Hi</p>
-      {notifications.map((notification) => (
-        <div key={notification.id}>
-          {notification.message} - {notification.type}
-        </div>
-      ))}
+      <Container className={s.container}>
+        {notifications.map((notification) => (
+          <Notification key={notification.id} {...notification} />
+        ))}
+      </Container>
       {children}
     </NotificationContext.Provider>
   );

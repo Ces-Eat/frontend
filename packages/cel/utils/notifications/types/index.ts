@@ -1,7 +1,8 @@
 export enum INotificationType {
-  SUCCESS = "SUCCESS",
-  ERROR = "ERROR",
-  INFO = "INFO",
+  SUCCESS = "success",
+  ERROR = "error",
+  INFO = "info",
+  WARNING = "warning",
 }
 
 export interface INotification {
