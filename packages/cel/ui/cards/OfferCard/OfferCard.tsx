@@ -7,6 +7,8 @@ import {
   Link,
   Typography,
 } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import s from "./OfferCard.module.scss";
 
 interface Props {
   img: {
@@ -18,6 +20,7 @@ interface Props {
     text: string;
     href: string;
   };
+  reverse?: boolean;
 }
 
 const OfferCard: React.FC<Props> = ({
@@ -25,17 +28,31 @@ const OfferCard: React.FC<Props> = ({
   title,
   description,
   link: { text, href },
+  reverse,
 }) => (
-  <Card>
-    <CardMedia src={src} />
+  <Card className={`${s.container} ${reverse ? s.reverse : ""}`}>
+    <CardMedia component="img" src={src} />
     <CardContent>
-      <Typography>{title}</Typography>
-      <Typography>{description}</Typography>
-      <CardActions>
-        <Link href={href}>{text}</Link>
+      <Typography variant="h4" textAlign={reverse ? "right" : "justify"}>
+        {title}
+      </Typography>
+      <Typography variant="body2" textAlign={reverse ? "right" : "justify"}>
+        {description}
+      </Typography>
+      <CardActions className={s.link}>
+        <ArrowForwardIcon color="primary" className={s.icon} />
+        <Link href={href}>
+          <Typography variant="body2" color="primary">
+            {text}
+          </Typography>
+        </Link>
       </CardActions>
     </CardContent>
   </Card>
 );
+
+OfferCard.defaultProps = {
+  reverse: false,
+};
 
 export default OfferCard;

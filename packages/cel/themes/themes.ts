@@ -13,6 +13,12 @@ const defaultTheme = {
       fontFamily: '"UberMove", Arial, Helvetica, sans-serif',
       color: "#A1A1A1",
     },
+    body2: {
+      fontSize: "24px",
+      fontWeight: 400,
+      fontFamily: '"UberMove", Arial, Helvetica, sans-serif',
+      color: "#565656",
+    },
   },
 };
 
@@ -22,7 +28,7 @@ const lightTheme = createTheme({
       default: "#ffffff",
     },
     primary: {
-      main: "#1976d2",
+      main: "#5FB709",
     },
     success: {
       main: "#4caf50",

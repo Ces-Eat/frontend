@@ -37,10 +37,32 @@ const Home: NextPage = () => {
           description="Pour trouver votre bonheur"
         >
           <OfferCard
-            img={{ src: "" }}
-            title="HI"
-            description="Hello"
-            link={{ text: "Yo", href: "http://google.com" }}
+            img={{ src: "/assets/deliveryWithCE.png" }}
+            title="Livrez avec Ces’Eats"
+            description="Vous pouvez maintenant générer des revenus en sillonnant les rues de votre ville pour livrer de délicieux repas avec Ces'Eats."
+            link={{
+              text: "Devenez coursier-partenaire",
+              href: "http://localhost:3001",
+            }}
+          />
+          <OfferCard
+            img={{ src: "/assets/developWithCE.png" }}
+            title="Développez avec Ces’Eats"
+            description="L'accès à l'API Ces'Eat ou encore les différents composants utilisés au travers des différentes plateformes sont libres d'accès et documentés."
+            link={{
+              text: "Obtenir la documentation ",
+              href: "http://localhost:3001",
+            }}
+            reverse
+          />
+          <OfferCard
+            img={{ src: "/assets/partnerWithCE.png" }}
+            title="Devenez partenaire Ces’Eats"
+            description="La plateforme nationale Ces’Eat vous offre la flexibilité, la visibilité et les données nécessaires pour vous mettre en relation avec davantage de clients."
+            link={{
+              text: "Ajoutez votre restaurant",
+              href: "http://localhost:3001",
+            }}
           />
         </Section>
       </main>
