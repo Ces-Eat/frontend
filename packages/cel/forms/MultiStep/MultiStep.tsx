@@ -1,7 +1,20 @@
-import { Button } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import React, { useState } from "react";
+import LoadingButton from "@mui/lab/LoadingButton";
+import s from "./MultiStep.module.scss";
 
-const MultiStep: React.FC = ({ children }) => {
+interface Props {
+  loading: boolean;
+  disabled: boolean;
+  buttonText: string;
+}
+
+const MultiStep: React.FC<Props> = ({
+  children,
+  loading,
+  disabled,
+  buttonText,
+}) => {
   const childrenArray = React.Children.toArray(
     children
   ) as React.ReactElement[];
@@ -14,21 +27,36 @@ const MultiStep: React.FC = ({ children }) => {
 
   const onSubmit = () => {
     if (!isLastStep()) {
-      setCurrentStep((s) => s + 1);
+      setCurrentStep((step) => step + 1);
     }
   };
 
   return (
     <div>
       {currentChild}{" "}
-      {currentStep > 0 && (
-        <Button onClick={() => setCurrentStep((s) => s - 1)} type="button">
-          Précèdent
-        </Button>
-      )}
-      <Button onClick={onSubmit} type={isLastStep() ? "submit" : "button"}>
-        {isLastStep() ? "Inscription" : "Suivant"}
-      </Button>
+      <Container className={s.container}>
+        {currentStep > 0 && (
+          <Button
+            onClick={() => setCurrentStep((step) => step - 1)}
+            type="button"
+            variant="contained"
+            color="primary"
+            disabled={loading}
+          >
+            Précèdent
+          </Button>
+        )}
+        <LoadingButton
+          variant="contained"
+          color="primary"
+          onClick={onSubmit}
+          type={isLastStep() ? "submit" : "button"}
+          loading={loading}
+          disabled={isLastStep() && disabled}
+        >
+          {isLastStep() ? buttonText : "Suivant"}
+        </LoadingButton>
+      </Container>
     </div>
   );
 };

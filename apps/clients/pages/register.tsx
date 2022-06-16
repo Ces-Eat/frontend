@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { RegistrationTemplate, IRegistration } from "cel/templates";
 import { createUserSchema, IUser, MultiStep, TextInput } from "cel/forms";
-import LoadingButton from "@mui/lab/LoadingButton";
 
 const RegisterPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +25,11 @@ const RegisterPage: NextPage = () => {
     >
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <MultiStep>
+          <MultiStep
+            loading={isLoading}
+            disabled={!methods.formState.isValid}
+            buttonText="Inscription"
+          >
             <>
               <TextInput name="name" label="Nom" />
               <TextInput name="surname" label="Prénom" />
@@ -44,15 +47,6 @@ const RegisterPage: NextPage = () => {
               />
             </>
           </MultiStep>
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            color="primary"
-            loading={isLoading}
-            disabled={!methods.formState.isValid}
-          >
-            Connexion
-          </LoadingButton>
         </form>
       </FormProvider>
     </RegistrationTemplate>
