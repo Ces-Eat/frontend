@@ -6,8 +6,8 @@ interface TextInputProps {
   name: string;
   label: string;
   defaultValue?: string | number;
-  type?: string,
-  multiline?: boolean,
+  type?: string;
+  multiline?: boolean;
   inputProps?: any;
 }
 
@@ -36,7 +36,8 @@ const TextInput: React.FC<TextInputProps> = ({
           error={!!errors[name]}
           helperText={errors[name]?.message}
           fullWidth
-          InputProps={{...inputProps}}
+          InputProps={{ ...inputProps, style: { fontSize: 18 } }}
+          InputLabelProps={{ style: { fontSize: 18 } }}
         />
       )}
     />
@@ -44,10 +45,10 @@ const TextInput: React.FC<TextInputProps> = ({
 };
 
 TextInput.defaultProps = {
-  defaultValue: '',
-  type: 'text',
+  defaultValue: "",
+  type: "text",
   multiline: false,
   inputProps: {},
-}
+};
 
 export default TextInput;

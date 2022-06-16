@@ -3,7 +3,7 @@
   width: 70%;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 80px;
+  margin-top: 80px;
 
   &.reverse {
     flex-direction: row-reverse;
@@ -12,6 +12,10 @@
       display: flex;
       justify-content: right;
     }
+  }
+
+  .text {
+    opacity: 0.65;
   }
 
   & > *:first-child {

@@ -12,7 +12,9 @@ const OfferCard: React.FC<Props> = ({ title, description, children }) => (
     <Container className={s.titleContainer}>
       <Typography variant="h2">{title}</Typography>
       {description && (
-        <Typography variant="subtitle1">{description}</Typography>
+        <Typography variant="body1" className={s.subtitle}>
+          {description}
+        </Typography>
       )}
     </Container>
     {children}

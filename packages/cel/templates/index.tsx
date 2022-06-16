@@ -1,3 +1,5 @@
-import LoginTemplate from "./Login/Login";
+import RegistrationTemplate, {
+  IRegistration,
+} from "./Registration/Registration";
 
-export { LoginTemplate };
+export { RegistrationTemplate, IRegistration };

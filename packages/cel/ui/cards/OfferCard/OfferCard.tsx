@@ -36,13 +36,17 @@ const OfferCard: React.FC<Props> = ({
       <Typography variant="h4" textAlign={reverse ? "right" : "justify"}>
         {title}
       </Typography>
-      <Typography variant="body2" textAlign={reverse ? "right" : "justify"}>
+      <Typography
+        variant="body1"
+        className={s.text}
+        textAlign={reverse ? "right" : "justify"}
+      >
         {description}
       </Typography>
       <CardActions className={s.link}>
         <ArrowForwardIcon color="primary" className={s.icon} />
         <Link href={href}>
-          <Typography variant="body2" color="primary">
+          <Typography variant="body1" color="primary">
             {text}
           </Typography>
         </Link>

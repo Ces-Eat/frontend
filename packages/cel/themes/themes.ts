@@ -5,19 +5,18 @@ const defaultTheme = {
     h2: {
       fontSize: "42px",
       fontWeight: 500,
-      fontFamily: '"UberMove", Arial, Helvetica, sans-serif',
     },
-    subtitle1: {
+    body1: {
       fontSize: "24px",
       fontWeight: 400,
-      fontFamily: '"UberMove", Arial, Helvetica, sans-serif',
-      color: "#A1A1A1",
     },
     body2: {
-      fontSize: "24px",
+      fontSize: "18px",
       fontWeight: 400,
+    },
+    allVariants: {
+      color: "#000000",
       fontFamily: '"UberMove", Arial, Helvetica, sans-serif',
-      color: "#565656",
     },
   },
 };
@@ -29,6 +28,7 @@ const lightTheme = createTheme({
     },
     primary: {
       main: "#5FB709",
+      contrastText: "#ffffff",
     },
     success: {
       main: "#4caf50",

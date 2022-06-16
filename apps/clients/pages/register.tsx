@@ -3,31 +3,47 @@ import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { RegistrationTemplate, IRegistration } from "cel/templates";
-import { ILogin, loginUserSchema, TextInput } from "cel/forms";
+import { createUserSchema, IUser, MultiStep, TextInput } from "cel/forms";
 import LoadingButton from "@mui/lab/LoadingButton";
 
-const LoginPage: NextPage = () => {
+const RegisterPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const methods = useForm<ILogin>({
+  const methods = useForm<IUser>({
     mode: "onChange",
-    resolver: yupResolver(loginUserSchema),
+    resolver: yupResolver(createUserSchema),
   });
 
-  const formSubmitHandler: SubmitHandler<ILogin> = (data) => {
+  const formSubmitHandler: SubmitHandler<IUser> = (data) => {
     console.log(data);
     setIsLoading(true);
   };
 
   return (
     <RegistrationTemplate
-      textType={IRegistration.LOGIN}
+      textType={IRegistration.REGISTRATION}
       img={{ src: "/assets/loginImg.png", alt: "Image de connexion" }}
     >
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <TextInput name="email" type="email" label="Adresse mail" />
-          <TextInput name="password" type="password" label="Mot de passe" />
+          <MultiStep>
+            <>
+              <TextInput name="name" label="Nom" />
+              <TextInput name="surname" label="Prénom" />
+            </>
+            <>
+              <TextInput name="email" type="email" label="Adresse mail" />
+              <TextInput name="phone" label="Numéro de téléphone" />
+            </>
+            <>
+              <TextInput name="password" type="password" label="Mot de passe" />
+              <TextInput
+                name="confirmPassword"
+                type="password"
+                label="Confirmation de mot de passe"
+              />
+            </>
+          </MultiStep>
           <LoadingButton
             type="submit"
             variant="contained"
@@ -43,4 +59,4 @@ const LoginPage: NextPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
