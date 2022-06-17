@@ -4,10 +4,16 @@ import {
   AppBar as MuiAppBar,
   Typography,
   IconButton,
+  Button,
 } from "@mui/material";
 import React from "react";
 
-const AppBar: React.FC = () => (
+interface Props {
+  isLightTheme: boolean;
+  setIsLightTheme: (isLightTheme: boolean) => void;
+}
+
+const AppBar: React.FC<Props> = ({ isLightTheme, setIsLightTheme }) => (
   <MuiAppBar position="sticky">
     <Toolbar>
       <IconButton>
@@ -15,6 +21,9 @@ const AppBar: React.FC = () => (
       </IconButton>
       <Typography>Ces&apos;</Typography>
       <Typography>Eats</Typography>
+      <Button onClick={() => setIsLightTheme(!isLightTheme)} color="secondary">
+        Change theme
+      </Button>
     </Toolbar>
   </MuiAppBar>
 );

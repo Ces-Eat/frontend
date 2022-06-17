@@ -1,0 +1,60 @@
+.input {
+  width: 500px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+}
+
+.filt_container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  user-select: none;
+  position: relative;
+
+  .selected {
+    background-color: rgba(#5fb709, 0.1);
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 40%;
+    height: 2px;
+    background-color: #949494;
+    position: absolute;
+    margin: 0 auto;
+    bottom: 0;
+  }
+}
+
+.rest_container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  user-select: none;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+
+  .link {
+    margin: 20px;
+    text-decoration: none;
+
+    .rating {
+      display: flex;
+    }
+  }
+}

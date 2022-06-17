@@ -6,6 +6,10 @@ const defaultTheme = {
       fontSize: "42px",
       fontWeight: 500,
     },
+    h5: {
+      fontSize: "20px",
+      fontWeight: 500,
+    },
     body1: {
       fontSize: "24px",
       fontWeight: 400,
@@ -40,16 +44,39 @@ const lightTheme = createTheme({
 const darkTheme = createTheme({
   palette: {
     background: {
-      default: "#000000",
+      default: "#30363d",
     },
     primary: {
-      main: "#BF22C4",
+      main: "#5FB709",
+      contrastText: "#ffffff",
     },
     success: {
       main: "#057630",
     },
   },
   ...defaultTheme,
+  components: {
+    MuiInput: {
+      styleOverrides: {
+        input: {
+          color: "white",
+          "&::before": {
+            "border-bottom": "1px solid rgba(0, 0, 0, 0.42);", // use your color
+          },
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {},
+    },
+  },
+  typography: {
+    ...defaultTheme.typography,
+    allVariants: {
+      color: "#fff",
+      fontFamily: '"UberMove", Arial, Helvetica, sans-serif',
+    },
+  },
 });
 
 export { lightTheme, darkTheme };
