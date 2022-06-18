@@ -1,5 +1,14 @@
 import { createTheme } from "@mui/material";
 
+declare module "@mui/material/styles" {
+  interface Palette {
+    allWhite?: Palette["primary"];
+  }
+  interface PaletteOptions {
+    allWhite?: PaletteOptions["primary"];
+  }
+}
+
 const defaultTheme = {
   typography: {
     h2: {
@@ -37,8 +46,48 @@ const lightTheme = createTheme({
     success: {
       main: "#4caf50",
     },
+    allWhite: {
+      main: "#ffffff",
+    },
   },
   ...defaultTheme,
+  components: {
+    MuiList: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#ffffff",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "18px",
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontSize: "18px",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent",
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          cursor: "pointer",
+        },
+      },
+    },
+  },
 });
 
 const darkTheme = createTheme({
@@ -53,6 +102,9 @@ const darkTheme = createTheme({
     success: {
       main: "#057630",
     },
+    allWhite: {
+      main: "#ffffff",
+    },
   },
   ...defaultTheme,
   components: {
@@ -66,8 +118,57 @@ const darkTheme = createTheme({
         },
       },
     },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "18px",
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          fontSize: "18px",
+        },
+      },
+    },
     MuiTextField: {
       styleOverrides: {},
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent",
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#30363d",
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          cursor: "pointer",
+        },
+      },
+    },
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          color: "white",
+        },
+      },
     },
   },
   typography: {

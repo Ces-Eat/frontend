@@ -6,6 +6,7 @@ interface TextInputProps {
   name: string;
   label: string;
   defaultValue?: string | number;
+  className?: string;
   type?: string;
   multiline?: boolean;
   inputProps?: any;
@@ -16,6 +17,7 @@ const TextInput: React.FC<TextInputProps> = ({
   label,
   defaultValue,
   inputProps,
+  className,
   ...textFieldProps
 }) => {
   const {
@@ -31,6 +33,7 @@ const TextInput: React.FC<TextInputProps> = ({
       render={({ field }) => (
         <TextField
           {...{ ...field, ...textFieldProps }}
+          className={className}
           label={label}
           variant="outlined"
           error={!!errors[name]}
@@ -49,6 +52,7 @@ TextInput.defaultProps = {
   type: "text",
   multiline: false,
   inputProps: {},
+  className: "",
 };
 
 export default TextInput;

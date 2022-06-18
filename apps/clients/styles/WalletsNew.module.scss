@@ -1,0 +1,57 @@
+.container {
+  margin: 0 auto;
+  width: 450px;
+  display: block;
+  user-select: none;
+  position: relative;
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+
+  form {
+    margin-top: 20px;
+
+    .cardContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .card {
+        width: 60%;
+      }
+
+      .cvv {
+        width: 35%;
+      }
+
+      @media screen and (max-width: 600px) {
+        display: block;
+
+        .card {
+          width: 100%;
+        }
+
+        .cvv {
+          width: 100%;
+        }
+      }
+    }
+
+    .middleContainer {
+      display: flex;
+      justify-content: space-between;
+
+      .middleItem {
+        width: 45%;
+      }
+
+      @media screen and (max-width: 600px) {
+        display: block;
+
+        .middleItem {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

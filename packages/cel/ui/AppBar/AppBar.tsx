@@ -4,28 +4,53 @@ import {
   AppBar as MuiAppBar,
   Typography,
   IconButton,
-  Button,
+  Drawer,
+  Box,
 } from "@mui/material";
-import React from "react";
+import Link from "next/link";
+import React, { useState } from "react";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 interface Props {
-  isLightTheme: boolean;
-  setIsLightTheme: (isLightTheme: boolean) => void;
+  changeTheme: () => void;
 }
 
-const AppBar: React.FC<Props> = ({ isLightTheme, setIsLightTheme }) => (
-  <MuiAppBar position="sticky">
-    <Toolbar>
-      <IconButton>
-        <Menu />
-      </IconButton>
-      <Typography>Ces&apos;</Typography>
-      <Typography>Eats</Typography>
-      <Button onClick={() => setIsLightTheme(!isLightTheme)} color="secondary">
-        Change theme
-      </Button>
-    </Toolbar>
-  </MuiAppBar>
-);
+const AppBar: React.FC<Props> = ({ changeTheme, children }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  return (
+    <>
+      <Drawer
+        anchor="left"
+        onClose={() => setIsMenuOpen(false)}
+        open={isMenuOpen}
+      >
+        <Box
+          sx={{ width: 250 }}
+          role="presentation"
+          onClick={() => setIsMenuOpen(false)}
+          component="div"
+        >
+          {children}
+        </Box>
+      </Drawer>
+      <MuiAppBar position="sticky">
+        <Toolbar>
+          <IconButton
+            onClick={() => setIsMenuOpen(true)}
+            sx={{ color: "#fff", marginRight: "15px" }}
+          >
+            <Menu />
+          </IconButton>
+          <Link href="/restaurants">
+            <Typography sx={{ color: "#fff", marginRight: "15px" }}>
+              Ces&apos;Eats
+            </Typography>
+          </Link>
+          <ThemeSwitch changeTheme={changeTheme} />
+        </Toolbar>
+      </MuiAppBar>
+    </>
+  );
+};
 
 export default AppBar;
