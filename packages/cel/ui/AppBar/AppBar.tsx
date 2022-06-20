@@ -12,10 +12,11 @@ import React, { useState } from "react";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 interface Props {
+  isLightTheme: boolean;
   changeTheme: () => void;
 }
 
-const AppBar: React.FC<Props> = ({ changeTheme, children }) => {
+const AppBar: React.FC<Props> = ({ changeTheme, isLightTheme, children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
@@ -48,7 +49,7 @@ const AppBar: React.FC<Props> = ({ changeTheme, children }) => {
               Ces&apos;Eats
             </Typography>
           </Link>
-          <ThemeSwitch changeTheme={changeTheme} />
+          <ThemeSwitch changeTheme={changeTheme} value={isLightTheme} />
         </Toolbar>
       </MuiAppBar>
     </>
