@@ -15,6 +15,10 @@ const defaultTheme = {
       fontSize: "42px",
       fontWeight: 500,
     },
+    h4: {
+      fontSize: "28px",
+      fontWeight: 500,
+    },
     h5: {
       fontSize: "20px",
       fontWeight: 500,
@@ -24,7 +28,7 @@ const defaultTheme = {
       fontWeight: 400,
     },
     body2: {
-      fontSize: "18px",
+      fontSize: "16px",
       fontWeight: 400,
     },
     allVariants: {
@@ -84,6 +88,20 @@ const lightTheme = createTheme({
       styleOverrides: {
         root: {
           cursor: "pointer",
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#fff",
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#000",
         },
       },
     },
@@ -167,6 +185,20 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           color: "white",
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#30363d",
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#fff",
         },
       },
     },

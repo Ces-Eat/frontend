@@ -1,0 +1,12 @@
+
+
+    .category {
+        margin-bottom: 30px;
+        width: 80%;
+        margin: 0 auto;
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }

@@ -42,7 +42,9 @@ const AppBar: React.FC<Props> = ({ changeTheme, children }) => {
             <Menu />
           </IconButton>
           <Link href="/restaurants">
-            <Typography sx={{ color: "#fff", marginRight: "15px" }}>
+            <Typography
+              sx={{ color: "#fff", marginRight: "15px", cursor: "pointer" }}
+            >
               Ces&apos;Eats
             </Typography>
           </Link>
