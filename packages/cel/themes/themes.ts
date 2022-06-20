@@ -120,8 +120,14 @@ const darkTheme = createTheme({
     success: {
       main: "#057630",
     },
+    error: {
+      main: "#ff6f6f",
+    },
     allWhite: {
       main: "#ffffff",
+    },
+    action: {
+      disabledBackground: "rgba(255, 255, 255, 0.12);",
     },
   },
   ...defaultTheme,
@@ -130,8 +136,16 @@ const darkTheme = createTheme({
       styleOverrides: {
         input: {
           color: "white",
-          "&::before": {
-            "border-bottom": "1px solid rgba(0, 0, 0, 0.42);", // use your color
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          color: "white",
+          borderColor: "white",
+          "& fieldset": {
+            borderColor: "white",
           },
         },
       },
@@ -147,6 +161,7 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           fontSize: "18px",
+          borderColor: "white",
         },
       },
     },

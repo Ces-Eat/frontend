@@ -29,6 +29,10 @@ export const createUserSchema = yup.object().shape({
     .required("Mot de passe requis")
     .min(10, "Minimim de 10 caractères")
     .max(50, "Maximum 50 caractères"),
+  confirmPassword: yup
+    .string()
+    .required()
+    .oneOf([yup.ref("password"), null], "Mot de passe différent"),
 });
 
 export interface ILogin {
