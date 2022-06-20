@@ -3,7 +3,7 @@ import { Section } from "cel/ui";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { createUserSchema, IUser, TextInput } from "cel/forms";
+import { AvatarInput, createUserSchema, IUser, TextInput } from "cel/forms";
 import { Container } from "@mui/material";
 import s from "@styles/Account.module.scss";
 
@@ -24,6 +24,7 @@ const Account: React.FC = () => {
       <Container className={s.container}>
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
+            <AvatarInput name="img" img="/assets/Refered.png" />
             <TextInput name="name" label="Nom" />
             <TextInput name="surname" label="Prénom" />
             <TextInput name="email" type="email" label="Adresse mail" />
