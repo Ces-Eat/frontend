@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from "react";
 import { Grid, Switch } from "@mui/material";
 import { DarkMode, LightMode } from "@mui/icons-material";
