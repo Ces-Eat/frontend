@@ -1,0 +1,22 @@
+.container {
+  width: 140px;
+  height: 170px;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  border-radius: 15px;
+
+  &.onClick {
+    cursor: pointer;
+  }
+
+  .img {
+    flex: 1;
+  }
+
+  .content {
+    text-align: center;
+    padding: 0px;
+    padding-top: 10px;
+  }
+}
