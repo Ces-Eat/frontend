@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormContext, Controller } from "react-hook-form";
+import { Control, useController } from "react-hook-form";
 import {
   FormControl,
   InputLabel,
@@ -10,6 +10,7 @@ import {
 interface SelectProps {
   name: string;
   label: string;
+  control: Control<any, any>;
   defaultValue?: string | number;
   className?: string;
   chooses: {
@@ -24,39 +25,33 @@ const Select: React.FC<SelectProps> = ({
   defaultValue,
   chooses,
   className,
+  control,
   ...selectFieldProps
 }) => {
-  const {
+  const { field, fieldState } = useController({
+    name,
     control,
-    formState: { errors },
-  } = useFormContext();
-
+    defaultValue,
+  });
   return (
-    <Controller
-      name={name}
-      control={control}
-      defaultValue={defaultValue}
-      render={({ field }) => (
-        <FormControl className={className}>
-          <InputLabel id={`${label.trim()}-label`}>{label}</InputLabel>
-          <MuiSelect
-            labelId={`${label.trim()}-label`}
-            id={`${label}-id`}
-            error={!!errors[name]}
-            {...{ ...field, ...selectFieldProps }}
-            label={label}
-            variant="outlined"
-            fullWidth
-          >
-            {chooses.map((choose) => (
-              <MenuItem key={choose.value} value={choose.value}>
-                {choose.label}
-              </MenuItem>
-            ))}
-          </MuiSelect>
-        </FormControl>
-      )}
-    />
+    <FormControl className={className}>
+      <InputLabel id={`${label.trim()}-label`}>{label}</InputLabel>
+      <MuiSelect
+        labelId={`${label.trim()}-label`}
+        id={`${label}-id`}
+        error={!!fieldState.error}
+        {...{ ...field, ...selectFieldProps }}
+        label={label}
+        variant="outlined"
+        fullWidth
+      >
+        {chooses.map((choose) => (
+          <MenuItem key={choose.value} value={choose.value}>
+            {choose.label}
+          </MenuItem>
+        ))}
+      </MuiSelect>
+    </FormControl>
   );
 };
 

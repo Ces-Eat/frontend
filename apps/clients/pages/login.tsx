@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Registration, IRegistration } from "@ceseatslib/template";
 import { ILogin, loginUserSchema, TextInput } from "@ceseatslib/form";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -24,21 +24,29 @@ const LoginPage: NextPage = () => {
       textType={IRegistration.LOGIN}
       img={{ src: "/assets/loginImg.png", alt: "Image de connexion" }}
     >
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <TextInput name="email" type="email" label="Adresse mail" />
-          <TextInput name="password" type="password" label="Mot de passe" />
-          <LoadingButton
-            type="submit"
-            variant="contained"
-            color="primary"
-            loading={isLoading}
-            disabled={!methods.formState.isValid}
-          >
-            Connexion
-          </LoadingButton>
-        </form>
-      </FormProvider>
+      <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
+        <TextInput
+          name="email"
+          type="email"
+          label="Adresse mail"
+          control={methods.control}
+        />
+        <TextInput
+          name="password"
+          type="password"
+          label="Mot de passe"
+          control={methods.control}
+        />
+        <LoadingButton
+          type="submit"
+          variant="contained"
+          color="primary"
+          loading={isLoading}
+          disabled={!methods.formState.isValid}
+        >
+          Connexion
+        </LoadingButton>
+      </form>
     </Registration>
   );
 };

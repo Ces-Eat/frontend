@@ -2,7 +2,7 @@ import { Button, Container } from "@mui/material";
 import { IWallet, Select, TextInput, walletSchema } from "@ceseatslib/form";
 import { Section } from "@ceseatslib/ui";
 import { NextPage } from "next";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
 import s from "@styles/WalletsNew.module.scss";
@@ -40,56 +40,70 @@ const WalletsPage: NextPage = () => {
   return (
     <Section title="Ajout d'une carte">
       <Container className={s.container}>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-            <TextInput name="title" label="Nom de carte" />
-            <Container className={s.cardContainer}>
-              <TextInput
-                className={s.card}
-                name="cardNumber"
-                label="Numéro de carte*"
-              />
-              <TextInput className={s.cvv} name="cvv" label="CVV*" />
-            </Container>
-            <Container className={s.middleContainer}>
-              <Select
-                className={s.middleItem}
-                name="expirationMonth"
-                label="Mois d'exp.*"
-                chooses={monthValue}
-              />
-              <Select
-                className={s.middleItem}
-                name="expirationYear"
-                label="Année d'exp.*"
-                chooses={yearValue}
-              />
-            </Container>
-            <TextInput name="designation" label="Désignation" />
-            <Container className={s.middleContainer}>
-              <Link href="/wallets">
-                <Button
-                  variant="contained"
-                  color="error"
-                  className={s.middleItem}
-                >
-                  {" "}
-                  Retour
-                </Button>
-              </Link>
-              <LoadingButton
-                className={s.middleItem}
-                type="submit"
+        <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
+          <TextInput
+            name="title"
+            label="Nom de carte"
+            control={methods.control}
+          />
+          <Container className={s.cardContainer}>
+            <TextInput
+              className={s.card}
+              name="cardNumber"
+              label="Numéro de carte*"
+              control={methods.control}
+            />
+            <TextInput
+              className={s.cvv}
+              name="cvv"
+              label="CVV*"
+              control={methods.control}
+            />
+          </Container>
+          <Container className={s.middleContainer}>
+            <Select
+              className={s.middleItem}
+              name="expirationMonth"
+              label="Mois d'exp.*"
+              chooses={monthValue}
+              control={methods.control}
+            />
+            <Select
+              className={s.middleItem}
+              name="expirationYear"
+              label="Année d'exp.*"
+              chooses={yearValue}
+              control={methods.control}
+            />
+          </Container>
+          <TextInput
+            name="designation"
+            label="Désignation"
+            control={methods.control}
+          />
+          <Container className={s.middleContainer}>
+            <Link href="/wallets">
+              <Button
                 variant="contained"
-                color="primary"
-                loading={isLoading}
-                disabled={!methods.formState.isValid}
+                color="error"
+                className={s.middleItem}
               >
-                Ajouter
-              </LoadingButton>
-            </Container>
-          </form>
-        </FormProvider>
+                {" "}
+                Retour
+              </Button>
+            </Link>
+            <LoadingButton
+              className={s.middleItem}
+              type="submit"
+              variant="contained"
+              color="primary"
+              loading={isLoading}
+              disabled={!methods.formState.isValid}
+            >
+              Ajouter
+            </LoadingButton>
+          </Container>
+        </form>
       </Container>
     </Section>
   );

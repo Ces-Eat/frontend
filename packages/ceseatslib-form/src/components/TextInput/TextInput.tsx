@@ -1,10 +1,11 @@
 import React from "react";
-import { useFormContext, Controller } from "react-hook-form";
+import { useController, Control } from "react-hook-form";
 import { TextField } from "@mui/material";
 
 interface TextInputProps {
   name: string;
   label: string;
+  control: Control<any, any>;
   defaultValue?: string | number;
   className?: string;
   type?: string;
@@ -18,31 +19,26 @@ const TextInput: React.FC<TextInputProps> = ({
   defaultValue,
   inputProps,
   className,
+  control,
   ...textFieldProps
 }) => {
-  const {
+  const { field, fieldState } = useController({
+    name,
     control,
-    formState: { errors },
-  } = useFormContext();
+    defaultValue,
+  });
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      defaultValue={defaultValue}
-      render={({ field }) => (
-        <TextField
-          {...{ ...field, ...textFieldProps }}
-          className={className}
-          label={label}
-          variant="outlined"
-          error={!!errors[name]}
-          helperText={errors[name]?.message}
-          fullWidth
-          InputProps={{ ...inputProps, style: { fontSize: 18 } }}
-          InputLabelProps={{ style: { fontSize: 18 } }}
-        />
-      )}
+    <TextField
+      {...{ ...field, ...textFieldProps }}
+      className={className}
+      label={label}
+      variant="outlined"
+      error={!!fieldState.error}
+      helperText={fieldState.error?.message}
+      fullWidth
+      InputProps={{ ...inputProps, style: { fontSize: 18 } }}
+      InputLabelProps={{ style: { fontSize: 18 } }}
     />
   );
 };

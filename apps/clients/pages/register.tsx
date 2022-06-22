@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Registration, IRegistration } from "@ceseatslib/template";
 import {
   createUserSchema,
@@ -28,32 +28,49 @@ const RegisterPage: NextPage = () => {
       textType={IRegistration.REGISTRATION}
       img={{ src: "/assets/loginImg.png", alt: "Image de connexion" }}
     >
-      <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <MultiStep
-            loading={isLoading}
-            disabled={!methods.formState.isValid}
-            buttonText="Inscription"
-          >
-            <>
-              <TextInput name="name" label="Nom" />
-              <TextInput name="surname" label="Prénom" />
-            </>
-            <>
-              <TextInput name="email" type="email" label="Adresse mail" />
-              <TextInput name="phone" label="Numéro de téléphone" />
-            </>
-            <>
-              <TextInput name="password" type="password" label="Mot de passe" />
-              <TextInput
-                name="confirmPassword"
-                type="password"
-                label="Confirmation de mot de passe"
-              />
-            </>
-          </MultiStep>
-        </form>
-      </FormProvider>
+      <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
+        <MultiStep
+          loading={isLoading}
+          disabled={!methods.formState.isValid}
+          buttonText="Inscription"
+        >
+          <>
+            <TextInput name="name" label="Nom" control={methods.control} />
+            <TextInput
+              name="surname"
+              label="Prénom"
+              control={methods.control}
+            />
+          </>
+          <>
+            <TextInput
+              name="email"
+              type="email"
+              label="Adresse mail"
+              control={methods.control}
+            />
+            <TextInput
+              name="phone"
+              label="Numéro de téléphone"
+              control={methods.control}
+            />
+          </>
+          <>
+            <TextInput
+              name="password"
+              type="password"
+              label="Mot de passe"
+              control={methods.control}
+            />
+            <TextInput
+              name="confirmPassword"
+              type="password"
+              label="Confirmation de mot de passe"
+              control={methods.control}
+            />
+          </>
+        </MultiStep>
+      </form>
     </Registration>
   );
 };
