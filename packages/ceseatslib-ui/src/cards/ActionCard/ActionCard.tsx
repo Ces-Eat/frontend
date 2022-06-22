@@ -12,7 +12,7 @@ interface Props {
   title: string;
   desc?: string;
   img: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const ActionCard: React.FC<Props> = ({ children, title, desc, img }) => (
@@ -28,7 +28,7 @@ const ActionCard: React.FC<Props> = ({ children, title, desc, img }) => (
         </Typography>
       )}
     </CardContent>
-    <CardActions className={s.button}>{children}</CardActions>
+    {children && <CardActions className={s.button}>{children}</CardActions>}
   </Card>
 );
 
