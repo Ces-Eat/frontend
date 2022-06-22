@@ -14,7 +14,7 @@ module.exports = {
     "plugin:import/typescript",
     "prettier",
   ],
-  plugins: ["@typescript-eslint", "import"],
+  // plugins: ["@typescript-eslint", "import"],
   settings: {
     next: {
       rootDir: ["apps/*/", "packages/*/"],

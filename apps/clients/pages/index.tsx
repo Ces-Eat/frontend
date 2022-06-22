@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Button, Card } from "cel";
+import { Button, Card } from "cel/src";
 import { Section } from "cel/ui";
 import { OfferCard } from "cel/ui/cards";
 import {
