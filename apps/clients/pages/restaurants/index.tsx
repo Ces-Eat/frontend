@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { Container, TextField, Typography } from "@mui/material";
-import { ActionCard, DescCard } from "cel/ui/cards";
+import { ActionCard, DescCard } from "@ceseatslib/ui";
 import s from "@styles/Restaurants.module.scss";
 import StarIcon from "@mui/icons-material/Star";
 import Link from "next/link";

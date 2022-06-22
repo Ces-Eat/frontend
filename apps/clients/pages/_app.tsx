@@ -1,8 +1,8 @@
 import "../styles/_reset.scss";
 import type { AppProps } from "next/app";
-import { NotificationsProvider } from "cel/utils/notifications";
-import { ThemeWrapper, ITheme } from "cel/themes";
-import { AppBar } from "cel/ui";
+import { NotificationProvider } from "@ceseatslib/utils";
+import { ThemeWrapper, ITheme } from "@ceseatslib/theme";
+import { AppBar } from "@ceseatslib/ui";
 import { useEffect, useState } from "react";
 import NavMenu from "@components/navMenu/navMenu";
 
@@ -26,14 +26,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeWrapper themeName={isLightTheme ? ITheme.LIGHT : ITheme.DARK}>
-      <NotificationsProvider>
+      <NotificationProvider>
         <>
           <AppBar changeTheme={changeTheme} isLightTheme={isLightTheme}>
             <NavMenu />
           </AppBar>
           <Component {...pageProps} />
         </>
-      </NotificationsProvider>
+      </NotificationProvider>
     </ThemeWrapper>
   );
 };

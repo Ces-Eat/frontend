@@ -2,8 +2,13 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { RegistrationTemplate, IRegistration } from "cel/templates";
-import { createUserSchema, IUser, MultiStep, TextInput } from "cel/forms";
+import { Registration, IRegistration } from "@ceseatslib/template";
+import {
+  createUserSchema,
+  IUser,
+  MultiStep,
+  TextInput,
+} from "@ceseatslib/form";
 
 const RegisterPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +24,7 @@ const RegisterPage: NextPage = () => {
   };
 
   return (
-    <RegistrationTemplate
+    <Registration
       textType={IRegistration.REGISTRATION}
       img={{ src: "/assets/loginImg.png", alt: "Image de connexion" }}
     >
@@ -49,7 +54,7 @@ const RegisterPage: NextPage = () => {
           </MultiStep>
         </form>
       </FormProvider>
-    </RegistrationTemplate>
+    </Registration>
   );
 };
 

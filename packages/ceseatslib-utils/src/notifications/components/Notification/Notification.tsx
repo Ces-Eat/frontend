@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Alert, LinearProgress } from "@mui/material";
 import s from "./Notification.module.scss";
-import useNotificationCenter from "../hooks/useNotificationCenter";
-import { INotification } from "../types";
+import useNotificationCenter from "../../hooks/useNotificationCenter";
+import { INotification } from "../../types";
 
 const Notification: React.FC<INotification> = ({ id, type, message }) => {
   const { deleteNotification } = useNotificationCenter();

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import { Section } from "cel/ui";
+import { Section } from "@ceseatslib/ui";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { AvatarInput, createUserSchema, IUser, TextInput } from "cel/forms";
+import {
+  AvatarInput,
+  createUserSchema,
+  IUser,
+  TextInput,
+} from "@ceseatslib/form";
 import { Container } from "@mui/material";
 import s from "@styles/Account.module.scss";
 

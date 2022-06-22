@@ -1,9 +1,9 @@
 import { Container } from "@mui/material";
 import React, { useReducer } from "react";
 import s from "./NotificationProvider.module.scss";
-import NotificationContext from "../contexts/NotificationContext";
-import Notification from "./Notification";
-import { IAction, IActionType, INotification } from "../types";
+import NotificationContext from "../../contexts/NotificationContext";
+import { Notification } from "../Notification";
+import { IAction, IActionType, INotification } from "../../types";
 
 const NotificationsProvider: React.FC = ({ children }) => {
   const [notifications, dispatch] = useReducer(

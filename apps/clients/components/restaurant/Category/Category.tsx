@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import { ProductCard } from "cel/ui/cards";
+import { ProductCard } from "@ceseatslib/ui";
 import s from "./Category.module.scss";
 
 interface Props {

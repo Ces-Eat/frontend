@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { RegistrationTemplate, IRegistration } from "cel/templates";
-import { ILogin, loginUserSchema, TextInput } from "cel/forms";
+import { Registration, IRegistration } from "@ceseatslib/template";
+import { ILogin, loginUserSchema, TextInput } from "@ceseatslib/form";
 import LoadingButton from "@mui/lab/LoadingButton";
 
 const LoginPage: NextPage = () => {
@@ -20,7 +20,7 @@ const LoginPage: NextPage = () => {
   };
 
   return (
-    <RegistrationTemplate
+    <Registration
       textType={IRegistration.LOGIN}
       img={{ src: "/assets/loginImg.png", alt: "Image de connexion" }}
     >
@@ -39,7 +39,7 @@ const LoginPage: NextPage = () => {
           </LoadingButton>
         </form>
       </FormProvider>
-    </RegistrationTemplate>
+    </Registration>
   );
 };
 

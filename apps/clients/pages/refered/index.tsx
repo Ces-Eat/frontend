@@ -1,12 +1,8 @@
-import { Section } from "cel/ui";
-import { ActionCard } from "cel/ui/cards";
+import { Section, ActionCard } from "@ceseatslib/ui";
 import { NextPage } from "next";
 import { Button, Container } from "@mui/material";
 import s from "@styles/Wallets.module.scss";
-import {
-  INotificationType,
-  useNotificationCenter,
-} from "cel/utils/notifications";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 
 const ReferedPage: NextPage = () => {
   const { createNotification } = useNotificationCenter();

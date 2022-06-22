@@ -1,5 +1,4 @@
-import { Section } from "cel/ui";
-import { ActionCard } from "cel/ui/cards";
+import { Section, ActionCard } from "@ceseatslib/ui";
 import { NextPage } from "next";
 import Link from "next/link";
 import { Container } from "@mui/material";

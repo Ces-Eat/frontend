@@ -20,6 +20,11 @@ importers:
 
   apps/clients:
     specifiers:
+      '@ceseatslib/form': workspace:*
+      '@ceseatslib/template': workspace:*
+      '@ceseatslib/theme': workspace:*
+      '@ceseatslib/ui': workspace:*
+      '@ceseatslib/utils': workspace:*
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
       '@hookform/resolvers': ^2.9.1
@@ -29,7 +34,6 @@ importers:
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
-      cel: workspace:*
       eslint: 8.0.0-rc.0
       eslint-config-custom: workspace:*
       eslint-config-next: ^12.1.6
@@ -44,13 +48,17 @@ importers:
       typescript: ^4.5.2
       yup: ^0.32.11
     dependencies:
+      '@ceseatslib/form': link:../../packages/ceseatslib-form
+      '@ceseatslib/template': link:../../packages/ceseatslib-template
+      '@ceseatslib/theme': link:../../packages/ceseatslib-theme
+      '@ceseatslib/ui': link:../../packages/ceseatslib-ui
+      '@ceseatslib/utils': link:../../packages/ceseatslib-utils
       '@emotion/react': 11.9.3_issp6eja53bx2taimj6tb2noxy
       '@emotion/styled': 11.9.3_2v5wedzmah7fiigwqpgk4apvxe
       '@hookform/resolvers': 2.9.1_react-hook-form@7.32.2
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
-      cel: link:../../packages/cel
       html-to-image: 1.9.0
       next: 12.1.6_k3ivwmvbt5hpllneq7kny66ape
       react: 18.2.0
@@ -71,6 +79,11 @@ importers:
 
   apps/drivers:
     specifiers:
+      '@ceseatslib/form': workspace:*
+      '@ceseatslib/template': workspace:*
+      '@ceseatslib/theme': workspace:*
+      '@ceseatslib/ui': workspace:*
+      '@ceseatslib/utils': workspace:*
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
       '@hookform/resolvers': ^2.9.1
@@ -80,7 +93,6 @@ importers:
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
-      cel: workspace:*
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       eslint-config-next: ^12.1.6
@@ -94,13 +106,17 @@ importers:
       typescript: ^4.5.2
       yup: ^0.32.11
     dependencies:
+      '@ceseatslib/form': link:../../packages/ceseatslib-form
+      '@ceseatslib/template': link:../../packages/ceseatslib-template
+      '@ceseatslib/theme': link:../../packages/ceseatslib-theme
+      '@ceseatslib/ui': link:../../packages/ceseatslib-ui
+      '@ceseatslib/utils': link:../../packages/ceseatslib-utils
       '@emotion/react': 11.9.3_issp6eja53bx2taimj6tb2noxy
       '@emotion/styled': 11.9.3_2v5wedzmah7fiigwqpgk4apvxe
       '@hookform/resolvers': 2.9.1_react-hook-form@7.32.2
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
-      cel: link:../../packages/cel
       next: 12.1.6_k3ivwmvbt5hpllneq7kny66ape
       react: 18.2.0
       react-dom: 18.1.0_react@18.2.0
@@ -120,6 +136,11 @@ importers:
 
   apps/merchants:
     specifiers:
+      '@ceseatslib/form': workspace:*
+      '@ceseatslib/template': workspace:*
+      '@ceseatslib/theme': workspace:*
+      '@ceseatslib/ui': workspace:*
+      '@ceseatslib/utils': workspace:*
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
       '@hookform/resolvers': ^2.9.1
@@ -129,7 +150,6 @@ importers:
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
-      cel: workspace:*
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       eslint-config-next: ^12.1.6
@@ -143,13 +163,17 @@ importers:
       typescript: ^4.5.2
       yup: ^0.32.11
     dependencies:
+      '@ceseatslib/form': link:../../packages/ceseatslib-form
+      '@ceseatslib/template': link:../../packages/ceseatslib-template
+      '@ceseatslib/theme': link:../../packages/ceseatslib-theme
+      '@ceseatslib/ui': link:../../packages/ceseatslib-ui
+      '@ceseatslib/utils': link:../../packages/ceseatslib-utils
       '@emotion/react': 11.9.3_issp6eja53bx2taimj6tb2noxy
       '@emotion/styled': 11.9.3_2v5wedzmah7fiigwqpgk4apvxe
       '@hookform/resolvers': 2.9.1_react-hook-form@7.32.2
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
-      cel: link:../../packages/cel
       next: 12.1.6_k3ivwmvbt5hpllneq7kny66ape
       react: 18.2.0
       react-dom: 18.1.0_react@18.2.0
@@ -169,6 +193,11 @@ importers:
 
   apps/staffs:
     specifiers:
+      '@ceseatslib/form': workspace:*
+      '@ceseatslib/template': workspace:*
+      '@ceseatslib/theme': workspace:*
+      '@ceseatslib/ui': workspace:*
+      '@ceseatslib/utils': workspace:*
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
       '@hookform/resolvers': ^2.9.1
@@ -178,7 +207,6 @@ importers:
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
-      cel: workspace:*
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       eslint-config-next: ^12.1.6
@@ -192,13 +220,17 @@ importers:
       typescript: ^4.5.2
       yup: ^0.32.11
     dependencies:
+      '@ceseatslib/form': link:../../packages/ceseatslib-form
+      '@ceseatslib/template': link:../../packages/ceseatslib-template
+      '@ceseatslib/theme': link:../../packages/ceseatslib-theme
+      '@ceseatslib/ui': link:../../packages/ceseatslib-ui
+      '@ceseatslib/utils': link:../../packages/ceseatslib-utils
       '@emotion/react': 11.9.3_issp6eja53bx2taimj6tb2noxy
       '@emotion/styled': 11.9.3_2v5wedzmah7fiigwqpgk4apvxe
       '@hookform/resolvers': 2.9.1_react-hook-form@7.32.2
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
-      cel: link:../../packages/cel
       next: 12.1.6_k3ivwmvbt5hpllneq7kny66ape
       react: 18.2.0
       react-dom: 18.1.0_react@18.2.0

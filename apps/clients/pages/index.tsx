@@ -1,13 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { Button, Card } from "cel/src";
-import { Section } from "cel/ui";
-import { OfferCard } from "cel/ui/cards";
-import {
-  INotificationType,
-  useNotificationCenter,
-} from "cel/utils/notifications";
+import { OfferCard, Section } from "@ceseatslib/ui";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import styles from "../styles/Home.module.scss";
 
 const Home: NextPage = () => {
@@ -28,8 +23,6 @@ const Home: NextPage = () => {
       >
         Add Notification
       </button>
-      <Button />
-      <Card src="/favicon.ico" alt="Logo NextJS" />
 
       <main className={styles.main}>
         <Section
