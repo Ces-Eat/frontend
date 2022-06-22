@@ -6,6 +6,7 @@ import "./Wrapper.scss";
 
 interface Props {
   themeName: ITheme;
+  children: React.ReactNode;
 }
 
 function choosenTheme(themeName: ITheme) {

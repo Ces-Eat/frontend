@@ -11,6 +11,7 @@ interface Props {
     alt: string;
   };
   textType: IRegistration;
+  children: React.ReactNode;
 }
 
 const TEXT = {

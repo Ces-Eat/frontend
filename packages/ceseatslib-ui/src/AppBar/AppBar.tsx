@@ -13,6 +13,7 @@ import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 interface Props {
   isLightTheme: boolean;
+  children: React.ReactNode;
   changeTheme: () => void;
 }
 

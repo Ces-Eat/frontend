@@ -5,6 +5,7 @@ import s from "./Section.module.scss";
 interface Props {
   title: string;
   description?: string;
+  children: React.ReactNode;
 }
 
 const OfferCard: React.FC<Props> = ({ title, description, children }) => (

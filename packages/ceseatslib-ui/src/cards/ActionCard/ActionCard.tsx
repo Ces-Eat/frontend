@@ -12,6 +12,7 @@ interface Props {
   title: string;
   desc?: string;
   img: string;
+  children: React.ReactNode;
 }
 
 const ActionCard: React.FC<Props> = ({ children, title, desc, img }) => (

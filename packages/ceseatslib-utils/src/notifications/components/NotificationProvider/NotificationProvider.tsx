@@ -5,7 +5,11 @@ import NotificationContext from "../../contexts/NotificationContext";
 import { Notification } from "../Notification";
 import { IAction, IActionType, INotification } from "../../types";
 
-const NotificationsProvider: React.FC = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const NotificationsProvider: React.FC<Props> = ({ children }) => {
   const [notifications, dispatch] = useReducer(
     (state: INotification[], action: IAction) => {
       switch (action.type) {

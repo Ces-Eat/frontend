@@ -7,6 +7,7 @@ interface Props {
   loading: boolean;
   disabled: boolean;
   buttonText: string;
+  children: React.ReactNode;
 }
 
 const MultiStep: React.FC<Props> = ({
