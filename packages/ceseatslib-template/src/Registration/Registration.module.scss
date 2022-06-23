@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -58,6 +58,16 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+
+      .link {
+        cursor: pointer;
+        margin-left: 5px;
+        user-select: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 }

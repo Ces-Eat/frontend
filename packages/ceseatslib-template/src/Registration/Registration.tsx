@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { Container, Typography } from "@mui/material";
-import Link from "next/link";
 import React from "react";
 import { IRegistration } from "./Registration.enum";
 import s from "./Registration.module.scss";
@@ -12,6 +11,7 @@ interface Props {
   };
   textType: IRegistration;
   children: React.ReactNode;
+  switchRegistration: () => void;
 }
 
 const TEXT = {
@@ -20,7 +20,6 @@ const TEXT = {
     description: "Vous n’avez pas de compte ? ",
     link: {
       text: "Inscrivez-vous",
-      href: "/register",
     },
   },
   [IRegistration.REGISTRATION]: {
@@ -28,7 +27,6 @@ const TEXT = {
     description: "Vous avez déjà un compte ? ",
     link: {
       text: "Connectez-vous",
-      href: "/login",
     },
   },
 };
@@ -37,6 +35,7 @@ const RegistrationTemplate: React.FC<Props> = ({
   img: { src, alt },
   children,
   textType,
+  switchRegistration,
 }) => (
   <Container className={s.container}>
     <Container className={s.img_container}>
@@ -50,11 +49,14 @@ const RegistrationTemplate: React.FC<Props> = ({
         {children}
       </Container>
       <Container className={s.switch_form}>
-        <Typography variant="body2">
-          {TEXT[textType].description}
-          <Link href={TEXT[textType].link.href} color="primary">
-            {TEXT[textType].link.text}
-          </Link>
+        <Typography variant="body2">{TEXT[textType].description}</Typography>
+        <Typography
+          variant="body2"
+          onClick={switchRegistration}
+          className={s.link}
+          color="primary"
+        >
+          {TEXT[textType].link.text}
         </Typography>
       </Container>
     </Container>

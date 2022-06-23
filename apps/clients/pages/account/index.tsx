@@ -60,16 +60,27 @@ const Account: React.FC = () => {
             label="Confirmation de mot de passe"
             control={methods.control}
           />
-          <LoadingButton
-            className={s.button}
-            type="submit"
-            variant="contained"
-            color="primary"
-            loading={isLoading}
-            disabled={!methods.formState.isValid}
-          >
-            Modifier
-          </LoadingButton>
+          <Container className={s.btnContainer}>
+            <LoadingButton
+              className={s.button}
+              type="submit"
+              variant="contained"
+              color="warning"
+              loading={isLoading}
+              disabled={!methods.formState.isValid}
+            >
+              Modifier
+            </LoadingButton>
+            <LoadingButton
+              className={s.button}
+              type="button"
+              variant="contained"
+              color="error"
+              loading={isLoading}
+            >
+              Supprimer
+            </LoadingButton>
+          </Container>
         </form>
       </Container>
     </Section>

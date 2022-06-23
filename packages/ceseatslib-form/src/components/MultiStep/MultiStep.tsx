@@ -33,7 +33,7 @@ const MultiStep: React.FC<Props> = ({
   };
 
   return (
-    <div>
+    <Container>
       {currentChild}{" "}
       <Container className={s.container}>
         {currentStep > 0 && (
@@ -58,7 +58,7 @@ const MultiStep: React.FC<Props> = ({
           {isLastStep() ? buttonText : "Suivant"}
         </LoadingButton>
       </Container>
-    </div>
+    </Container>
   );
 };
 
