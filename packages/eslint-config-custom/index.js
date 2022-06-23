@@ -37,7 +37,7 @@ module.exports = {
       },
     ],
     "@next/next/no-html-link-for-pages": "off",
-    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+    "import/no-extraneous-dependencies": ["warn", { devDependencies: true }],
     "react/jsx-props-no-spreading": [0],
   },
   ignorePatterns: [
