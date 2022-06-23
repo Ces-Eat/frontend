@@ -4,6 +4,7 @@ import { Container } from "@mui/material";
 import RestaurantHeader from "@components/restaurant/Header/Header";
 import Category from "@components/restaurant/Category/Category";
 import s from "@styles/Restaurant.module.scss";
+import { Divider } from "@mui/material";
 
 const Restaurant: React.FC = () => {
   // const router = useRouter();
@@ -39,28 +40,28 @@ const Restaurant: React.FC = () => {
     {
       id: "1",
       img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      price: 2.4,
+      desc: "2.4 €",
       name: "Berre Guère",
       cat: "cat_eiheiqz",
     },
     {
       id: "2",
       img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      price: 2.4,
+      desc: "2.4 €",
       name: "Berre Guère vB",
       cat: "cat_sfs",
     },
     {
       id: "3",
       img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      price: 2.4,
+      desc: "2.4 €",
       name: "Berre Guère v3",
       cat: "cat_fe55555555555",
     },
     {
       id: "4",
       img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-      price: 2.4,
+      desc: "2.4 €",
       name: "Berre Guère v4",
       cat: "cat_fe55555555555",
     },
@@ -70,13 +71,18 @@ const Restaurant: React.FC = () => {
     <>
       <RestaurantHeader {...restaurant} />
       <Container className={s.container}>
-        {categories.map((category) => {
+        {categories.map((category, i) => {
           const productCat = products.filter(
             (product) => product.cat === category.id
           );
 
           return (
-            <Category {...category} key={category.id} products={productCat} />
+            <>
+              {productCat.length !== 0 && i !== 0 && (
+                <Divider sx={{ width: "60%", margin: "20px auto" }} />
+              )}
+              <Category {...category} key={category.id} products={productCat} />
+            </>
           );
         })}
       </Container>

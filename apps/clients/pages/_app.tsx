@@ -4,19 +4,19 @@ import { NotificationProvider } from "@ceseatslib/utils";
 import { ThemeWrapper, ITheme } from "@ceseatslib/theme";
 import { AppBar } from "@ceseatslib/ui";
 import { useEffect, useState } from "react";
-import NavMenu from "@components/navMenu/navMenu";
+import NavMenu from "@components/NavMenu/NavMenu";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isLightTheme, setIsLightTheme] = useState<boolean>(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setIsLightTheme(
-        !(
-          window.matchMedia &&
-          window.matchMedia("(prefers-color-scheme: dark)").matches
-        )
-      );
+      // setIsLightTheme(
+      //   !(
+      //     window.matchMedia &&
+      //     window.matchMedia("(prefers-color-scheme: dark)").matches
+      //   )
+      // );
     }
   }, []);
 
@@ -28,7 +28,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ThemeWrapper themeName={isLightTheme ? ITheme.LIGHT : ITheme.DARK}>
       <NotificationProvider>
         <>
-          <AppBar changeTheme={changeTheme} isLightTheme={isLightTheme}>
+          <AppBar
+            changeTheme={changeTheme}
+            isLightTheme={isLightTheme}
+            link="/restaurants"
+          >
             <NavMenu />
           </AppBar>
           <Component {...pageProps} />

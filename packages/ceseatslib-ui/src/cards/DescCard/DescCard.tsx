@@ -6,17 +6,21 @@ interface Props {
   title: string;
   img: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
-  className?: string;
+  isSelected?: boolean;
 }
 
-const DescCard: React.FC<Props> = ({ title, img, onClick, className }) => (
+const DescCard: React.FC<Props> = ({ title, img, onClick, isSelected }) => (
   <Card
-    className={`${s.container} ${className} ${onClick ? s.onClick : ""}`}
+    className={`${s.container} ${onClick ? s.onClick : ""}`}
     onClick={onClick}
+    sx={{
+      backgroundColor: `${isSelected ? "tertiary.main" : "transparent"}`,
+      boxShadow: "none",
+    }}
   >
     <CardMedia component="img" className={s.img} src={img} />
     <CardContent className={s.content}>
-      <Typography variant="h5" className={s.title}>
+      <Typography variant="mtb" className={s.title}>
         {title}
       </Typography>
     </CardContent>
@@ -25,7 +29,7 @@ const DescCard: React.FC<Props> = ({ title, img, onClick, className }) => (
 
 DescCard.defaultProps = {
   onClick: undefined,
-  className: "",
+  isSelected: false,
 };
 
 export default DescCard;

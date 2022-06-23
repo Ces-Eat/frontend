@@ -1,4 +1,5 @@
-import { Section, ActionCard } from "@ceseatslib/ui";
+import { ActionCard } from "@ceseatslib/ui";
+import { Section } from "@ceseatslib/template";
 import { NextPage } from "next";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";

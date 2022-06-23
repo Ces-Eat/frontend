@@ -1,4 +1,5 @@
-import { Section, ActionCard } from "@ceseatslib/ui";
+import { ActionCard } from "@ceseatslib/ui";
+import { Section } from "@ceseatslib/template";
 import { NextPage } from "next";
 import { Button, Container } from "@mui/material";
 import s from "@styles/Wallets.module.scss";

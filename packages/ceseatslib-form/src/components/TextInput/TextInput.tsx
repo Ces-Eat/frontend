@@ -33,12 +33,12 @@ const TextInput: React.FC<TextInputProps> = ({
       {...{ ...field, ...textFieldProps }}
       className={className}
       label={label}
-      variant="outlined"
+      variant="standard"
       error={!!fieldState.error}
       helperText={fieldState.error?.message}
       fullWidth
-      InputProps={{ ...inputProps, style: { fontSize: 18 } }}
-      InputLabelProps={{ style: { fontSize: 18 } }}
+      InputProps={{ ...inputProps }}
+      // InputLabelProps={{ style: { fontSize: 18 } }}
     />
   );
 };

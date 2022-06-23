@@ -352,6 +352,7 @@ importers:
       '@emotion/react': ^11.9.3
       '@emotion/styled': ^11.9.3
       '@mui/material': ^5.8.4
+      '@mui/utils': ^5.8.4
       '@rollup/plugin-commonjs': ^22.0.0
       '@rollup/plugin-node-resolve': ^13.3.0
       '@rollup/plugin-typescript': ^8.3.3
@@ -373,6 +374,7 @@ importers:
       '@emotion/react': 11.9.3_64r4nxmc3fzombvt6u4rtc4xpa
       '@emotion/styled': 11.9.3_k2qfcurxvr3zhacspfukkcgrs4
       '@mui/material': 5.8.5_cmng6vezloiu2kriozxz3fehfy
+      '@mui/utils': 5.8.4_react@18.2.0
       '@rollup/plugin-commonjs': 22.0.0_rollup@2.75.7
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.75.7
       '@rollup/plugin-typescript': 8.3.3_g4qkabtmybowem44p7ts7jnbqm

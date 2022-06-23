@@ -1,6 +1,6 @@
 import { Button, Container } from "@mui/material";
 import { IWallet, Select, TextInput, walletSchema } from "@ceseatslib/form";
-import { Section } from "@ceseatslib/ui";
+import { Section } from "@ceseatslib/template";
 import { NextPage } from "next";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";

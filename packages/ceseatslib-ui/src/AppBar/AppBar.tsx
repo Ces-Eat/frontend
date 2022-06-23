@@ -14,10 +14,16 @@ import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 interface Props {
   isLightTheme: boolean;
   children: React.ReactNode;
+  link: string;
   changeTheme: () => void;
 }
 
-const AppBar: React.FC<Props> = ({ changeTheme, isLightTheme, children }) => {
+const AppBar: React.FC<Props> = ({
+  changeTheme,
+  isLightTheme,
+  children,
+  link,
+}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
@@ -27,7 +33,6 @@ const AppBar: React.FC<Props> = ({ changeTheme, isLightTheme, children }) => {
         open={isMenuOpen}
       >
         <Box
-          sx={{ width: 250 }}
           role="presentation"
           onClick={() => setIsMenuOpen(false)}
           component="div"
@@ -39,13 +44,15 @@ const AppBar: React.FC<Props> = ({ changeTheme, isLightTheme, children }) => {
         <Toolbar>
           <IconButton
             onClick={() => setIsMenuOpen(true)}
-            sx={{ color: "#fff", marginRight: "15px" }}
+            sx={{ marginRight: "15px" }}
           >
-            <Menu />
+            <Menu sx={{ color: "tertiary.main" }} />
           </IconButton>
-          <Link href="/restaurants">
+          <Link href={link}>
             <Typography
-              sx={{ color: "#fff", marginRight: "15px", cursor: "pointer" }}
+              sx={{ marginRight: "15px", cursor: "pointer" }}
+              variant="h5"
+              color="tertiary.main"
             >
               Ces&apos;Eats
             </Typography>

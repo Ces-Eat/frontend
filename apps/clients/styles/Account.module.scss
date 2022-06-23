@@ -9,10 +9,10 @@
   .btnContainer {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
 
     .button {
       width: 40%;
+      margin-bottom: 20px;
     }
 
     @media screen and (max-width: 600px) {

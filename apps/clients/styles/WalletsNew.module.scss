@@ -10,8 +10,6 @@
   }
 
   form {
-    margin-top: 20px;
-
     .cardContainer {
       display: flex;
       justify-content: space-between;
@@ -40,6 +38,10 @@
     .middleContainer {
       display: flex;
       justify-content: space-between;
+
+      button {
+        margin-bottom: 20px;
+      }
 
       .middleItem {
         width: 45%;

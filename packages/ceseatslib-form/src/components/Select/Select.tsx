@@ -42,7 +42,7 @@ const Select: React.FC<SelectProps> = ({
         error={!!fieldState.error}
         {...{ ...field, ...selectFieldProps }}
         label={label}
-        variant="outlined"
+        variant="standard"
         fullWidth
       >
         {chooses.map((choose) => (

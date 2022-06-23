@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import { Container, TextField, Typography } from "@mui/material";
-import { ActionCard, DescCard } from "@ceseatslib/ui";
+import { Container, TextField } from "@mui/material";
+import { DescCard, ProductCard } from "@ceseatslib/ui";
 import s from "@styles/Restaurants.module.scss";
-import StarIcon from "@mui/icons-material/Star";
 import Link from "next/link";
 import { useState } from "react";
+import { Divider } from "@mui/material";
 
 const Restaurants: NextPage = () => {
   const [search, setSearch] = useState("");
@@ -16,6 +16,7 @@ const Restaurants: NextPage = () => {
       img: "https://www.objectifgard.com/wp-content/uploads/2022/01/burger-king.jpeg",
       name: "Burker King",
       rating: 4.5,
+      desc: "Lieux",
       cat: "Fast Food",
     },
     {
@@ -23,6 +24,7 @@ const Restaurants: NextPage = () => {
       img: "https://www.objectifgard.com/wp-content/uploads/2022/01/burger-king.jpeg",
       name: "Burger Kinga",
       cat: "Fast Food",
+      desc: "Lieux",
       rating: 4.5,
     },
     {
@@ -30,6 +32,7 @@ const Restaurants: NextPage = () => {
       img: "https://www.objectifgard.com/wp-content/uploads/2022/01/burger-king.jpeg",
       name: "Burger King",
       cat: "Healthy",
+      desc: "Lieux",
       rating: 4.5,
     },
   ];
@@ -58,11 +61,12 @@ const Restaurants: NextPage = () => {
   ];
 
   return (
-    <Container>
+    <Container className={s.container}>
       <Container className={s.input}>
         <TextField
           label="Nom du restaurant"
           fullWidth
+          sx={{ margin: "0" }}
           onChange={(e) => setSearch(e.target.value)}
         />
       </Container>
@@ -70,7 +74,7 @@ const Restaurants: NextPage = () => {
         {categories &&
           categories.map(({ id, name, img }) => (
             <DescCard
-              className={name === catSelected ? s.selected : ""}
+              isSelected={name === catSelected}
               key={id}
               onClick={() => setCatSelected(name === catSelected ? "" : name)}
               title={name}
@@ -78,6 +82,7 @@ const Restaurants: NextPage = () => {
             />
           ))}
       </Container>
+      <Divider sx={{ width: "60%", margin: "20px auto" }} />
       <Container className={s.rest_container}>
         {restaurants.length
           ? restaurants
@@ -86,15 +91,13 @@ const Restaurants: NextPage = () => {
                   name.includes(search) &&
                   (catSelected === cat || catSelected === "")
               )
-              .map(({ id, name, img, rating }) => (
-                <Link href={`/restaurants/${id}`} key={id}>
-                  <a className={s.link} href={`/restaurants/${id}`}>
-                    <ActionCard title={name} img={img} desc={name}>
-                      <Container className={s.rating}>
-                        <Typography variant="body2">{rating}</Typography>{" "}
-                        <StarIcon />
-                      </Container>
-                    </ActionCard>
+              .map((restaurant) => (
+                <Link
+                  href={`/restaurants/${restaurant.id}`}
+                  key={restaurant.id}
+                >
+                  <a className={s.link} href={`/restaurants/${restaurant.id}`}>
+                    <ProductCard {...restaurant} />
                   </a>
                 </Link>
               ))

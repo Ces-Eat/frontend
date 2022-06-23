@@ -28,7 +28,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     <ThemeWrapper themeName={isLightTheme ? ITheme.LIGHT : ITheme.DARK}>
       <NotificationProvider>
         <>
-          <AppBar changeTheme={changeTheme} isLightTheme={isLightTheme}>
+          <AppBar
+            changeTheme={changeTheme}
+            isLightTheme={isLightTheme}
+            link="/"
+          >
             <NavMenu />
           </AppBar>
           <Component {...pageProps} />

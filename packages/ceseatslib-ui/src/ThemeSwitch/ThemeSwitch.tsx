@@ -12,15 +12,15 @@ interface Props {
 const ThemeSwitch: React.FC<Props> = ({ changeTheme, value }) => (
   <Grid component="label" container alignItems="center" justifyContent="right">
     <Grid item className={s.item}>
-      <LightMode sx={{ color: "#fff" }} />
+      <LightMode color="tertiary" />
     </Grid>
     <Grid item>
       {value !== null && (
-        <Switch onChange={changeTheme} color="allWhite" checked={!value} />
+        <Switch color="tertiary" onChange={changeTheme} checked={!value} />
       )}
     </Grid>
     <Grid item className={s.item}>
-      <DarkMode sx={{ color: "#fff" }} />
+      <DarkMode color="tertiary" />
     </Grid>
   </Grid>
 );

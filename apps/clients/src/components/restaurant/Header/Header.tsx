@@ -10,7 +10,7 @@ interface Props {
 }
 
 const RestaurantHeader: React.FC<Props> = ({ img, title, desc, rating }) => (
-  <Container className={s.container}>
+  <Container className={s.container} sx={{ backgroundColor: "primary.light" }}>
     <Container className={s.img}>
       <img src={img} alt={title} />
     </Container>

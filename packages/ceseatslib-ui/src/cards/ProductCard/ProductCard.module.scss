@@ -1,22 +1,37 @@
 .container {
-    width: 150px;
-    border: 1px solid gray;
-    position: relative;
-    margin: 20px;
-    margin-left: 0;
-    border-radius: 10px;
+  width: 300px;
+  border: 1px solid gray;
+  position: relative;
+  border-radius: 10px;
+  border: none;
 
-    .img {
-        width: 100%;
-        max-height: 100px;
-        border-radius: 10px 10px 0 0;
-    }
+  .img {
+    width: 100%;
+    max-height: 100px;
+    border-radius: 10px 10px 0 0;
+  }
 
-    .button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        cursor: pointer;
-        overflow: hidden;
+  .title_container {
+    display: flex;
+    justify-content: space-between;
+
+    .rating {
+      background-color: black;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+  }
+
+  .button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    overflow: hidden;
+  }
 }

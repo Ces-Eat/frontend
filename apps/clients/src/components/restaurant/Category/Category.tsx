@@ -11,12 +11,20 @@ interface Props {
 const Category: React.FC<Props> = ({ name, products }) => {
   if (!products.length) return null;
 
+  const onClick = (id: string) => {
+    console.log(`clicked : ${id}`);
+  };
+
   return (
     <Container className={s.category}>
       <Typography variant="h4">{name}</Typography>
       <Container className={s.products}>
         {products.map((product) => (
-          <ProductCard key={product.id} {...product} />
+          <ProductCard
+            key={product.id}
+            onClick={() => onClick(product.id)}
+            {...product}
+          />
         ))}
       </Container>
     </Container>

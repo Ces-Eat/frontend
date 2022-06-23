@@ -1,4 +1,10 @@
-import { List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import RoomIcon from "@mui/icons-material/Room";
@@ -48,6 +54,14 @@ const NavMenu: React.FC = () => (
         <ListItemText>Parrainage</ListItemText>
       </ListItem>
     </Link>
+    <ListItem onClick={() => console.log("logout")}>
+      <ListItemIcon>
+        <PeopleIcon color="error" />
+      </ListItemIcon>
+      <ListItemText disableTypography>
+        <Typography color="error">Deconnexion</Typography>
+      </ListItemText>
+    </ListItem>
   </List>
 );
 

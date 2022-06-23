@@ -1,8 +1,7 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import React from "react";
 import { ITheme } from "../themes/themes.type";
-import { lightTheme, darkTheme } from "../themes/themes";
-import "./Wrapper.scss";
+import { lightTheme, darkTheme } from "../themes";
 
 interface Props {
   themeName: ITheme;

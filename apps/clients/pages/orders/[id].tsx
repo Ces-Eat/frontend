@@ -118,14 +118,10 @@ const ReferedPage: NextPage = () => {
     <Card className={s.container}>
       <Container ref={invoiceRef}>
         <CardContent>
-          <Typography
-            variant="h4"
-            textAlign="center"
-            sx={{ textDecoration: "underline" }}
-          >
+          <Typography variant="h4" textAlign="center">
             Facture du 16/04/22
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="nt">
             Chez &apos;Adresse de livrasion&apos;
           </Typography>
         </CardContent>
@@ -135,11 +131,11 @@ const ReferedPage: NextPage = () => {
               key={`${article.name}-${article.quantity}`}
               className={s.orderLine}
             >
-              <Typography variant="body1">
+              <Typography variant="nt">
                 {article.name}{" "}
                 {article.quantity > 1 ? `x${article.quantity}` : ""}
               </Typography>
-              <Typography variant="body1">{article.price} €</Typography>
+              <Typography variant="nt">{article.price} €</Typography>
             </Container>
           ))}
 
@@ -149,10 +145,10 @@ const ReferedPage: NextPage = () => {
                 key={`${menu.name}-${menu.quantity}`}
                 className={s.orderLine}
               >
-                <Typography variant="body1">
+                <Typography variant="nt">
                   {menu.name} {menu.quantity > 1 ? `x${menu.quantity}` : ""}
                 </Typography>
-                <Typography variant="body1">{menu.price} €</Typography>
+                <Typography variant="nt">{menu.price} €</Typography>
               </Container>
               {menu.content.map((c) =>
                 c.articles.map((article) => (
@@ -171,8 +167,8 @@ const ReferedPage: NextPage = () => {
           <Divider className={s.divider} />
 
           <Container className={s.orderLine}>
-            <Typography variant="body1">Prix total</Typography>
-            <Typography variant="body1">{order.price} €</Typography>
+            <Typography variant="nt">Prix total</Typography>
+            <Typography variant="nt">{order.price} €</Typography>
           </Container>
         </CardContent>
       </Container>

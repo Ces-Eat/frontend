@@ -1,6 +1,7 @@
-import { Section, ActionCard } from "@ceseatslib/ui";
+import { ActionCard } from "@ceseatslib/ui";
+import { Section } from "@ceseatslib/template";
 import { NextPage } from "next";
-import CancelIcon from "@mui/icons-material/Cancel";
+import ClearIcon from "@mui/icons-material/Clear";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { useState } from "react";
 import Link from "next/link";
@@ -43,10 +44,11 @@ const AddressesPage: NextPage = () => {
             <Link href={`/addresses/${id}`}>
               <ModeEditIcon className={s.delete} color="warning" />
             </Link>
-            <CancelIcon
+            <ClearIcon
               onClick={() => handleDelete(id)}
               className={s.delete}
               color="error"
+              sx={{ fontSize: "30px" }}
             />
           </ActionCard>
         ))}

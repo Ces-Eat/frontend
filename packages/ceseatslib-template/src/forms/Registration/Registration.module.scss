@@ -1,0 +1,46 @@
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 450px;
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+.switch_form {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  .link {
+    cursor: pointer;
+    margin-left: 5px;
+    user-select: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

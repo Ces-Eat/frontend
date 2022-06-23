@@ -1,12 +1,25 @@
+.category {
+  margin-bottom: 30px;
+  width: 80%;
+  margin: 0 auto;
 
+  @media screen and (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
 
-    .category {
-        margin-bottom: 30px;
-        width: 80%;
-        margin: 0 auto;
+  .products {
+    display: flex;
+    flex-wrap: wrap;
 
-        .products {
-            display: flex;
-            flex-wrap: wrap;
-        }
+    @media screen and (max-width: 768px) {
+      justify-content: center;
     }
+
+    & > * {
+      margin: 30px;
+      margin-left: 0;
+    }
+  }
+}
