@@ -10,6 +10,7 @@ interface TextInputProps {
   className?: string;
   type?: string;
   multiline?: boolean;
+  required?: boolean;
   inputProps?: any;
 }
 
@@ -47,6 +48,7 @@ TextInput.defaultProps = {
   defaultValue: "",
   type: "text",
   multiline: false,
+  required: false,
   inputProps: {},
   className: "",
 };

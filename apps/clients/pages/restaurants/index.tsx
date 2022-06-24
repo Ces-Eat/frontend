@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
-import { Container, TextField } from "@mui/material";
+import { Container, TextField, Divider } from "@mui/material";
 import { DescCard, ProductCard } from "@ceseatslib/ui";
 import s from "@styles/Restaurants.module.scss";
 import Link from "next/link";
 import { useState } from "react";
-import { Divider } from "@mui/material";
 
 const Restaurants: NextPage = () => {
   const [search, setSearch] = useState("");

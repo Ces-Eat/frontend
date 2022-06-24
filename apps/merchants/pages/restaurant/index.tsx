@@ -30,7 +30,7 @@ const Restaurant: React.FC = () => {
           <Container className={s.btn_container}>
             <LoadingButton
               className={s.button}
-              type="button"
+              type="submit"
               variant="contained"
               color={restaurant ? "error" : "success"}
               loading={isLoading}

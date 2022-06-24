@@ -1,9 +1,10 @@
 import * as yup from "yup";
+import SUPPORTED_IMG_FORMATS from "./imageSchema";
 
 const phoneRegExp = /^((\+33|0)[1-9])([0-9][0-9]){4}$/;
 
 export interface IUser {
-  img?: {};
+  image: string | HTMLImageElement;
   name: string;
   surname: string;
   email: string;
@@ -12,6 +13,18 @@ export interface IUser {
 }
 
 export const createUserSchema = yup.object().shape({
+  image: yup
+    .mixed()
+    .test(
+      "type",
+      "Format non valide",
+      (value) => value[0] && SUPPORTED_IMG_FORMATS.includes(value[0].type)
+    )
+    .test(
+      "fileSize",
+      "Image trop grande",
+      (value) => value[0] && value[0].size <= 200000
+    ),
   name: yup.string().required("Prénom requis").max(35, "Maximum 35 caractères"),
   surname: yup.string().required("Nom requis").max(35, "Maximum 35 caractères"),
   email: yup
@@ -52,15 +65,3 @@ export const loginUserSchema = yup.object().shape({
     .min(10, "Minimim de 10 caractères")
     .max(50, "Maximum 50 caractères"),
 });
-
-//  yup.object().shape(loginUserSchema.fields);
-//  const t= loginUserSchema.concat(createUserSchema, )
-//  const a = [1, 5], b = [44, 67, 3], c = [2, 5], d = [7], e = [4], f = [3,
-//   7], g = [6];
-//   const concatArrays = (...arr) => {
-//      const res = arr.reduce((acc, val) => {
-//         return acc.concat(...val);
-//      }, []);
-//      return res;
-//   };
-//   console.log(concatArrays(a, b, c, d, e, f, g));

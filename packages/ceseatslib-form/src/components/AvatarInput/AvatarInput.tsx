@@ -10,7 +10,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import s from "./AvatarInput.module.scss";
 
 interface Props {
-  img?: string;
+  img?: string | HTMLImageElement;
   name: string;
   control: Control<any, any>;
   watch: UseFormWatch<any>;

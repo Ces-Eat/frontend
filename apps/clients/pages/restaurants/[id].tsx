@@ -1,10 +1,9 @@
 // import { useRouter } from "next/router";
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Divider } from "@mui/material";
 import RestaurantHeader from "@components/restaurant/Header/Header";
 import Category from "@components/restaurant/Category/Category";
 import s from "@styles/Restaurant.module.scss";
-import { Divider } from "@mui/material";
 
 const Restaurant: React.FC = () => {
   // const router = useRouter();

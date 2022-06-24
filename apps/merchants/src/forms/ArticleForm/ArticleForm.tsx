@@ -11,8 +11,10 @@ interface Props {
 const ArticleForm: React.FC<Props> = ({ methods, product }) => (
   <>
     <AvatarInput
-      name="img"
-      img={product?.img ? product.img : "/assets/default/defaultArticle.png"}
+      name="image"
+      img={
+        product?.image ? product.image : "/assets/default/defaultArticle.png"
+      }
       control={methods.control}
       watch={methods.watch}
       setValue={methods.setValue}
@@ -22,6 +24,7 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
       label="Nom"
       control={methods.control}
       defaultValue={product?.name}
+      required
     />
     <TextInput
       name="description"
@@ -36,6 +39,7 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
       inputProps={{ inputProps: { min: 0 } }}
       control={methods.control}
       defaultValue={product?.price}
+      required
     />
     <Select
       name="isAvailable"

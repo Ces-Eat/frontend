@@ -25,12 +25,14 @@ const LoginForm: NextPage = () => {
         type="email"
         label="Adresse mail"
         control={methods.control}
+        required
       />
       <TextInput
         name="password"
         type="password"
         label="Mot de passe"
         control={methods.control}
+        required
       />
       <LoadingButton
         type="submit"

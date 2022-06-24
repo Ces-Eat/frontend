@@ -57,6 +57,13 @@ const darkTheme = createTheme(defaultTheme, {
         },
       },
     },
+    MuiAutocomplete: {
+      styleOverrides: {
+        popper: {
+          color: defaultTheme.palette.tertiary.main,
+        },
+      },
+    },
     MuiListItemIcon: {
       styleOverrides: {
         root: {

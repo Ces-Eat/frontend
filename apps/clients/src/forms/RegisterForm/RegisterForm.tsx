@@ -31,15 +31,25 @@ const RegisterForm: NextPage = () => {
         buttonText="Inscription"
       >
         <AvatarInput
-          name="img"
+          name="image"
           img="/assets/Refered.png"
           control={methods.control}
           watch={methods.watch}
           setValue={methods.setValue}
         />
         <>
-          <TextInput name="name" label="Nom" control={methods.control} />
-          <TextInput name="surname" label="Prénom" control={methods.control} />
+          <TextInput
+            name="name"
+            label="Nom"
+            control={methods.control}
+            required
+          />
+          <TextInput
+            name="surname"
+            label="Prénom"
+            control={methods.control}
+            required
+          />
         </>
         <>
           <TextInput
@@ -47,11 +57,13 @@ const RegisterForm: NextPage = () => {
             type="email"
             label="Adresse mail"
             control={methods.control}
+            required
           />
           <TextInput
             name="phone"
             label="Numéro de téléphone"
             control={methods.control}
+            required
           />
         </>
         <>
@@ -60,12 +72,14 @@ const RegisterForm: NextPage = () => {
             type="password"
             label="Mot de passe"
             control={methods.control}
+            required
           />
           <TextInput
             name="confirmPassword"
             type="password"
             label="Confirmation de mot de passe"
             control={methods.control}
+            required
           />
         </>
       </MultiStep>

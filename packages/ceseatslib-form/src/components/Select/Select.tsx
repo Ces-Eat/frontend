@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Control, useController } from "react-hook-form";
 import {
   FormControl,
@@ -46,9 +46,9 @@ const Select: React.FC<SelectProps> = ({
         fullWidth
       >
         {chooses.map((choose) => (
-          <MenuItem key={choose.value} value={choose.value}>
-            {choose.label}
-          </MenuItem>
+          <Fragment key={choose.value.toString()}>
+            <MenuItem value={choose.value.toString()}>{choose.label}</MenuItem>
+          </Fragment>
         ))}
       </MuiSelect>
     </FormControl>
