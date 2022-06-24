@@ -11,10 +11,10 @@ interface SelectProps {
   name: string;
   label: string;
   control: Control<any, any>;
-  defaultValue?: string | number;
+  defaultValue?: string | number | boolean;
   className?: string;
   chooses: {
-    value: string | number;
+    value: string | number | boolean;
     label: string | number;
   }[];
 }

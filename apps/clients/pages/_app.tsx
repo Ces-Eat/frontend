@@ -4,7 +4,7 @@ import { NotificationProvider } from "@ceseatslib/utils";
 import { ThemeWrapper, ITheme } from "@ceseatslib/theme";
 import { AppBar } from "@ceseatslib/ui";
 import { useEffect, useState } from "react";
-import NavMenu from "@components/NavMenu/NavMenu";
+import NavMenu from "../src/components/NavMenu/NavMenu";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isLightTheme, setIsLightTheme] = useState<boolean>(true);

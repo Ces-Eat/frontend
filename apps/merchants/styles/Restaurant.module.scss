@@ -1,0 +1,12 @@
+.container {
+  width: 500px;
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+
+  .btn_container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}

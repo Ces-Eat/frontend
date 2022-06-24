@@ -10,7 +10,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import s from "./AvatarInput.module.scss";
 
 interface Props {
-  img: string;
+  img?: string;
   name: string;
   control: Control<any, any>;
   watch: UseFormWatch<any>;
@@ -76,6 +76,7 @@ const AvatarInput: React.FC<Props> = ({
 
 AvatarInput.defaultProps = {
   accept: "image/*",
+  img: "",
 };
 
 export default AvatarInput;

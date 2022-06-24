@@ -6,11 +6,12 @@ const withTM = require("next-transpile-modules")([
   "@ceseatslib/utils",
 ]);
 
-const API_URL = "http://localhost:4000";
+const API_URL = "http://88.160.115.60:32768";
 
 module.exports = withTM({
   reactStrictMode: true,
   env: {
-    API_RESTAURANT: `${API_URL}/restaurants`,
+    API_USERS: `${API_URL}/users`,
+    API_AUTH: `${API_URL}/sessions`,
   },
 });
