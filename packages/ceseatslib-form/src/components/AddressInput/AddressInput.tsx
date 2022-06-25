@@ -13,13 +13,7 @@ interface Props {
   defaultValue?: ILocalization;
 }
 
-const AddressInput: React.FC<Props> = ({
-  methods,
-  name,
-  label,
-  required,
-  defaultValue,
-}) => {
+const AddressInput: React.FC<Props> = ({ methods, ...textFieldProps }) => {
   const [addresses, setAddresses] = useState<ILocalization[]>([]);
   let cancelToken: CancelTokenSource | undefined;
 
@@ -51,13 +45,11 @@ const AddressInput: React.FC<Props> = ({
 
   return (
     <ComboBoxInput
-      name={name}
-      label={label}
-      control={methods.control}
-      onInputChange={handleInputChange}
       options={addresses}
-      required={required}
-      defaultValue={defaultValue}
+      control={methods.control}
+      getOptionLabel={(option) => (option.label ? option.label : "")}
+      onInputChange={handleInputChange}
+      {...textFieldProps}
     />
   );
 };

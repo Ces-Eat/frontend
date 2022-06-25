@@ -4,7 +4,7 @@ import SUPPORTED_IMG_FORMATS from "./imageSchema";
 const phoneRegExp = /^((\+33|0)[1-9])([0-9][0-9]){4}$/;
 
 export interface IUser {
-  image: string | HTMLImageElement;
+  image: string;
   name: string;
   surname: string;
   email: string;
@@ -18,12 +18,15 @@ export const createUserSchema = yup.object().shape({
     .test(
       "type",
       "Format non valide",
-      (value) => value[0] && SUPPORTED_IMG_FORMATS.includes(value[0].type)
+      (value) =>
+        typeof value === "string" ||
+        (value[0] && SUPPORTED_IMG_FORMATS.includes(value[0].type))
     )
     .test(
       "fileSize",
       "Image trop grande",
-      (value) => value[0] && value[0].size <= 200000
+      (value) =>
+        typeof value === "string" || (value[0] && value[0].size <= 200000)
     ),
   name: yup.string().required("Prénom requis").max(35, "Maximum 35 caractères"),
   surname: yup.string().required("Nom requis").max(35, "Maximum 35 caractères"),

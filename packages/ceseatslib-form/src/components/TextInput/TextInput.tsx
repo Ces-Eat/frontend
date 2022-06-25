@@ -1,26 +1,27 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { useController, Control } from "react-hook-form";
 import { TextField } from "@mui/material";
 
-interface TextInputProps {
+export interface TextInputProps {
   name: string;
   label: string;
   control: Control<any, any>;
-  defaultValue?: string | number;
   className?: string;
+  defaultValue: string | number | boolean;
   type?: string;
   multiline?: boolean;
   required?: boolean;
-  inputProps?: any;
+  InputProps?: any;
+  fullWidth?: boolean;
+  children?: ReactNode;
+  select?: boolean;
 }
 
 const TextInput: React.FC<TextInputProps> = ({
   name,
-  label,
   defaultValue,
-  inputProps,
-  className,
   control,
+  children,
   ...textFieldProps
 }) => {
   const { field, fieldState } = useController({
@@ -31,26 +32,27 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <TextField
-      {...{ ...field, ...textFieldProps }}
-      className={className}
-      label={label}
+      {...textFieldProps}
+      {...field}
       variant="standard"
       error={!!fieldState.error}
       helperText={fieldState.error?.message}
-      fullWidth
-      InputProps={{ ...inputProps }}
       // InputLabelProps={{ style: { fontSize: 18 } }}
-    />
+    >
+      {children}
+    </TextField>
   );
 };
 
 TextInput.defaultProps = {
-  defaultValue: "",
   type: "text",
   multiline: false,
   required: false,
-  inputProps: {},
-  className: "",
+  InputProps: undefined,
+  className: undefined,
+  fullWidth: false,
+  children: undefined,
+  select: false,
 };
 
 export default TextInput;

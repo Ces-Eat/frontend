@@ -5,3 +5,4 @@ export * from "./Select";
 export * from "./TextInput";
 export * from "./ComboBoxInput";
 export * from "./AddressInput";
+export * from "./ArticlesInput";

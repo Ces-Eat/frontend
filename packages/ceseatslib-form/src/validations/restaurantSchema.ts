@@ -3,7 +3,7 @@ import SUPPORTED_IMG_FORMATS from "./imageSchema";
 import { IAddress } from "./addressSchema";
 
 export interface IRestaurant {
-  image: string | HTMLImageElement;
+  image: string;
   name: string;
   description: string;
   address: IAddress;
@@ -12,14 +12,18 @@ export interface IRestaurant {
 export const restaurantSchema = yup.object().shape({
   image: yup
     .mixed()
-    .test("type", "Format non valide", (value) => {
-      console.log(value);
-      return value[0] && SUPPORTED_IMG_FORMATS.includes(value[0].type);
-    })
+    .test(
+      "type",
+      "Format non valide",
+      (value) =>
+        typeof value === "string" ||
+        (value[0] && SUPPORTED_IMG_FORMATS.includes(value[0].type))
+    )
     .test(
       "fileSize",
       "Image trop grande",
-      (value) => value[0] && value[0].size <= 200000
+      (value) =>
+        typeof value === "string" || (value[0] && value[0].size <= 200000)
     ),
   name: yup.string().required("Nom requis").max(35, "Maximum 35 caractères"),
   description: yup.string().optional().max(500, "Maximum 500 caractères"),

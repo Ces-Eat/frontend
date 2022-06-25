@@ -34,6 +34,7 @@ const Restaurant: React.FC = () => {
               variant="contained"
               color={restaurant ? "error" : "success"}
               loading={isLoading}
+              disabled={!methods.formState.isValid}
             >
               {restaurant ? "Supprimer" : "Ajouter"}
             </LoadingButton>

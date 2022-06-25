@@ -36,6 +36,7 @@ const RegisterForm: NextPage = () => {
           control={methods.control}
           watch={methods.watch}
           setValue={methods.setValue}
+          clear={methods.clearErrors}
         />
         <>
           <TextInput

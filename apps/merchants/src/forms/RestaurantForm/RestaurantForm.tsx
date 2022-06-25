@@ -24,21 +24,24 @@ const RestaurantForm: React.FC<Props> = ({ methods, restaurant }) => (
       control={methods.control}
       watch={methods.watch}
       setValue={methods.setValue}
+      clear={methods.clearErrors}
     />
     <TextInput
       name="name"
       label="Nom"
       control={methods.control}
-      defaultValue={restaurant?.name}
+      defaultValue={restaurant?.name || ""}
+      fullWidth
       required
     />
     <TextInput
       name="description"
       label="Description"
       control={methods.control}
-      defaultValue={restaurant?.description}
+      defaultValue={restaurant?.description || ""}
+      fullWidth
     />
-    <AddressInput methods={methods} name="address" label="Adresse" required />
+    <AddressInput methods={methods} name="address" label="Adresse *" />
   </>
 );
 

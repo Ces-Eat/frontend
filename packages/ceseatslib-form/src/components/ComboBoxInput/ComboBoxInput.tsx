@@ -1,25 +1,15 @@
 import React from "react";
-import { useController, Control } from "react-hook-form";
-import {
-  Autocomplete,
-  AutocompleteChangeDetails,
-  AutocompleteChangeReason,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
+import { Control, useController } from "react-hook-form";
 
 interface ComboBoxInputProps {
-  name: string;
+  options: any[];
   label: string;
+  name: string;
   control: Control<any, any>;
   defaultValue?: any;
-  options: any[];
-  required?: boolean;
-  onChange?: (
-    event: React.SyntheticEvent,
-    value: any | Array<any>,
-    reason: AutocompleteChangeReason,
-    details?: AutocompleteChangeDetails<any>
-  ) => void;
+  multiple?: boolean;
+  getOptionLabel?: (option: any) => string;
   onInputChange?: (
     event: React.SyntheticEvent,
     value: any | Array<any>,
@@ -29,13 +19,11 @@ interface ComboBoxInputProps {
 }
 
 const ComboBoxInput: React.FC<ComboBoxInputProps> = ({
-  name,
-  label,
-  defaultValue,
-  control,
   options,
-  onChange,
-  onInputChange,
+  label,
+  name,
+  control,
+  defaultValue,
   ...textFieldProps
 }) => {
   const { field, fieldState } = useController({
@@ -46,20 +34,18 @@ const ComboBoxInput: React.FC<ComboBoxInputProps> = ({
 
   return (
     <Autocomplete
+      {...textFieldProps}
       {...field}
       value={field.value}
       onChange={(_, newValue) => field.onChange(newValue)}
       options={options}
-      onInputChange={onInputChange}
-      isOptionEqualToValue={() => true}
       renderInput={(params) => (
         <TextField
-          {...{ ...params, ...textFieldProps }}
-          label={label}
+          {...params}
           variant="standard"
+          label={label}
           error={!!fieldState.error}
           helperText={fieldState.error?.message}
-          fullWidth
         />
       )}
     />
@@ -67,10 +53,10 @@ const ComboBoxInput: React.FC<ComboBoxInputProps> = ({
 };
 
 ComboBoxInput.defaultProps = {
-  defaultValue: undefined,
-  onChange: undefined,
+  getOptionLabel: (option) => option,
+  multiple: false,
+  defaultValue: [],
   onInputChange: undefined,
-  required: false,
 };
 
 export default ComboBoxInput;

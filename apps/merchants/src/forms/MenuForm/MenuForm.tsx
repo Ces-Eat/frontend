@@ -1,20 +1,25 @@
-import { AvatarInput, IArticle, Select, TextInput } from "@ceseatslib/form";
+import {
+  AvatarInput,
+  IMenu,
+  Select,
+  TextInput,
+  ArticlesInput,
+  IArticle,
+} from "@ceseatslib/form";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
-import s from "styles/Article.module.scss";
 
 interface Props {
-  methods: UseFormReturn<IArticle, any>;
-  product?: IArticle;
+  methods: UseFormReturn<IMenu, any>;
+  menu?: IMenu;
+  articles: IArticle[];
 }
 
-const ArticleForm: React.FC<Props> = ({ methods, product }) => (
+const MenuForm: React.FC<Props> = ({ methods, menu, articles }) => (
   <>
     <AvatarInput
       name="image"
-      img={
-        product?.image ? product.image : "/assets/default/defaultArticle.png"
-      }
+      img={menu?.image ? menu.image : "/assets/default/defaultArticle.png"}
       control={methods.control}
       watch={methods.watch}
       setValue={methods.setValue}
@@ -24,40 +29,50 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
       name="name"
       label="Nom"
       control={methods.control}
-      defaultValue={product?.name}
+      defaultValue={menu?.name || ""}
+      fullWidth
       required
     />
     <TextInput
       name="description"
       label="Description"
       control={methods.control}
-      defaultValue={product?.description}
+      defaultValue={menu?.description || ""}
+      fullWidth
     />
     <TextInput
       name="price"
       type="number"
       label="Price"
-      inputProps={{ inputProps: { min: 0 } }}
+      InputProps={{ inputProps: { min: 0 } }}
       control={methods.control}
-      defaultValue={product?.price}
+      defaultValue={menu?.price || 0}
+      fullWidth
       required
     />
     <Select
       name="isAvailable"
       label="Disponibilité"
       control={methods.control}
-      className={s.select}
-      defaultValue={product?.isAvailable}
+      defaultValue={menu?.isAvailable || true}
+      fullWidth
+      required
       chooses={[
         { value: true, label: "Oui" },
         { value: false, label: "Non" },
       ]}
     />
+    <ArticlesInput
+      name="content"
+      control={methods.control}
+      articles={articles}
+      required
+    />
   </>
 );
 
-ArticleForm.defaultProps = {
-  product: undefined,
+MenuForm.defaultProps = {
+  menu: undefined,
 };
 
-export default ArticleForm;
+export default MenuForm;
