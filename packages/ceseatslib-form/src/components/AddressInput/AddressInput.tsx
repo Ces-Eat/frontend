@@ -1,19 +1,26 @@
 import axios, { CancelTokenSource } from "axios";
 import React, { useState } from "react";
 import { UseFormReturn } from "react-hook-form";
-import { IAddress, IRestaurant } from "../../validations";
+import { ILocalization } from "../../validations";
 import { ComboBoxInput } from "../ComboBoxInput";
 import { ApiGouvSearchResponse } from "./AddressInput.type";
 
 interface Props {
-  methods: UseFormReturn<IRestaurant, any>;
+  methods: UseFormReturn<any, any>;
   name: string;
   label: string;
   required?: boolean;
+  defaultValue?: ILocalization;
 }
 
-const AddressInput: React.FC<Props> = ({ methods, name, label, required }) => {
-  const [addresses, setAddresses] = useState<IAddress[]>([]);
+const AddressInput: React.FC<Props> = ({
+  methods,
+  name,
+  label,
+  required,
+  defaultValue,
+}) => {
+  const [addresses, setAddresses] = useState<ILocalization[]>([]);
   let cancelToken: CancelTokenSource | undefined;
 
   const handleInputChange = async (
@@ -50,12 +57,14 @@ const AddressInput: React.FC<Props> = ({ methods, name, label, required }) => {
       onInputChange={handleInputChange}
       options={addresses}
       required={required}
+      defaultValue={defaultValue}
     />
   );
 };
 
 AddressInput.defaultProps = {
   required: false,
+  defaultValue: undefined,
 };
 
 export default AddressInput;

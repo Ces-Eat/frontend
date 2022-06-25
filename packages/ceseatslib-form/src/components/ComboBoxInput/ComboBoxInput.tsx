@@ -11,7 +11,7 @@ interface ComboBoxInputProps {
   name: string;
   label: string;
   control: Control<any, any>;
-  defaultValue?: string;
+  defaultValue?: any;
   options: any[];
   required?: boolean;
   onChange?: (
@@ -67,7 +67,7 @@ const ComboBoxInput: React.FC<ComboBoxInputProps> = ({
 };
 
 ComboBoxInput.defaultProps = {
-  defaultValue: "",
+  defaultValue: undefined,
   onChange: undefined,
   onInputChange: undefined,
   required: false,

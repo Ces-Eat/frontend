@@ -1,11 +1,6 @@
 import * as yup from "yup";
 import SUPPORTED_IMG_FORMATS from "./imageSchema";
-
-export interface IAddress {
-  label: string;
-  lat: number;
-  long: number;
-}
+import { IAddress } from "./addressSchema";
 
 export interface IRestaurant {
   image: string | HTMLImageElement;
@@ -14,7 +9,6 @@ export interface IRestaurant {
   address: IAddress;
 }
 
-// img
 export const restaurantSchema = yup.object().shape({
   image: yup
     .mixed()

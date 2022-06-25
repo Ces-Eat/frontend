@@ -1,7 +1,5 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-// import Image from "next/image";
-// import { OfferCard, Section } from "@ceseatslib/ui";
 import s from "@styles/Home.module.scss";
 import { useState } from "react";
 import {
@@ -38,55 +36,6 @@ const Home: NextPage = () => {
           </RegistrationTemplate>
         </PrimaryTemplate>
       </Container>
-
-      {/* <main className={s.main}>
-        <Section
-          title="Les autres offres"
-          description="Pour trouver votre bonheur"
-        >
-          <OfferCard
-            img={{ src: "/assets/deliveryWithCE.png" }}
-            title="Livrez avec Ces’Eats"
-            description="Vous pouvez maintenant générer des revenus en sillonnant les rues de votre ville pour livrer de délicieux repas avec Ces'Eats."
-            link={{
-              text: "Devenez coursier-partenaire",
-              href: "http://localhost:3001",
-            }}
-          />
-          <OfferCard
-            img={{ src: "/assets/developWithCE.png" }}
-            title="Développez avec Ces’Eats"
-            description="L'accès à l'API Ces'Eat ou encore les différents composants utilisés au travers des différentes plateformes sont libres d'accès et documentés."
-            link={{
-              text: "Obtenir la documentation ",
-              href: "http://localhost:3001",
-            }}
-            reverse
-          />
-          <OfferCard
-            img={{ src: "/assets/partnerWithCE.png" }}
-            title="Devenez partenaire Ces’Eats"
-            description="La plateforme nationale Ces’Eat vous offre la flexibilité, la visibilité et les données nécessaires pour vous mettre en relation avec davantage de clients."
-            link={{
-              text: "Ajoutez votre restaurant",
-              href: "http://localhost:3001",
-            }}
-          />
-        </Section>
-      </main>
-
-      <footer className={s.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={s.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { Button, Container } from "@mui/material";
-import { IWallet, walletSchema } from "@ceseatslib/form";
+import { addressSchema, IAddress } from "@ceseatslib/form";
 import { Section } from "@ceseatslib/template";
 import { NextPage } from "next";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -8,17 +8,17 @@ import LoadingButton from "@mui/lab/LoadingButton";
 import s from "@styles/WalletsNew.module.scss";
 import { useState } from "react";
 import Link from "next/link";
-import WalletForm from "src/forms/WalletForm/WalletForm";
+import AddressForm from "src/forms/AddressForm/AddressForm";
 
-const WalletsPage: NextPage = () => {
+const AddressesPage: NextPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const methods = useForm<IWallet>({
+  const methods = useForm<IAddress>({
     mode: "onChange",
-    resolver: yupResolver(walletSchema),
+    resolver: yupResolver(addressSchema),
   });
 
-  const formSubmitHandler: SubmitHandler<IWallet> = (data) => {
+  const formSubmitHandler: SubmitHandler<IAddress> = (data) => {
     console.log(data);
     setIsLoading(true);
   };
@@ -27,9 +27,9 @@ const WalletsPage: NextPage = () => {
     <Section title="Ajout d'une carte">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <WalletForm methods={methods} />
+          <AddressForm methods={methods} />
           <Container className={s.middleContainer}>
-            <Link href="/wallets">
+            <Link href="/addresses">
               <Button
                 variant="contained"
                 color="error"
@@ -55,4 +55,4 @@ const WalletsPage: NextPage = () => {
   );
 };
 
-export default WalletsPage;
+export default AddressesPage;

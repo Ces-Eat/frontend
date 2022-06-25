@@ -1,8 +1,12 @@
 import * as yup from "yup";
 
 export interface IWallet {
-  email: string;
-  password: string;
+  title: string;
+  cardNumber: string;
+  expirationMonth: string;
+  expirationYear: string;
+  cvv: string;
+  designation: string;
 }
 
 const startYear = new Date().getFullYear().toString().slice(-2);
