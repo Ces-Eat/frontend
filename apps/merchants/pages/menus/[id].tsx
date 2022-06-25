@@ -78,7 +78,7 @@ const Article: React.FC = () => {
   };
 
   return (
-    <Section title="Article">
+    <Section title="Menu">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
           <MenuForm methods={methods} menu={menu} articles={products} />
@@ -101,7 +101,7 @@ const Article: React.FC = () => {
               Supprimer
             </LoadingButton>
           </Container>
-          <Link href="/articles">
+          <Link href="/menus">
             <Button variant="outlined" className={s.btn_back}>
               Retour
             </Button>

@@ -31,13 +31,26 @@ const Restaurant: React.FC = () => {
             <LoadingButton
               className={s.button}
               type="submit"
-              variant="contained"
+              variant="outlined"
               color={restaurant ? "error" : "success"}
               loading={isLoading}
               disabled={!methods.formState.isValid}
             >
               {restaurant ? "Supprimer" : "Ajouter"}
             </LoadingButton>
+
+            {restaurant && (
+              <LoadingButton
+                className={s.button}
+                type="submit"
+                variant="outlined"
+                color="warning"
+                loading={isLoading}
+                disabled={!methods.formState.isValid}
+              >
+                Modifier
+              </LoadingButton>
+            )}
           </Container>
         </form>
       </Container>
