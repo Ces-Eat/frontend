@@ -25,6 +25,8 @@ const LoginForm: NextPage = () => {
         type="email"
         label="Adresse mail"
         control={methods.control}
+        defaultValue=""
+        fullWidth
         required
       />
       <TextInput
@@ -32,6 +34,8 @@ const LoginForm: NextPage = () => {
         type="password"
         label="Mot de passe"
         control={methods.control}
+        defaultValue=""
+        fullWidth
         required
       />
       <LoadingButton

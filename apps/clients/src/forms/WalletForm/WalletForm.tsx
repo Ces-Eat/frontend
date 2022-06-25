@@ -26,19 +26,29 @@ const WalletForm: React.FC<Props> = ({ methods }) => {
     });
   return (
     <>
-      <TextInput name="title" label="Nom de carte" control={methods.control} />
+      <TextInput
+        name="title"
+        label="Nom de carte"
+        control={methods.control}
+        defaultValue=""
+        fullWidth
+      />
       <Container className={s.cardContainer}>
         <TextInput
           className={s.card}
           name="cardNumber"
           label="Numéro de carte*"
           control={methods.control}
+          defaultValue=""
+          fullWidth
         />
         <TextInput
           className={s.cvv}
           name="cvv"
           label="CVV*"
           control={methods.control}
+          defaultValue=""
+          fullWidth
         />
       </Container>
       <Container className={s.middleContainer}>
@@ -48,6 +58,8 @@ const WalletForm: React.FC<Props> = ({ methods }) => {
           label="Mois d'exp.*"
           chooses={monthValue}
           control={methods.control}
+          defaultValue={monthValue[0].value}
+          fullWidth
         />
         <Select
           className={s.middleItem}
@@ -55,12 +67,16 @@ const WalletForm: React.FC<Props> = ({ methods }) => {
           label="Année d'exp.*"
           chooses={yearValue}
           control={methods.control}
+          defaultValue={yearValue[0].value}
+          fullWidth
         />
       </Container>
       <TextInput
         name="designation"
         label="Désignation"
         control={methods.control}
+        defaultValue=""
+        fullWidth
       />
     </>
   );

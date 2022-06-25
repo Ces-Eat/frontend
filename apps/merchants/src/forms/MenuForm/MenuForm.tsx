@@ -66,6 +66,7 @@ const MenuForm: React.FC<Props> = ({ methods, menu, articles }) => (
       name="content"
       control={methods.control}
       articles={articles}
+      defaultValue={menu?.content || []}
       required
     />
   </>

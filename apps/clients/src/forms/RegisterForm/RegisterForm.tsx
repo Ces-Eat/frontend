@@ -43,12 +43,16 @@ const RegisterForm: NextPage = () => {
             name="name"
             label="Nom"
             control={methods.control}
+            defaultValue=""
+            fullWidth
             required
           />
           <TextInput
             name="surname"
             label="Prénom"
             control={methods.control}
+            defaultValue=""
+            fullWidth
             required
           />
         </>
@@ -58,12 +62,16 @@ const RegisterForm: NextPage = () => {
             type="email"
             label="Adresse mail"
             control={methods.control}
+            defaultValue=""
+            fullWidth
             required
           />
           <TextInput
             name="phone"
             label="Numéro de téléphone"
             control={methods.control}
+            defaultValue=""
+            fullWidth
             required
           />
         </>
@@ -73,6 +81,8 @@ const RegisterForm: NextPage = () => {
             type="password"
             label="Mot de passe"
             control={methods.control}
+            defaultValue=""
+            fullWidth
             required
           />
           <TextInput
@@ -80,6 +90,8 @@ const RegisterForm: NextPage = () => {
             type="password"
             label="Confirmation de mot de passe"
             control={methods.control}
+            defaultValue=""
+            fullWidth
             required
           />
         </>

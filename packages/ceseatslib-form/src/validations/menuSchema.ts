@@ -8,6 +8,7 @@ export interface IMenuContent {
 }
 
 export interface IMenu {
+  id?: string;
   image: string;
   name: string;
   description: string;

@@ -29,36 +29,57 @@ const Account: React.FC = () => {
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
           <AvatarInput
-            name="img"
+            name="image"
             img="/assets/Refered.png"
             control={methods.control}
             watch={methods.watch}
             setValue={methods.setValue}
+            clear={methods.clearErrors}
           />
-          <TextInput name="name" label="Nom" control={methods.control} />
-          <TextInput name="surname" label="Prénom" control={methods.control} />
+          <TextInput
+            name="name"
+            label="Nom"
+            control={methods.control}
+            defaultValue=""
+            fullWidth
+          />
+          <TextInput
+            name="surname"
+            label="Prénom"
+            control={methods.control}
+            defaultValue=""
+            fullWidth
+          />
           <TextInput
             name="email"
             type="email"
             label="Adresse mail"
             control={methods.control}
+            defaultValue=""
+            fullWidth
           />
           <TextInput
             name="phone"
             label="Numéro de téléphone"
             control={methods.control}
+            defaultValue=""
+            fullWidth
           />
           <TextInput
             name="password"
             type="password"
             label="Mot de passe"
             control={methods.control}
+            defaultValue=""
+            fullWidth
           />
           <TextInput
             name="confirmPassword"
             type="password"
             label="Confirmation de mot de passe"
             control={methods.control}
+            defaultValue=""
+            fullWidth
           />
           <Container className={s.btnContainer}>
             <LoadingButton

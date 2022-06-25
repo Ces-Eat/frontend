@@ -1,6 +1,7 @@
 import { Button, Container, Divider, Typography } from "@mui/material";
 import React from "react";
 import { Control, useFieldArray } from "react-hook-form";
+import { useEffectOnce } from "@ceseatslib/utils";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { TextInput } from "../TextInput";
 import s from "./ArticlesInput.module.scss";
@@ -11,7 +12,7 @@ interface ArticlesInputProps {
   name: string;
   control: Control<any, any>;
   articles: IArticle[];
-  defaultValue?: IMenuContent;
+  defaultValue?: IMenuContent[];
   className?: string;
   type?: string;
   multiline?: boolean;
@@ -33,6 +34,19 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
     name,
   });
 
+  useEffectOnce(() => {
+    if (defaultValue) {
+      for (let i = 0; i < defaultValue?.length; i += 1) {
+        append({
+          sectionName: defaultValue[i].sectionName,
+          articles: articles.filter((art) =>
+            defaultValue[i].articles.includes(art.id ? art.id : "")
+          ),
+        });
+      }
+    }
+  });
+
   return (
     <>
       <Container>
@@ -50,7 +64,7 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
               control={control}
               name={`${name}.${index}.sectionName`}
               fullWidth
-              defaultValue={defaultValue?.sectionName || ""}
+              defaultValue=""
               {...textFieldProps}
             />
             <ComboBoxInput
@@ -58,7 +72,6 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
               getOptionLabel={(option) => option.name}
               multiple
               control={control}
-              defaultValue={defaultValue?.articles || []}
               name={`${name}.${index}.articles`}
               label="Articles *"
             />
@@ -80,7 +93,7 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
 };
 
 ArticlesInput.defaultProps = {
-  defaultValue: undefined,
+  defaultValue: [],
   type: "text",
   multiline: false,
   required: false,

@@ -24,22 +24,24 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
       name="name"
       label="Nom"
       control={methods.control}
-      defaultValue={product?.name}
+      defaultValue={product?.name || ""}
+      fullWidth
       required
     />
     <TextInput
       name="description"
       label="Description"
       control={methods.control}
-      defaultValue={product?.description}
+      defaultValue={product?.description || ""}
+      fullWidth
     />
     <TextInput
       name="price"
       type="number"
       label="Price"
-      inputProps={{ inputProps: { min: 0 } }}
       control={methods.control}
-      defaultValue={product?.price}
+      defaultValue={product?.price || 0}
+      fullWidth
       required
     />
     <Select
@@ -47,7 +49,8 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
       label="Disponibilité"
       control={methods.control}
       className={s.select}
-      defaultValue={product?.isAvailable}
+      defaultValue={product?.isAvailable || true}
+      fullWidth
       chooses={[
         { value: true, label: "Oui" },
         { value: false, label: "Non" },

@@ -13,7 +13,8 @@ const AddressForm: React.FC<Props> = ({ methods, address }) => (
       name="designation"
       label="Désignation"
       control={methods.control}
-      defaultValue={address?.designation}
+      defaultValue={address?.designation || ""}
+      fullWidth
     />
     <AddressInput
       methods={methods}
