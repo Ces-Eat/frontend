@@ -8,14 +8,15 @@ import {
   Box,
 } from "@mui/material";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 interface Props {
   isLightTheme: boolean;
   children: React.ReactNode;
   link: string;
-  changeTheme: () => void;
+  changeTheme: Dispatch<SetStateAction<boolean>>;
+  showMenu: boolean;
 }
 
 const AppBar: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const AppBar: React.FC<Props> = ({
   isLightTheme,
   children,
   link,
+  showMenu,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
@@ -42,12 +44,14 @@ const AppBar: React.FC<Props> = ({
       </Drawer>
       <MuiAppBar position="sticky">
         <Toolbar>
-          <IconButton
-            onClick={() => setIsMenuOpen(true)}
-            sx={{ marginRight: "15px" }}
-          >
-            <Menu sx={{ color: "tertiary.main" }} />
-          </IconButton>
+          {showMenu && (
+            <IconButton
+              onClick={() => setIsMenuOpen(true)}
+              sx={{ marginRight: "15px" }}
+            >
+              <Menu sx={{ color: "tertiary.main" }} />
+            </IconButton>
+          )}
           <Link href={link}>
             <Typography
               sx={{ marginRight: "15px", cursor: "pointer" }}

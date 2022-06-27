@@ -1,5 +1,5 @@
 // import { useRouter } from "next/router";
-import React from "react";
+import React, { Fragment } from "react";
 import { Container, Divider } from "@mui/material";
 import RestaurantHeader from "@components/restaurant/Header/Header";
 import Category from "@components/restaurant/Category/Category";
@@ -76,12 +76,12 @@ const Restaurant: React.FC = () => {
           );
 
           return (
-            <>
+            <Fragment key={category.id}>
               {productCat.length !== 0 && i !== 0 && (
                 <Divider sx={{ width: "60%", margin: "20px auto" }} />
               )}
               <Category {...category} key={category.id} products={productCat} />
-            </>
+            </Fragment>
           );
         })}
       </Container>

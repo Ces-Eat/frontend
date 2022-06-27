@@ -96,6 +96,7 @@ importers:
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
+      axios: ^0.27.2
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       next: 12.1.6
@@ -119,6 +120,7 @@ importers:
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
+      axios: 0.27.2
       next: 12.1.6_azrccrm2jponqbhmrrxak56aga
       react: 18.2.0
       react-dom: 18.1.0_react@18.2.0
@@ -212,6 +214,7 @@ importers:
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
+      axios: ^0.27.2
       eslint: ^7.32.0
       eslint-config-custom: workspace:*
       next: 12.1.6
@@ -235,6 +238,7 @@ importers:
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
+      axios: 0.27.2
       next: 12.1.6_azrccrm2jponqbhmrrxak56aga
       react: 18.2.0
       react-dom: 18.1.0_react@18.2.0

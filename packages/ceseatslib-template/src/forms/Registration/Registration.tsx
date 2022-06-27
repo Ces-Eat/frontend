@@ -58,7 +58,7 @@ const RegistrationTemplate: React.FC<Props> = ({
 );
 
 RegistrationTemplate.defaultProps = {
-  switchRegistration: () => null,
+  switchRegistration: undefined,
 };
 
 export default RegistrationTemplate;

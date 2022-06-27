@@ -1,15 +1,18 @@
 import "../styles/_reset.scss";
 import type { AppProps } from "next/app";
-import { NotificationProvider } from "@ceseatslib/utils";
+import { NotificationProvider, useEffectOnce } from "@ceseatslib/utils";
 import { ThemeWrapper, ITheme } from "@ceseatslib/theme";
-import { AppBar } from "@ceseatslib/ui";
-import { useEffect, useState } from "react";
-import NavMenu from "../src/components/NavMenu/NavMenu";
+import { useState } from "react";
+import { StoreProvider } from "src/utils/store";
+import AppLayout from "src/components/Layout/AppLayout";
+import AuthGuard from "src/utils/AuthGuard";
+import axios from "axios";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isLightTheme, setIsLightTheme] = useState<boolean>(true);
 
-  useEffect(() => {
+  useEffectOnce(() => {
+    axios.defaults.withCredentials = true;
     if (typeof window !== "undefined") {
       setIsLightTheme(
         !(
@@ -18,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         )
       );
     }
-  }, []);
+  });
 
   const changeTheme = (): void => {
     setIsLightTheme(!isLightTheme);
@@ -26,18 +29,22 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <ThemeWrapper themeName={isLightTheme ? ITheme.LIGHT : ITheme.DARK}>
-      <NotificationProvider>
-        <>
-          <AppBar
-            changeTheme={changeTheme}
-            isLightTheme={isLightTheme}
-            link="/restaurant"
-          >
-            <NavMenu />
-          </AppBar>
-          <Component {...pageProps} />
-        </>
-      </NotificationProvider>
+      <StoreProvider>
+        <NotificationProvider>
+          <AppLayout changeTheme={changeTheme} isLightTheme={isLightTheme}>
+            {
+              // @ts-ignore
+              Component.requireAuth ? (
+                <AuthGuard>
+                  <Component {...pageProps} />
+                </AuthGuard>
+              ) : (
+                <Component {...pageProps} />
+              )
+            }
+          </AppLayout>
+        </NotificationProvider>
+      </StoreProvider>
     </ThemeWrapper>
   );
 };

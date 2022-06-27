@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import s from "@styles/Home.module.scss";
+import s from "styles/Home.module.scss";
 import { useState } from "react";
 import {
   IRegistration,
