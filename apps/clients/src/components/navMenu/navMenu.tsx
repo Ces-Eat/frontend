@@ -10,6 +10,8 @@ import CreditCardIcon from "@mui/icons-material/CreditCard";
 import RoomIcon from "@mui/icons-material/Room";
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import CodeIcon from "@mui/icons-material/Code";
+import StorefrontIcon from "@mui/icons-material/Storefront";
 import Link from "next/link";
 import { IAuthAction, useStore } from "src/utils/hooks";
 import { useRouter } from "next/router";
@@ -38,6 +40,7 @@ const NavMenu: React.FC = () => {
         );
       });
   };
+
   return (
     <List>
       <Link href="/account">
@@ -46,6 +49,14 @@ const NavMenu: React.FC = () => {
             <AccountBoxIcon />
           </ListItemIcon>
           <ListItemText>Mon compte</ListItemText>
+        </ListItem>
+      </Link>
+      <Link href="/restaurants">
+        <ListItem>
+          <ListItemIcon>
+            <StorefrontIcon />
+          </ListItemIcon>
+          <ListItemText>Restaurants</ListItemText>
         </ListItem>
       </Link>
       <Link href="/orders">
@@ -69,7 +80,7 @@ const NavMenu: React.FC = () => {
           <ListItemIcon>
             <RoomIcon />
           </ListItemIcon>
-          <ListItemText>Adresse</ListItemText>
+          <ListItemText>Adresses</ListItemText>
         </ListItem>
       </Link>
       <Link href="/refered">
@@ -78,6 +89,14 @@ const NavMenu: React.FC = () => {
             <PeopleIcon />
           </ListItemIcon>
           <ListItemText>Parrainage</ListItemText>
+        </ListItem>
+      </Link>
+      <Link href="/developper">
+        <ListItem>
+          <ListItemIcon>
+            <CodeIcon />
+          </ListItemIcon>
+          <ListItemText>Package Ces&apos;eats</ListItemText>
         </ListItem>
       </Link>
       <ListItem onClick={handleLogout}>

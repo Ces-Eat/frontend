@@ -1,5 +1,4 @@
 import React, { createContext, useMemo, useReducer } from "react";
-import { useEffectOnce } from "@ceseatslib/utils";
 import { authReducer } from "../reducers";
 import { AuthInitialState } from "../initialState";
 import { IAuthActionType, IAuthReducer } from "../reducers/auth";
@@ -17,10 +16,6 @@ export const StoreContext = createContext<Context>(null as any);
 
 export const StoreProvider: React.FC<Props> = ({ children }) => {
   const [auth, setAuth] = useReducer(authReducer, AuthInitialState);
-
-  useEffectOnce(() => {
-    console.log("hey");
-  });
 
   const value = useMemo(
     () => ({

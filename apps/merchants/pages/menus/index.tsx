@@ -1,6 +1,5 @@
 import { Section } from "@ceseatslib/template";
 import Avatar from "@mui/material/Avatar";
-import { NextPage } from "next";
 import { useState } from "react";
 import {
   TableContainer,
@@ -51,7 +50,7 @@ const columns: readonly Column[] = [
   },
 ];
 
-const ReferedPage: NextPage = () => {
+const MenusPage = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const handleChangePage = (_: unknown, newPage: number) => {
@@ -179,4 +178,6 @@ const ReferedPage: NextPage = () => {
   );
 };
 
-export default ReferedPage;
+MenusPage.requireAuth = true;
+
+export default MenusPage;

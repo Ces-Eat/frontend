@@ -5,8 +5,15 @@ interface IAuthUser {
   image: string | null;
   name: string;
   phone: string;
+  refererCode: string;
+  refererUsers: IAuthUser[];
+  referedUsers: { newUser: IAuthUser }[];
+  role: {
+    name: "customer";
+  };
   roleId: number;
   surname: string;
+  createdAt: string;
 }
 
 export interface IAuthReducer {

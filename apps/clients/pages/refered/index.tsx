@@ -1,32 +1,21 @@
 import { ActionCard } from "@ceseatslib/ui";
 import { Section } from "@ceseatslib/template";
-import { NextPage } from "next";
 import { Button, Container } from "@mui/material";
 import s from "@styles/Wallets.module.scss";
 import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
+import { useStore } from "src/utils/hooks";
 
-const ReferedPage: NextPage = () => {
+const ReferedPage = () => {
   const { createNotification } = useNotificationCenter();
-  const code = "XJKe-4585";
-
-  const refered = [
-    {
-      id: "4564",
-      name: "Clément GASTON",
-      date: "12/12/2020",
-    },
-    {
-      id: "45",
-      name: "Gabriel RICARD",
-      date: "12/12/2020",
-    },
-  ];
+  const {
+    auth: { user },
+  } = useStore();
 
   return (
     <Section title="Historique de commande">
       <Container className={s.container}>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           type="button"
           onClick={() => {
@@ -34,22 +23,24 @@ const ReferedPage: NextPage = () => {
               INotificationType.INFO,
               "Code copié dans le presse-papier"
             );
-            navigator.clipboard.writeText(code);
+            navigator.clipboard.writeText(user?.refererCode || "");
           }}
         >
-          Code de parrainage - {code}
+          Code de parrainage - {user?.refererCode}
         </Button>
-        {refered.map(({ name, id, date }) => (
+        {user?.referedUsers.map(({ newUser: { name, surname, createdAt } }) => (
           <ActionCard
-            key={id}
-            img="/assets/Refered.png"
+            key={`name-${name}-surname-${surname}-createdAt-${createdAt}`}
+            img="/assets/default/defaultUser.png"
             title={name}
-            desc={date}
+            desc={createdAt}
           />
         ))}
       </Container>
     </Section>
   );
 };
+
+ReferedPage.requireAuth = true;
 
 export default ReferedPage;

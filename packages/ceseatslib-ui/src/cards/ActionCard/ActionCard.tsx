@@ -34,6 +34,7 @@ const ActionCard: React.FC<Props> = ({ children, title, desc, img }) => (
 
 ActionCard.defaultProps = {
   desc: "",
+  children: null,
 };
 
 export default ActionCard;

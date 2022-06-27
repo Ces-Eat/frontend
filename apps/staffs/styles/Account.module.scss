@@ -1,27 +1,12 @@
 .container {
   width: 500px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 
   @media screen and (max-width: 600px) {
     width: 80%;
-  }
-
-  .btnContainer {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-
-    .button {
-      width: 40%;
-      margin-bottom: 20px;
-    }
-
-    @media screen and (max-width: 600px) {
-      display: block;
-
-      .button {
-        width: 100%;
-      }
-    }
   }
 }

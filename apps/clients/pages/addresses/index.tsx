@@ -1,45 +1,76 @@
 import { ActionCard } from "@ceseatslib/ui";
-import { Section } from "@ceseatslib/template";
-import { NextPage } from "next";
+import { LoadingPage, Section } from "@ceseatslib/template";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { useState } from "react";
 import Link from "next/link";
 import { Button, Container } from "@mui/material";
 import s from "@styles/Wallets.module.scss";
+import {
+  INotificationType,
+  useEffectOnce,
+  useNotificationCenter,
+} from "@ceseatslib/utils";
+import axios from "axios";
 
-const AddressesPage: NextPage = () => {
-  const [addresses, setAddresses] = useState([
-    {
-      id: "4564",
-      name: "Maison",
-      address: "14 rue hélène",
-    },
-    {
-      id: "454",
-      name: "Travail",
-      address: "14 rue hélène",
-    },
-    {
-      id: "44",
-      name: "Espagne",
-      address: "14 rue hélène",
-    },
-  ]);
+interface IAddress {
+  id: string;
+  designation?: string;
+  label: string;
+  latitude: number;
+  longitude: number;
+}
+
+const AddressesPage = () => {
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [addresses, setAddresses] = useState<IAddress[]>([]);
+  const { createNotification } = useNotificationCenter();
+
+  useEffectOnce(() => {
+    axios
+      .get(`${process.env.API_ADDRESS}`, { withCredentials: true })
+      .then(({ data }) => {
+        setAddresses(data);
+        setIsLoadingData(false);
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+        setIsLoadingData(false);
+      });
+  });
 
   const handleDelete = (id: string) => {
-    setAddresses((el) => el.filter((address) => address.id !== id));
+    axios
+      .delete(`${process.env.API_ADDRESS}/${id}`, { withCredentials: true })
+      .then(() => {
+        setAddresses((el) => el.filter((address) => address.id !== id));
+        createNotification(
+          INotificationType.SUCCESS,
+          "Adresse supprimé avec succès"
+        );
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+      });
   };
 
+  if (isLoadingData) return <LoadingPage />;
+
   return (
-    <Section title="Wallets">
+    <Section title="Adresses">
       <Container className={s.container}>
-        {addresses.map(({ name, address, id }) => (
+        {addresses.map(({ label, designation, id }) => (
           <ActionCard
             key={id}
             img="/assets/Addresses.png"
-            title={name}
-            desc={address}
+            title={designation || ""}
+            desc={label}
           >
             <Link href={`/addresses/${id}`}>
               <ModeEditIcon className={s.delete} color="warning" />
@@ -54,12 +85,14 @@ const AddressesPage: NextPage = () => {
         ))}
       </Container>
       <Link href="/addresses/new">
-        <Button variant="contained" color="primary">
+        <Button variant="outlined" color="primary">
           Ajouter une adresse
         </Button>
       </Link>
     </Section>
   );
 };
+
+AddressesPage.requireAuth = true;
 
 export default AddressesPage;

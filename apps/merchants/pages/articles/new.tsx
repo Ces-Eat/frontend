@@ -9,7 +9,7 @@ import Link from "next/link";
 import s from "styles/Article.module.scss";
 import ArticleForm from "src/forms/ArticleForm/ArticleForm";
 
-const NewArticle: React.FC = () => {
+const NewArticle = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<IArticle>({
@@ -48,5 +48,7 @@ const NewArticle: React.FC = () => {
     </Section>
   );
 };
+
+NewArticle.requireAuth = true;
 
 export default NewArticle;

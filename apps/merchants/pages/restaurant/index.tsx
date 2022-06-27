@@ -8,7 +8,7 @@ import { Container } from "@mui/material";
 import s from "styles/Restaurant.module.scss";
 import RestaurantForm from "src/forms/RestaurantForm/RestaurantForm";
 
-const Restaurant: React.FC = () => {
+const Restaurant = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<IRestaurant>({
@@ -57,5 +57,7 @@ const Restaurant: React.FC = () => {
     </Section>
   );
 };
+
+Restaurant.requireAuth = true;
 
 export default Restaurant;

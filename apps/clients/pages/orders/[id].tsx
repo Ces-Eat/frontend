@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import {
   Button,
   Card,
@@ -14,7 +13,7 @@ import Link from "next/link";
 import s from "@styles/Orders.module.scss";
 import { useRef } from "react";
 
-const ReferedPage: NextPage = () => {
+const OrderPage = () => {
   // const router = useRouter();
   const invoiceRef = useRef(null);
   // const { id } = router.query;
@@ -174,11 +173,11 @@ const ReferedPage: NextPage = () => {
       </Container>
       <CardActions className={s.btnContainer}>
         <Link href="/orders">
-          <Button variant="contained" color="error">
+          <Button variant="outlined" color="error">
             Retour
           </Button>
         </Link>
-        <Button variant="contained" color="primary" onClick={handleDownload}>
+        <Button variant="outlined" color="primary" onClick={handleDownload}>
           Télécharger
         </Button>
       </CardActions>
@@ -186,4 +185,6 @@ const ReferedPage: NextPage = () => {
   );
 };
 
-export default ReferedPage;
+OrderPage.requireAuth = true;
+
+export default OrderPage;

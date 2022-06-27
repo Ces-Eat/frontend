@@ -30,6 +30,8 @@ const RegisterForm: NextPage = () => {
     const bodyFormData = new FormData();
     if (typeof formData.image !== "string")
       bodyFormData.append("image", formData.image[0]);
+    if (formData.refererCode)
+      bodyFormData.append("refererCode", formData.refererCode);
     bodyFormData.append("name", formData.name);
     bodyFormData.append("surname", formData.surname);
     bodyFormData.append("email", formData.email);
@@ -78,14 +80,23 @@ const RegisterForm: NextPage = () => {
         disabled={!methods.formState.isValid}
         buttonText="Inscription"
       >
-        <AvatarInput
-          name="image"
-          img="/assets/default/defaultUser.png"
-          control={methods.control}
-          watch={methods.watch}
-          setValue={methods.setValue}
-          clear={methods.clearErrors}
-        />
+        <>
+          <AvatarInput
+            name="image"
+            img="/assets/default/defaultUser.png"
+            control={methods.control}
+            watch={methods.watch}
+            setValue={methods.setValue}
+            clear={methods.clearErrors}
+          />
+          <TextInput
+            name="refererCode"
+            label="Code de parrainage"
+            control={methods.control}
+            defaultValue=""
+            fullWidth
+          />
+        </>
         <>
           <TextInput
             name="name"

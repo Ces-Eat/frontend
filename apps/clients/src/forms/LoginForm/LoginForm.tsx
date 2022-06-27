@@ -95,7 +95,7 @@ const LoginForm: NextPage = () => {
       />
       <LoadingButton
         type="submit"
-        variant="contained"
+        variant="outlined"
         color="primary"
         loading={isLoading}
         disabled={!methods.formState.isValid}

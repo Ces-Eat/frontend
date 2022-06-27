@@ -24,6 +24,7 @@ const WalletForm: React.FC<Props> = ({ methods }) => {
       const value = curValue < 10 ? `0${curValue}` : curValue;
       return { value, label: value };
     });
+
   return (
     <>
       <TextInput

@@ -1,7 +1,7 @@
-import type { NextPage } from "next";
+import React from "react";
 import Head from "next/head";
 
-const HomePage: NextPage = () => (
+const HomePage = () => (
   <div>
     <Head>
       <title>Livreurs</title>
@@ -11,4 +11,7 @@ const HomePage: NextPage = () => (
     <div>Hi</div>
   </div>
 );
+
+HomePage.requireAuth = true;
+
 export default HomePage;

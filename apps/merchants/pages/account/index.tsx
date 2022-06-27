@@ -33,7 +33,8 @@ const Account = () => {
   const formSubmitHandler: SubmitHandler<IUser> = (formData) => {
     setIsLoading(true);
     const bodyFormData = new FormData();
-    bodyFormData.append("image", formData.image[0]);
+    if (typeof formData.image !== "string")
+      bodyFormData.append("image", formData.image[0]);
     bodyFormData.append("name", formData.name);
     bodyFormData.append("surname", formData.surname);
     bodyFormData.append("email", formData.email);
@@ -54,7 +55,8 @@ const Account = () => {
           payload: data,
           type: IAuthAction.LOGIN,
         });
-        router.push("/");
+        methods.reset(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         switch (err.toJSON().status) {
@@ -85,6 +87,7 @@ const Account = () => {
           payload: null,
           type: IAuthAction.LOGOUT,
         });
+        router.push("/");
       })
       .catch(() => {
         createNotification(
@@ -103,7 +106,7 @@ const Account = () => {
             img={
               user?.image
                 ? `${process.env.API_USERS}/images/${user.image}`
-                : "/assets/Refered.png"
+                : "/assets/default/defaultUser.png"
             }
             control={methods.control}
             watch={methods.watch}
@@ -159,7 +162,7 @@ const Account = () => {
             <LoadingButton
               className={s.button}
               type="submit"
-              variant="contained"
+              variant="outlined"
               color="warning"
               loading={isLoading}
               disabled={!methods.formState.isValid}
@@ -169,7 +172,7 @@ const Account = () => {
             <LoadingButton
               className={s.button}
               type="button"
-              variant="contained"
+              variant="outlined"
               color="error"
               loading={isLoading}
               onClick={handleDelete}

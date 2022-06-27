@@ -9,7 +9,7 @@ import Link from "next/link";
 import s from "styles/Article.module.scss";
 import ArticleForm from "src/forms/ArticleForm/ArticleForm";
 
-const Article: React.FC = () => {
+const Article = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<IArticle>({
@@ -24,7 +24,8 @@ const Article: React.FC = () => {
 
   const product = {
     id: "1",
-    img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+    image:
+      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
     description: "Super le produit",
     price: 2.4,
     name: "Berre Guère",
@@ -66,5 +67,7 @@ const Article: React.FC = () => {
     </Section>
   );
 };
+
+Article.requireAuth = true;
 
 export default Article;

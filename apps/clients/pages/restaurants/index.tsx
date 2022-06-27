@@ -1,11 +1,10 @@
-import type { NextPage } from "next";
 import { Container, TextField, Divider } from "@mui/material";
 import { DescCard, ProductCard } from "@ceseatslib/ui";
 import s from "@styles/Restaurants.module.scss";
 import Link from "next/link";
 import { useState } from "react";
 
-const Restaurants: NextPage = () => {
+const Restaurants = () => {
   const [search, setSearch] = useState("");
   const [catSelected, setCatSelected] = useState("");
 
@@ -105,5 +104,7 @@ const Restaurants: NextPage = () => {
     </Container>
   );
 };
+
+Restaurants.requireAuth = true;
 
 export default Restaurants;

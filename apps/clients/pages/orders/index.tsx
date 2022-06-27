@@ -1,11 +1,10 @@
 import { ActionCard } from "@ceseatslib/ui";
 import { Section } from "@ceseatslib/template";
-import { NextPage } from "next";
 import Link from "next/link";
 import { Container } from "@mui/material";
 import s from "@styles/Wallets.module.scss";
 
-const OrdersPage: NextPage = () => {
+const OrdersPage = () => {
   const orders = [
     {
       id: "4564",
@@ -33,5 +32,7 @@ const OrdersPage: NextPage = () => {
     </Section>
   );
 };
+
+OrdersPage.requireAuth = true;
 
 export default OrdersPage;

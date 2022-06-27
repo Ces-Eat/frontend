@@ -34,8 +34,8 @@ const AddressInput: React.FC<Props> = ({ methods, ...textFieldProps }) => {
       setAddresses(
         response.data.features.map((feature) => ({
           label: feature.properties.label,
-          lat: feature.geometry.coordinates[1],
-          long: feature.geometry.coordinates[0],
+          latitude: feature.geometry.coordinates[1],
+          longitude: feature.geometry.coordinates[0],
         }))
       );
     } else {

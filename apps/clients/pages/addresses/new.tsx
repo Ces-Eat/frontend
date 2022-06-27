@@ -1,7 +1,6 @@
 import { Button, Container } from "@mui/material";
 import { addressSchema, IAddress } from "@ceseatslib/form";
 import { Section } from "@ceseatslib/template";
-import { NextPage } from "next";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
@@ -9,18 +8,45 @@ import s from "@styles/WalletsNew.module.scss";
 import { useState } from "react";
 import Link from "next/link";
 import AddressForm from "src/forms/AddressForm/AddressForm";
+import axios from "axios";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
+import { useRouter } from "next/router";
 
-const AddressesPage: NextPage = () => {
+const NewAddress = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { createNotification } = useNotificationCenter();
+  const router = useRouter();
 
   const methods = useForm<IAddress>({
     mode: "onChange",
     resolver: yupResolver(addressSchema),
   });
 
-  const formSubmitHandler: SubmitHandler<IAddress> = (data) => {
-    console.log(data);
+  const formSubmitHandler: SubmitHandler<IAddress> = (formData) => {
     setIsLoading(true);
+    const refactorFormData = {
+      designation: formData.designation,
+      ...formData.address,
+    };
+
+    axios
+      .post(`${process.env.API_ADDRESS}`, refactorFormData, {
+        withCredentials: true,
+      })
+      .then(() => {
+        createNotification(
+          INotificationType.SUCCESS,
+          "Adresse ajouté avec succès"
+        );
+        router.push("/addresses");
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -30,18 +56,14 @@ const AddressesPage: NextPage = () => {
           <AddressForm methods={methods} />
           <Container className={s.middleContainer}>
             <Link href="/addresses">
-              <Button
-                variant="contained"
-                color="error"
-                className={s.middleItem}
-              >
+              <Button variant="outlined" color="error" className={s.middleItem}>
                 Retour
               </Button>
             </Link>
             <LoadingButton
               className={s.middleItem}
               type="submit"
-              variant="contained"
+              variant="outlined"
               color="primary"
               loading={isLoading}
               disabled={!methods.formState.isValid}
@@ -55,4 +77,6 @@ const AddressesPage: NextPage = () => {
   );
 };
 
-export default AddressesPage;
+NewAddress.requireAuth = true;
+
+export default NewAddress;

@@ -1,11 +1,10 @@
 import { ActionCard } from "@ceseatslib/ui";
 import { Section } from "@ceseatslib/template";
-import { NextPage } from "next";
 import { Button, Container } from "@mui/material";
 import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import s from "../../styles/Wallets.module.scss";
 
-const ReferedPage: NextPage = () => {
+const ReferedPage = () => {
   const { createNotification } = useNotificationCenter();
   const code = "XJKe-4585";
 
@@ -26,7 +25,7 @@ const ReferedPage: NextPage = () => {
     <Section title="Historique de commande">
       <Container className={s.container}>
         <Button
-          variant="contained"
+          variant="outlined"
           color="primary"
           type="button"
           onClick={() => {
@@ -51,5 +50,7 @@ const ReferedPage: NextPage = () => {
     </Section>
   );
 };
+
+ReferedPage.requireAuth = true;
 
 export default ReferedPage;

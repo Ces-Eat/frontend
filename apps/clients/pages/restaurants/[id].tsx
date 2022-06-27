@@ -5,7 +5,7 @@ import RestaurantHeader from "@components/restaurant/Header/Header";
 import Category from "@components/restaurant/Category/Category";
 import s from "@styles/Restaurant.module.scss";
 
-const Restaurant: React.FC = () => {
+const Restaurant = () => {
   // const router = useRouter();
   // const { id } = router.query;
 
@@ -88,5 +88,7 @@ const Restaurant: React.FC = () => {
     </>
   );
 };
+
+Restaurant.requireAuth = true;
 
 export default Restaurant;

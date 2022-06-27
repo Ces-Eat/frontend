@@ -40,7 +40,7 @@ const MultiStep: React.FC<Props> = ({
           <Button
             onClick={() => setCurrentStep((step) => step - 1)}
             type="button"
-            variant="contained"
+            variant="outlined"
             color="primary"
             disabled={loading}
           >
@@ -48,7 +48,7 @@ const MultiStep: React.FC<Props> = ({
           </Button>
         )}
         <LoadingButton
-          variant="contained"
+          variant="outlined"
           color="primary"
           onClick={onSubmit}
           type={isLastStep() ? "submit" : "button"}

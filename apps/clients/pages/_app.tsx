@@ -6,13 +6,11 @@ import { useState } from "react";
 import { StoreProvider } from "src/utils/store";
 import AppLayout from "@components/Layout/AppLayout";
 import AuthGuard from "src/utils/AuthGuard";
-import axios from "axios";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isLightTheme, setIsLightTheme] = useState<boolean>(true);
 
   useEffectOnce(() => {
-    axios.defaults.withCredentials = true;
     if (typeof window !== "undefined") {
       setIsLightTheme(
         !(

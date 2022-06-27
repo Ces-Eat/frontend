@@ -48,7 +48,7 @@ const products: IArticle[] = [
   },
 ];
 
-const NewMenu: React.FC = () => {
+const NewMenu = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<IMenu>({
@@ -87,5 +87,7 @@ const NewMenu: React.FC = () => {
     </Section>
   );
 };
+
+NewMenu.requireAuth = true;
 
 export default NewMenu;

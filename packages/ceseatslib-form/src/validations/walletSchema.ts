@@ -1,6 +1,7 @@
 import * as yup from "yup";
 
 export interface IWallet {
+  id?: string;
   title: string;
   cardNumber: string;
   expirationMonth: string;

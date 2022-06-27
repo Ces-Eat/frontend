@@ -48,7 +48,7 @@ const products: IArticle[] = [
   },
 ];
 
-const Article: React.FC = () => {
+const Menu = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const methods = useForm<IMenu>({
@@ -112,4 +112,6 @@ const Article: React.FC = () => {
   );
 };
 
-export default Article;
+Menu.requireAuth = true;
+
+export default Menu;

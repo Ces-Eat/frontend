@@ -1,52 +1,78 @@
 import { ActionCard } from "@ceseatslib/ui";
-import { Section } from "@ceseatslib/template";
-import { NextPage } from "next";
+import { LoadingPage, Section } from "@ceseatslib/template";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 import Link from "next/link";
 import { Button, Container } from "@mui/material";
 import s from "@styles/Wallets.module.scss";
+import {
+  INotificationType,
+  useEffectOnce,
+  useNotificationCenter,
+} from "@ceseatslib/utils";
+import axios from "axios";
+import { IWallet } from "@ceseatslib/form";
 
-const WalletsPage: NextPage = () => {
-  const [cards, setCards] = useState([
-    {
-      id: "4564",
-      cardNumber: "**** 8900",
-      name: "Travail",
-      expirationMonth: "01",
-      expirationYear: "23",
-    },
-    {
-      id: "45",
-      cardNumber: "**** 8901",
-      expirationMonth: "11",
-      expirationYear: "26",
-    },
-    {
-      id: "456984",
-      cardNumber: "**** 8903",
-      expirationMonth: "08",
-      expirationYear: "31",
-    },
-  ]);
+const WalletsPage = () => {
+  const [isLoadingData, setIsLoadingData] = useState(true);
+  const [wallets, setWallets] = useState<IWallet[]>([]);
+  const { createNotification } = useNotificationCenter();
+
+  useEffectOnce(() => {
+    axios
+      .get(`${process.env.API_WALLET}`, { withCredentials: true })
+      .then(({ data }) => {
+        setWallets(data);
+        setIsLoadingData(false);
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+        setIsLoadingData(false);
+      });
+  });
 
   const handleDelete = (id: string) => {
-    setCards((el) => el.filter((card) => card.id !== id));
+    axios
+      .delete(`${process.env.API_WALLET}/${id}`, { withCredentials: true })
+      .then(() => {
+        setWallets((el) => el.filter((card) => card.id !== id));
+        createNotification(
+          INotificationType.SUCCESS,
+          "Carte supprimé avec succès"
+        );
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+      });
   };
+
+  if (isLoadingData) return <LoadingPage />;
 
   return (
     <Section title="Mes cartes">
       <Container className={s.container}>
-        {cards.map(
-          ({ name, cardNumber, id, expirationMonth, expirationYear }) => (
+        {wallets.map(
+          ({
+            designation,
+            cardNumber,
+            id,
+            expirationMonth,
+            expirationYear,
+          }) => (
             <ActionCard
               key={id}
               img="/assets/Wallets.png"
-              title={name || cardNumber}
+              title={designation || cardNumber}
               desc={`Expire le ${expirationMonth}/${expirationYear}`}
             >
               <CancelIcon
-                onClick={() => handleDelete(id)}
+                onClick={() => handleDelete(id || "")}
                 className={s.delete}
                 color="error"
               />
@@ -55,12 +81,14 @@ const WalletsPage: NextPage = () => {
         )}
       </Container>
       <Link href="/wallets/new">
-        <Button variant="contained" color="primary">
+        <Button variant="outlined" color="primary">
           Ajouter une carte
         </Button>
       </Link>
     </Section>
   );
 };
+
+WalletsPage.requireAuth = true;
 
 export default WalletsPage;

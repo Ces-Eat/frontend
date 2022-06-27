@@ -54,10 +54,12 @@ const AvatarInput: React.FC<Props> = ({
         src={
           typeof currentImage === "string" ||
           currentImage === undefined ||
+          currentImage === null ||
           currentImage.length === 0
             ? img
             : URL.createObjectURL(currentImage[0])
         }
+        crossOrigin="anonymous"
         alt="Avatar"
         className={s.img}
       />
@@ -67,7 +69,7 @@ const AvatarInput: React.FC<Props> = ({
         ref={inputRef}
         type="file"
         accept={accept}
-        value={field.value.filename}
+        value={field.value?.filename}
         onChange={(event) => field.onChange(event.target.files)}
       />
       {fieldState?.error?.message && (
@@ -80,6 +82,7 @@ const AvatarInput: React.FC<Props> = ({
       {!(
         typeof currentImage === "string" ||
         currentImage === undefined ||
+        currentImage === null ||
         currentImage.length === 0
       ) && <CancelIcon className={s.icon} onClick={deleteImg} />}
     </Container>
