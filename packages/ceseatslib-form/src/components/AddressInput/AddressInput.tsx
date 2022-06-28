@@ -11,6 +11,7 @@ interface Props {
   label: string;
   required?: boolean;
   defaultValue?: ILocalization;
+  fullWidth?: boolean;
 }
 
 const AddressInput: React.FC<Props> = ({ methods, ...textFieldProps }) => {
@@ -57,6 +58,7 @@ const AddressInput: React.FC<Props> = ({ methods, ...textFieldProps }) => {
 AddressInput.defaultProps = {
   required: false,
   defaultValue: undefined,
+  fullWidth: false,
 };
 
 export default AddressInput;
