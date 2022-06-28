@@ -24,6 +24,7 @@ const Category: React.FC<Props> = ({ name, products }) => {
             key={product.id}
             onClick={() => onClick(product.id)}
             {...product}
+            img="/assets/default/defaultArticle.png"
           />
         ))}
       </Container>

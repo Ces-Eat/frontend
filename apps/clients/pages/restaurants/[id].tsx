@@ -68,7 +68,11 @@ const Restaurant = () => {
 
   return (
     <>
-      <RestaurantHeader {...restaurant} />
+      <RestaurantHeader
+        img="/assets/default/defaultRestaurant.png"
+        title={restaurant.title}
+        desc={restaurant.desc}
+      />
       <Container className={s.container}>
         {categories.map((category, i) => {
           const productCat = products.filter(

@@ -9,7 +9,7 @@ interface IAuthUser {
   refererUsers: IAuthUser[];
   referedUsers: { newUser: IAuthUser }[];
   role: {
-    name: "customer";
+    name: string;
   };
   roleId: number;
   surname: string;

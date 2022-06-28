@@ -6,18 +6,15 @@ interface Props {
   img: string;
   title: string;
   desc: string;
-  rating: number;
 }
 
-const RestaurantHeader: React.FC<Props> = ({ img, title, desc, rating }) => (
+const RestaurantHeader: React.FC<Props> = ({ img, title, desc }) => (
   <Container className={s.container} sx={{ backgroundColor: "primary.light" }}>
     <Container className={s.img}>
       <img src={img} alt={title} />
     </Container>
     <Container className={s.content}>
-      <Typography variant="h2">
-        {title} - {rating}
-      </Typography>
+      <Typography variant="h2">{title}</Typography>
       <Typography variant="body2" className={s.desc} textAlign="justify">
         {desc}
       </Typography>
