@@ -26,7 +26,7 @@ const Restaurant = () => {
   const restaurant = null;
 
   return (
-    <Section title="Mon compte">
+    <Section title="Mon restaurant">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
           <RestaurantForm methods={methods} />

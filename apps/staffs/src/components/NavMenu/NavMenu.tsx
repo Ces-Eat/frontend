@@ -90,22 +90,6 @@ const NavMenu: React.FC = () => {
           <ListItemText>Livraison</ListItemText>
         </ListItem>
       </Link>
-      <Link href="/stats">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Statistique</ListItemText>
-        </ListItem>
-      </Link>
-      <Link href="/refered">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Parrainage</ListItemText>
-        </ListItem>
-      </Link>
       <ListItem onClick={handleLogout}>
         <ListItemIcon>
           <PeopleIcon color="error" />

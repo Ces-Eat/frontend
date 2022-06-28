@@ -53,7 +53,6 @@ const cartReducer = (
 
         if (articleIndex !== -1) {
           articles[articleIndex].quantity++;
-          console.log(articles[articleIndex].quantity);
         } else {
           // @ts-ignore
           articles.push(articleToAdd);
