@@ -10,9 +10,22 @@ import {
 import { Container } from "@mui/material";
 import LoginForm from "src/forms/LoginForm/LoginForm";
 import RegisterForm from "src/forms/RegisterForm/RegisterForm";
+import { useRouter } from "next/router";
+import { useStore } from "src/utils/hooks";
+import { useEffectOnce } from "@ceseatslib/utils";
 
 const Home: NextPage = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const router = useRouter();
+  const {
+    auth: { isAuthenticated },
+  } = useStore();
+
+  useEffectOnce(() => {
+    if (isAuthenticated) {
+      router.push("/restaurants");
+    }
+  });
 
   return (
     <div className={s.container}>
