@@ -1,7 +1,6 @@
 import { Button, Container, Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { Control, useFieldArray } from "react-hook-form";
-import { useEffectOnce } from "@ceseatslib/utils";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { TextInput } from "../TextInput";
 import s from "./ArticlesInput.module.scss";
@@ -34,7 +33,7 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
     name,
   });
 
-  useEffectOnce(() => {
+  useEffect(() => {
     if (defaultValue) {
       for (let i = 0; i < defaultValue?.length; i += 1) {
         append({
@@ -45,7 +44,7 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
         });
       }
     }
-  });
+  }, []);
 
   return (
     <>

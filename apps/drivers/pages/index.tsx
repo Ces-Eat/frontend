@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import s from "styles/Home.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   IRegistration,
   PrimaryTemplate,
@@ -12,7 +12,6 @@ import LoginForm from "src/forms/LoginForm/LoginForm";
 import RegisterForm from "src/forms/RegisterForm/RegisterForm";
 import { useRouter } from "next/router";
 import { useStore } from "src/utils/hooks";
-import { useEffectOnce } from "@ceseatslib/utils";
 
 const Home: NextPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -21,11 +20,11 @@ const Home: NextPage = () => {
     auth: { isAuthenticated },
   } = useStore();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     if (isAuthenticated) {
       router.push("/home");
     }
-  });
+  }, []);
 
   return (
     <div className={s.container}>

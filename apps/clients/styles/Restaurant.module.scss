@@ -1,4 +1,9 @@
 .container {
-  padding: 30px;
-  margin: 20px 0;
+  position: relative;
+
+  .cart {
+    position: fixed;
+    top: 85px;
+    right: 15px;
+  }
 }

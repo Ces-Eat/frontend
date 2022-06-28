@@ -1,13 +1,17 @@
 // import { useRouter } from "next/router";
 import React, { Fragment } from "react";
-import { Container, Divider } from "@mui/material";
+import { Button, Container, Divider, Typography } from "@mui/material";
 import RestaurantHeader from "@components/restaurant/Header/Header";
 import Category from "@components/restaurant/Category/Category";
+import { useStore } from "src/utils/hooks";
+import { useRouter } from "next/router";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import s from "styles/Restaurant.module.scss";
 
 const Restaurant = () => {
-  // const router = useRouter();
-  // const { id } = router.query;
+  const router = useRouter();
+  const { id } = router.query;
+  const { cart, dispatchCart } = useStore();
 
   const restaurant = {
     title: "Burker king",
@@ -67,7 +71,7 @@ const Restaurant = () => {
   ];
 
   return (
-    <>
+    <Container className={s.container}>
       <RestaurantHeader
         img="/assets/default/defaultRestaurant.png"
         title={restaurant.title}
@@ -84,15 +88,26 @@ const Restaurant = () => {
               {productCat.length !== 0 && i !== 0 && (
                 <Divider sx={{ width: "60%", margin: "20px auto" }} />
               )}
-              <Category {...category} key={category.id} products={productCat} />
+              <Category
+                {...category}
+                key={category.id}
+                products={productCat}
+                restaurantId={id}
+              />
             </Fragment>
           );
         })}
       </Container>
-    </>
+      {cart[id] && (
+        <Button className={s.cart} variant="contained" sx={{ color: "white" }}>
+          <ShoppingCartIcon sx={{ marginRight: "10px" }} />
+          <Typography>Panier</Typography>
+        </Button>
+      )}
+    </Container>
   );
 };
 
-Restaurant.requireAuth = true;
+// Restaurant.requireAuth = true;
 
 export default Restaurant;

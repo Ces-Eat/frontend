@@ -2,12 +2,8 @@ import { Container, TextField, Divider, MenuItem } from "@mui/material";
 import { ProductCard } from "@ceseatslib/ui";
 import s from "styles/Restaurants.module.scss";
 import Link from "next/link";
-import { useState } from "react";
-import {
-  INotificationType,
-  useEffectOnce,
-  useNotificationCenter,
-} from "@ceseatslib/utils";
+import { useEffect, useState } from "react";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import axios from "axios";
 import { LoadingPage } from "@ceseatslib/template";
 
@@ -26,7 +22,7 @@ const Restaurants = () => {
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState<IAddress | null>(null);
 
-  useEffectOnce(() => {
+  useEffect(() => {
     axios
       .get(`${process.env.API_ADDRESS}`, { withCredentials: true })
       .then(({ data }) => {
@@ -40,7 +36,7 @@ const Restaurants = () => {
         );
         setIsLoading(false);
       });
-  });
+  }, []);
 
   const handleAddress = (address: IAddress) => {
     console.log("change");

@@ -5,14 +5,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
 import s from "styles/WalletsNew.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import AddressForm from "src/forms/AddressForm/AddressForm";
-import {
-  INotificationType,
-  useEffectOnce,
-  useNotificationCenter,
-} from "@ceseatslib/utils";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -28,7 +24,7 @@ const AddressePage = () => {
     resolver: yupResolver(addressSchema),
   });
 
-  useEffectOnce(() => {
+  useEffect(() => {
     const { id } = router.query;
     axios
       .get(`${process.env.API_ADDRESS}/${id}`, { withCredentials: true })
@@ -51,7 +47,7 @@ const AddressePage = () => {
         );
         router.push("/addresses");
       });
-  });
+  }, []);
 
   const formSubmitHandler: SubmitHandler<IAddress> = (formData) => {
     setIsLoading(true);

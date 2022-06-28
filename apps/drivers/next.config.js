@@ -10,7 +10,7 @@ const withTM = require("next-transpile-modules")([
 const API_URL = "http://localhost:4100";
 
 module.exports = withTM({
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     API_USERS: `${API_URL}/users`,
     API_AUTH: `${API_URL}/users/sessions`,

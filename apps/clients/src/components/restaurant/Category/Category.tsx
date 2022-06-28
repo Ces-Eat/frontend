@@ -1,17 +1,28 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
 import { ProductCard } from "@ceseatslib/ui";
+import { ICartAction, useStore } from "src/utils/hooks";
 import s from "./Category.module.scss";
 
 interface Props {
   name: string;
   products: any[];
+  restaurantId: string;
 }
 
-const Category: React.FC<Props> = ({ name, products }) => {
+const Category: React.FC<Props> = ({ name, products, restaurantId }) => {
+  const { dispatchCart } = useStore();
+
   if (!products.length) return null;
 
-  const onClick = (id: string) => {
+  const handleArticle = (id: string) => {
+    dispatchCart({
+      type: ICartAction.ADD_ARTICLE,
+      payload: { id: restaurantId, article: products.find((p) => p.id === id) },
+    });
+  };
+
+  const handleMenu = (id: string) => {
     console.log(`clicked : ${id}`);
   };
 
@@ -22,7 +33,11 @@ const Category: React.FC<Props> = ({ name, products }) => {
         {products.map((product) => (
           <ProductCard
             key={product.id}
-            onClick={() => onClick(product.id)}
+            onClick={() =>
+              name !== "Menu"
+                ? handleArticle(product.id)
+                : handleMenu(product.id)
+            }
             {...product}
             img="/assets/default/defaultArticle.png"
           />

@@ -1,15 +1,11 @@
 import { ActionCard } from "@ceseatslib/ui";
 import { LoadingPage, Section } from "@ceseatslib/template";
 import CancelIcon from "@mui/icons-material/Cancel";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button, Container } from "@mui/material";
 import s from "styles/Wallets.module.scss";
-import {
-  INotificationType,
-  useEffectOnce,
-  useNotificationCenter,
-} from "@ceseatslib/utils";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import axios from "axios";
 import { IWallet } from "@ceseatslib/form";
 
@@ -18,7 +14,7 @@ const WalletsPage = () => {
   const [wallets, setWallets] = useState<IWallet[]>([]);
   const { createNotification } = useNotificationCenter();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     axios
       .get(`${process.env.API_WALLET}`, { withCredentials: true })
       .then(({ data }) => {
@@ -32,7 +28,7 @@ const WalletsPage = () => {
         );
         setIsLoadingData(false);
       });
-  });
+  }, []);
 
   const handleDelete = (id: string) => {
     axios

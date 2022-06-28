@@ -1,21 +1,17 @@
 import { IUser } from "@ceseatslib/form";
 import { LoadingPage, Section } from "@ceseatslib/template";
-import {
-  INotificationType,
-  useEffectOnce,
-  useNotificationCenter,
-} from "@ceseatslib/utils";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import { Button, Container } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const HomePage = () => {
   const [clients, setClients] = useState<IUser[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { createNotification } = useNotificationCenter();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     axios
       .get(`${process.env.API_USERS}`, { withCredentials: true })
       .then(({ data }) => {
@@ -25,7 +21,7 @@ const HomePage = () => {
       .catch(() => {
         setIsLoading(false);
       });
-  });
+  }, []);
 
   if (isLoading) return <LoadingPage />;
 

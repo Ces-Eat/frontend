@@ -1,0 +1,9 @@
+enum ICartAction {
+  ADD_ARTICLE = "ADD_ARTICLE",
+  ADD_MENU = "ADD_MENU",
+  REMOVE_ARTICLE = "REMOVE_ARTICLE",
+  REMOVE_MENU = "REMOVE_MENU",
+  DELETE = "DELETE",
+}
+
+export default ICartAction;

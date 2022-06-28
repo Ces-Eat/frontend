@@ -1,8 +1,7 @@
 import { AppBar } from "@ceseatslib/ui";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import NavMenu from "@components/NavMenu/NavMenu";
 import { IAuthAction, useStore } from "src/utils/hooks";
-import { useEffectOnce } from "@ceseatslib/utils";
 import axios from "axios";
 import { LoadingPage } from "@ceseatslib/template";
 
@@ -23,7 +22,7 @@ const AppLayout: React.FC<Props> = ({
     auth: { isAuthenticated },
   } = useStore();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     if (!isAuthenticated) {
       axios
         .get(`${process.env.API_USERS}/me`, { withCredentials: true })
@@ -35,7 +34,7 @@ const AppLayout: React.FC<Props> = ({
           setIsLoading(false);
         });
     }
-  });
+  }, []);
 
   if (isLoading) return <LoadingPage />;
 

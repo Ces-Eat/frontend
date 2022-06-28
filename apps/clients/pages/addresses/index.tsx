@@ -2,15 +2,11 @@ import { ActionCard } from "@ceseatslib/ui";
 import { LoadingPage, Section } from "@ceseatslib/template";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button, Container } from "@mui/material";
 import s from "styles/Wallets.module.scss";
-import {
-  INotificationType,
-  useEffectOnce,
-  useNotificationCenter,
-} from "@ceseatslib/utils";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import axios from "axios";
 
 interface IAddress {
@@ -26,7 +22,7 @@ const AddressesPage = () => {
   const [addresses, setAddresses] = useState<IAddress[]>([]);
   const { createNotification } = useNotificationCenter();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     axios
       .get(`${process.env.API_ADDRESS}`, { withCredentials: true })
       .then(({ data }) => {
@@ -40,7 +36,7 @@ const AddressesPage = () => {
         );
         setIsLoadingData(false);
       });
-  });
+  }, []);
 
   const handleDelete = (id: string) => {
     axios

@@ -10,7 +10,7 @@ import { Container } from "@mui/material";
 import LoginForm from "src/forms/LoginForm/LoginForm";
 import { useStore } from "src/utils/hooks";
 import { useRouter } from "next/router";
-import { useEffectOnce } from "@ceseatslib/utils";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const {
@@ -18,11 +18,11 @@ const Home: NextPage = () => {
   } = useStore();
   const router = useRouter();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     if (isAuthenticated) {
       router.push("/home");
     }
-  });
+  }, []);
 
   return (
     <div className={s.container}>

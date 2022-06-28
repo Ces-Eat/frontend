@@ -1,6 +1,5 @@
-import { useEffectOnce } from "@ceseatslib/utils";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../hooks";
 
 interface Props {
@@ -14,11 +13,11 @@ const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
   } = useStore();
   const router = useRouter();
 
-  useEffectOnce(() => {
+  useEffect(() => {
     if (!isAuthenticated) {
       router.push("/");
     }
-  });
+  }, []);
 
   // if auth initialized with a valid user show protected page
   switch (requireAuth) {
