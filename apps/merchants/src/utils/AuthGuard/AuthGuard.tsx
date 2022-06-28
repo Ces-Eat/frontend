@@ -3,9 +3,14 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useStore } from "../hooks";
 
+interface Props {
+  requireAuth: boolean | string;
+}
+
 // @ts-ignore
-const AuthGuard: React.FC = ({ children }) => {
+const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
   const {
+    isRestaurant,
     auth: { isAuthenticated },
   } = useStore();
   const router = useRouter();
@@ -16,8 +21,12 @@ const AuthGuard: React.FC = ({ children }) => {
     }
   });
 
-  // if auth initialized with a valid user show protected page
   if (isAuthenticated) {
+    if (requireAuth === "restaurant") {
+      if (!isRestaurant) {
+        router.push("/restaurant");
+      }
+    }
     return children;
   }
 

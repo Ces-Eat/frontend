@@ -22,11 +22,28 @@ const NewArticle = () => {
     setIsLoading(true);
   };
 
+  const productCategory = [
+    {
+      id: "cat_eiheiqz",
+      name: "Catégorie2",
+    },
+    {
+      id: "cat_eiheiqz2",
+      name: "Catégorie2",
+    },
+  ];
+
   return (
     <Section title="Article">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <ArticleForm methods={methods} />
+          <ArticleForm
+            methods={methods}
+            category={productCategory.map((cat) => ({
+              value: cat.id,
+              label: cat.name,
+            }))}
+          />
           <Container className={s.btn_container}>
             <Link href="/articles">
               <Button variant="outlined" color="warning">
@@ -49,6 +66,6 @@ const NewArticle = () => {
   );
 };
 
-NewArticle.requireAuth = true;
+NewArticle.requireAuth = "restaurant";
 
 export default NewArticle;

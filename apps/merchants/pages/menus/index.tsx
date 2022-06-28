@@ -178,6 +178,6 @@ const MenusPage = () => {
   );
 };
 
-MenusPage.requireAuth = true;
+MenusPage.requireAuth = "restaurant";
 
 export default MenusPage;

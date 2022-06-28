@@ -1,4 +1,4 @@
-import { AvatarInput, IArticle, Select, TextInput } from "@ceseatslib/form";
+import { IArticle, Select, TextInput } from "@ceseatslib/form";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 import s from "styles/Article.module.scss";
@@ -6,11 +6,12 @@ import s from "styles/Article.module.scss";
 interface Props {
   methods: UseFormReturn<IArticle, any>;
   product?: IArticle;
+  category: { value: string; label: string }[];
 }
 
-const ArticleForm: React.FC<Props> = ({ methods, product }) => (
+const ArticleForm: React.FC<Props> = ({ methods, product, category }) => (
   <>
-    <AvatarInput
+    {/* <AvatarInput
       name="image"
       img={
         product?.image ? product.image : "/assets/default/defaultArticle.png"
@@ -19,7 +20,7 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
       watch={methods.watch}
       setValue={methods.setValue}
       clear={methods.clearErrors}
-    />
+    /> */}
     <TextInput
       name="name"
       label="Nom"
@@ -55,6 +56,15 @@ const ArticleForm: React.FC<Props> = ({ methods, product }) => (
         { value: true, label: "Oui" },
         { value: false, label: "Non" },
       ]}
+    />
+    <Select
+      name="articleCategoryId"
+      label="Catégorie"
+      control={methods.control}
+      className={s.select}
+      defaultValue={product?.articleCategoryId || ""}
+      fullWidth
+      chooses={category}
     />
   </>
 );

@@ -55,14 +55,24 @@ const NavMenu: React.FC = () => {
         </ListItem>
       </Link>
       {id === 4 && (
-        <Link href="/clients">
-          <ListItem>
-            <ListItemIcon>
-              <AccountBoxIcon />
-            </ListItemIcon>
-            <ListItemText>Clients</ListItemText>
-          </ListItem>
-        </Link>
+        <>
+          <Link href="/clients">
+            <ListItem>
+              <ListItemIcon>
+                <AccountBoxIcon />
+              </ListItemIcon>
+              <ListItemText>Clients</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/stats">
+            <ListItem>
+              <ListItemIcon>
+                <AccountBoxIcon />
+              </ListItemIcon>
+              <ListItemText>Statistiques</ListItemText>
+            </ListItem>
+          </Link>
+        </>
       )}
       <Link href="/orders">
         <ListItem>

@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 const NavMenu: React.FC = () => {
-  const { setAuth } = useStore();
+  const { setAuth, isRestaurant } = useStore();
   const { createNotification } = useNotificationCenter();
   const router = useRouter();
 
@@ -56,46 +56,50 @@ const NavMenu: React.FC = () => {
           <ListItemText>Restaurant</ListItemText>
         </ListItem>
       </Link>
-      <Link href="/articles">
-        <ListItem>
-          <ListItemIcon>
-            <FastfoodIcon />
-          </ListItemIcon>
-          <ListItemText>Articles</ListItemText>
-        </ListItem>
-      </Link>
-      <Link href="/menus">
-        <ListItem>
-          <ListItemIcon>
-            <CreditCardIcon />
-          </ListItemIcon>
-          <ListItemText>Menus</ListItemText>
-        </ListItem>
-      </Link>
-      <Link href="/orders">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Commandes</ListItemText>
-        </ListItem>
-      </Link>
-      <Link href="/delivery">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Livraison</ListItemText>
-        </ListItem>
-      </Link>
-      <Link href="/stats">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Statistique</ListItemText>
-        </ListItem>
-      </Link>
+      {isRestaurant && (
+        <>
+          <Link href="/articles">
+            <ListItem>
+              <ListItemIcon>
+                <FastfoodIcon />
+              </ListItemIcon>
+              <ListItemText>Articles</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/menus">
+            <ListItem>
+              <ListItemIcon>
+                <CreditCardIcon />
+              </ListItemIcon>
+              <ListItemText>Menus</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/orders">
+            <ListItem>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText>Commandes</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/orders">
+            <ListItem>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText>Historique</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/stats">
+            <ListItem>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText>Statistique</ListItemText>
+            </ListItem>
+          </Link>
+        </>
+      )}
       <Link href="/refered">
         <ListItem>
           <ListItemIcon>

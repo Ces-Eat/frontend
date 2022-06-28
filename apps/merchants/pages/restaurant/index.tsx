@@ -7,9 +7,11 @@ import { IRestaurant, restaurantSchema } from "@ceseatslib/form";
 import { Container } from "@mui/material";
 import s from "styles/Restaurant.module.scss";
 import RestaurantForm from "src/forms/RestaurantForm/RestaurantForm";
+import { useStore } from "src/utils/hooks";
 
 const Restaurant = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { setIsRestaurant } = useStore();
 
   const methods = useForm<IRestaurant>({
     mode: "onChange",
@@ -18,6 +20,7 @@ const Restaurant = () => {
 
   const formSubmitHandler: SubmitHandler<IRestaurant> = (data) => {
     console.log(data);
+    setIsRestaurant(true);
     setIsLoading(true);
   };
   const restaurant = null;

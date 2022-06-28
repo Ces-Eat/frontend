@@ -1,5 +1,4 @@
 import {
-  AvatarInput,
   IMenu,
   Select,
   TextInput,
@@ -17,14 +16,14 @@ interface Props {
 
 const MenuForm: React.FC<Props> = ({ methods, menu, articles }) => (
   <>
-    <AvatarInput
+    {/* <AvatarInput
       name="image"
       img={menu?.image ? menu.image : "/assets/default/defaultArticle.png"}
       control={methods.control}
       watch={methods.watch}
       setValue={methods.setValue}
       clear={methods.clearErrors}
-    />
+    /> */}
     <TextInput
       name="name"
       label="Nom"

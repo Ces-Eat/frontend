@@ -1,9 +1,4 @@
-import {
-  AddressInput,
-  AvatarInput,
-  IRestaurant,
-  TextInput,
-} from "@ceseatslib/form";
+import { AddressInput, IRestaurant, TextInput } from "@ceseatslib/form";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
 
@@ -14,7 +9,7 @@ interface Props {
 
 const RestaurantForm: React.FC<Props> = ({ methods, restaurant }) => (
   <>
-    <AvatarInput
+    {/* <AvatarInput
       name="image"
       img={
         restaurant?.image
@@ -25,7 +20,7 @@ const RestaurantForm: React.FC<Props> = ({ methods, restaurant }) => (
       watch={methods.watch}
       setValue={methods.setValue}
       clear={methods.clearErrors}
-    />
+    /> */}
     <TextInput
       name="name"
       label="Nom"

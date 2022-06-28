@@ -188,6 +188,6 @@ const ArticlesPage = () => {
   );
 };
 
-ArticlesPage.requireAuth = true;
+ArticlesPage.requireAuth = "restaurant";
 
 export default ArticlesPage;

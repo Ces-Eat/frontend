@@ -16,6 +16,7 @@ const products: IArticle[] = [
       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
     description: "2.4 €",
     name: "Berre Guère",
+    articleCategoryId: "1",
     price: 2.4,
     isAvailable: true,
   },
@@ -25,6 +26,7 @@ const products: IArticle[] = [
       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
     description: "2.4 €",
     name: "Berre Guère vB",
+    articleCategoryId: "1",
     price: 2.4,
     isAvailable: true,
   },
@@ -34,6 +36,7 @@ const products: IArticle[] = [
       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
     description: "2.4 €",
     name: "Berre Guère v3",
+    articleCategoryId: "1",
     price: 2.4,
     isAvailable: false,
   },
@@ -43,6 +46,7 @@ const products: IArticle[] = [
       "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
     description: "2.4 €",
     name: "Berre Guère v4",
+    articleCategoryId: "1",
     price: 2.4,
     isAvailable: true,
   },
@@ -112,6 +116,6 @@ const Menu = () => {
   );
 };
 
-Menu.requireAuth = true;
+Menu.requireAuth = "restaurant";
 
 export default Menu;

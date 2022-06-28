@@ -29,15 +29,33 @@ const Article = () => {
     description: "Super le produit",
     price: 2.4,
     name: "Berre Guère",
-    cat: "cat_eiheiqz",
+    articleCategoryId: "cat_eiheiqz",
     isAvailable: false,
   };
+
+  const productCategory = [
+    {
+      id: "cat_eiheiqz",
+      name: "Catégorie2",
+    },
+    {
+      id: "cat_eiheiqz2",
+      name: "Catégorie2",
+    },
+  ];
 
   return (
     <Section title="Article">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <ArticleForm methods={methods} product={product} />
+          <ArticleForm
+            methods={methods}
+            product={product}
+            category={productCategory.map((cat) => ({
+              value: cat.id,
+              label: cat.name,
+            }))}
+          />
           <Container className={s.btn_container}>
             <LoadingButton
               type="submit"
@@ -68,6 +86,6 @@ const Article = () => {
   );
 };
 
-Article.requireAuth = true;
+Article.requireAuth = "restaurant";
 
 export default Article;
