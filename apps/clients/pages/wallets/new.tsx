@@ -4,7 +4,7 @@ import { Section } from "@ceseatslib/template";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
-import s from "@styles/WalletsNew.module.scss";
+import s from "styles/WalletsNew.module.scss";
 import { useState } from "react";
 import Link from "next/link";
 import WalletForm from "src/forms/WalletForm/WalletForm";

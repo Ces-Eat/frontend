@@ -4,7 +4,7 @@ import { LoadingPage, Section } from "@ceseatslib/template";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
-import s from "@styles/WalletsNew.module.scss";
+import s from "styles/WalletsNew.module.scss";
 import { useState } from "react";
 import Link from "next/link";
 import AddressForm from "src/forms/AddressForm/AddressForm";
@@ -56,21 +56,15 @@ const AddressePage = () => {
   const formSubmitHandler: SubmitHandler<IAddress> = (formData) => {
     setIsLoading(true);
     const { id } = router.query;
-    console.log(formData);
     const refactorFormData = {
       designation: formData.designation,
       ...formData.address,
     };
 
     axios
-      .put(
-        // `${process.env.API_ADDRESS}/${id}`,
-        `http://localhost:4100/users/adrdesses/me/${id}`,
-        refactorFormData,
-        {
-          withCredentials: true,
-        }
-      )
+      .put(`${process.env.API_ADDRESS}/${id}`, refactorFormData, {
+        withCredentials: true,
+      })
       .then(() => {
         createNotification(
           INotificationType.SUCCESS,

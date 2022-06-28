@@ -1,49 +1,31 @@
 import { ActionCard } from "@ceseatslib/ui";
 import { Section } from "@ceseatslib/template";
-import { Button, Container } from "@mui/material";
-import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
-import s from "../../styles/Wallets.module.scss";
+import { Container, Typography } from "@mui/material";
+import s from "styles/Wallets.module.scss";
+import { useStore } from "src/utils/hooks";
 
 const ReferedPage = () => {
-  const { createNotification } = useNotificationCenter();
-  const code = "XJKe-4585";
-
-  const refered = [
-    {
-      id: "4564",
-      name: "Clément GASTON",
-      date: "12/12/2020",
-    },
-    {
-      id: "45",
-      name: "Gabriel RICARD",
-      date: "12/12/2020",
-    },
-  ];
+  const {
+    auth: { user },
+  } = useStore();
 
   return (
-    <Section title="Historique de commande">
+    <Section title="Parrainage">
       <Container className={s.container}>
-        <Button
-          variant="outlined"
-          color="primary"
-          type="button"
-          onClick={() => {
-            createNotification(
-              INotificationType.INFO,
-              "Code copié dans le presse-papier"
-            );
-            navigator.clipboard.writeText(code);
+        <Typography
+          variant="h6"
+          sx={{
+            userSelect: "text",
           }}
         >
-          Code de parrainage - {code}
-        </Button>
-        {refered.map(({ name, id, date }) => (
+          Code de parrainage - {user?.refererCode}
+        </Typography>
+        {user?.referedUsers.map(({ newUser: { name, surname, createdAt } }) => (
           <ActionCard
-            key={id}
-            img="/assets/Refered.png"
+            key={`name-${name}-surname-${surname}-createdAt-${createdAt}`}
+            img="/assets/default/defaultUser.png"
             title={name}
-            desc={date}
+            desc={new Date(createdAt).toLocaleDateString()}
           />
         ))}
       </Container>

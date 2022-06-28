@@ -211,6 +211,7 @@ importers:
       '@mui/icons-material': ^5.8.4
       '@mui/lab': 5.0.0-alpha.86
       '@mui/material': ^5.8.4
+      '@mui/x-data-grid': ^5.12.3
       '@types/node': 17.0.41
       '@types/react': ^17.0.37
       '@types/react-dom': ^17.0.11
@@ -238,6 +239,7 @@ importers:
       '@mui/icons-material': 5.8.4_phum56mdhjj4m2s3dbxgla7wla
       '@mui/lab': 5.0.0-alpha.86_h6eeyjmds63dkj5xvldyfqcsgq
       '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
+      '@mui/x-data-grid': 5.12.3_uv4hs3vf4dw5yuxhvhnvklct5e
       axios: 0.27.2
       next: 12.1.6_azrccrm2jponqbhmrrxak56aga
       react: 18.2.0
@@ -1388,6 +1390,26 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-is: 17.0.2
+
+  /@mui/x-data-grid/5.12.3_uv4hs3vf4dw5yuxhvhnvklct5e:
+    resolution: {integrity: sha512-57A2MkRR/uUNC/dECFV0YDJvi1Q+gQgmgw1OHmZ1uSnKh29PcHpswkdapO0LueLpxAy8tfH+fTtnnPDmYgJeUg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.4.1
+      '@mui/system': ^5.4.1
+      react: ^17.0.2 || ^18.0.0
+      react-dom: ^17.0.2 || ^18.0.0
+    dependencies:
+      '@babel/runtime': 7.18.3
+      '@mui/material': 5.8.5_mqdf3dheb4tyboxybn5qzzp6xa
+      '@mui/system': 5.8.5_jofqrr5molpxc7xdoz2vqjd66m
+      '@mui/utils': 5.8.4_react@18.2.0
+      clsx: 1.1.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.1.0_react@18.2.0
+      reselect: 4.1.6
+    dev: false
 
   /@mui/x-date-pickers/5.0.0-alpha.1_uv4hs3vf4dw5yuxhvhnvklct5e:
     resolution: {integrity: sha512-dLPkRiIn2Gr0momblxiOnIwrxn4SijVix+8e08mwAGWhiWcmWep1O9XTRDpZsjB0kjHYCf+kZjlRX4dxnj2acg==}
@@ -4756,6 +4778,10 @@ packages:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
     dev: true
+
+  /reselect/4.1.6:
+    resolution: {integrity: sha512-ZovIuXqto7elwnxyXbBtCPo9YFEr3uJqj2rRbcOOog1bmu2Ag85M4hixSwFWyaBMKXNgvPaJ9OSu9SkBPIeJHQ==}
+    dev: false
 
   /resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==}

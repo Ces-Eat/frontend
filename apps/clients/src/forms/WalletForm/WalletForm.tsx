@@ -2,7 +2,7 @@ import { IWallet, Select, TextInput } from "@ceseatslib/form";
 import { Container } from "@mui/material";
 import React from "react";
 import { UseFormReturn } from "react-hook-form";
-import s from "@styles/WalletsNew.module.scss";
+import s from "styles/WalletsNew.module.scss";
 
 interface Props {
   methods: UseFormReturn<IWallet, any>;

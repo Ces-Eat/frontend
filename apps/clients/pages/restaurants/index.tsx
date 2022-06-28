@@ -1,6 +1,6 @@
 import { Container, TextField, Divider } from "@mui/material";
 import { DescCard, ProductCard } from "@ceseatslib/ui";
-import s from "@styles/Restaurants.module.scss";
+import s from "styles/Restaurants.module.scss";
 import Link from "next/link";
 import { useState } from "react";
 

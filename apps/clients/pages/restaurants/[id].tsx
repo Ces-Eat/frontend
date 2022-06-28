@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { Container, Divider } from "@mui/material";
 import RestaurantHeader from "@components/restaurant/Header/Header";
 import Category from "@components/restaurant/Category/Category";
-import s from "@styles/Restaurant.module.scss";
+import s from "styles/Restaurant.module.scss";
 
 const Restaurant = () => {
   // const router = useRouter();

@@ -10,7 +10,7 @@ import {
 // import { useRouter } from "next/router";
 import { toPng } from "html-to-image";
 import Link from "next/link";
-import s from "@styles/Orders.module.scss";
+import s from "styles/Orders.module.scss";
 import { useRef } from "react";
 
 const OrderPage = () => {
@@ -121,8 +121,12 @@ const OrderPage = () => {
             Facture du 16/04/22
           </Typography>
           <Typography variant="nt">
-            Chez &apos;Adresse de livrasion&apos;
+            Chez &apos;Adresse de livrasion&apos; :
           </Typography>
+          <br />
+          <Typography variant="nt">Livré par :</Typography>
+          <br />
+          <Typography variant="nt">Fournis par :</Typography>
         </CardContent>
         <CardContent>
           {order.summary.articles.map((article) => (

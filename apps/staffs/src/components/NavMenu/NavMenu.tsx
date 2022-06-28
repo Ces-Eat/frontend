@@ -14,7 +14,15 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 const NavMenu: React.FC = () => {
-  const { setAuth } = useStore();
+  const {
+    setAuth,
+    auth: {
+      user: {
+        // @ts-ignore
+        role: { id },
+      },
+    },
+  } = useStore();
   const { createNotification } = useNotificationCenter();
   const router = useRouter();
 
@@ -46,6 +54,16 @@ const NavMenu: React.FC = () => {
           <ListItemText>Mon compte</ListItemText>
         </ListItem>
       </Link>
+      {id === 4 && (
+        <Link href="/clients">
+          <ListItem>
+            <ListItemIcon>
+              <AccountBoxIcon />
+            </ListItemIcon>
+            <ListItemText>Clients</ListItemText>
+          </ListItem>
+        </Link>
+      )}
       <Link href="/orders">
         <ListItem>
           <ListItemIcon>

@@ -1,7 +1,7 @@
 import { ActionCard } from "@ceseatslib/ui";
 import { Section } from "@ceseatslib/template";
 import { Container } from "@mui/material";
-import s from "@styles/Wallets.module.scss";
+import s from "styles/Wallets.module.scss";
 import Link from "next/link";
 
 const Developer = () => (

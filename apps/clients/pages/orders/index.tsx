@@ -2,7 +2,7 @@ import { ActionCard } from "@ceseatslib/ui";
 import { Section } from "@ceseatslib/template";
 import Link from "next/link";
 import { Container } from "@mui/material";
-import s from "@styles/Wallets.module.scss";
+import s from "styles/Wallets.module.scss";
 
 const OrdersPage = () => {
   const orders = [

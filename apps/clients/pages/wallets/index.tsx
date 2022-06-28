@@ -4,7 +4,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import { useState } from "react";
 import Link from "next/link";
 import { Button, Container } from "@mui/material";
-import s from "@styles/Wallets.module.scss";
+import s from "styles/Wallets.module.scss";
 import {
   INotificationType,
   useEffectOnce,

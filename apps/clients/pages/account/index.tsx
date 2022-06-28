@@ -33,8 +33,9 @@ const Account = () => {
   const formSubmitHandler: SubmitHandler<IUser> = (formData) => {
     setIsLoading(true);
     const bodyFormData = new FormData();
-    if (typeof formData.image !== "string")
+    if (typeof formData.image !== "string" || formData.image !== null) {
       bodyFormData.append("image", formData.image[0]);
+    }
     bodyFormData.append("name", formData.name);
     bodyFormData.append("surname", formData.surname);
     bodyFormData.append("email", formData.email);

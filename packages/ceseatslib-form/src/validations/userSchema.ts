@@ -4,6 +4,7 @@ import SUPPORTED_IMG_FORMATS from "./imageSchema";
 const phoneRegExp = /^((\+33|0)[1-9])([0-9][0-9]){4}$/;
 
 export interface IUser {
+  id?: string;
   image: string;
   refererCode: string;
   name: string;

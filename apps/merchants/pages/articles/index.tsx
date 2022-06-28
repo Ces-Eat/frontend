@@ -26,7 +26,7 @@ interface Column {
 const columns: readonly Column[] = [
   {
     id: "name",
-    label: "Name",
+    label: "Nom",
     minWidth: 170,
     align: "center",
   },

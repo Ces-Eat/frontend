@@ -35,7 +35,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             {
               // @ts-ignore
               Component.requireAuth ? (
-                <AuthGuard>
+                <AuthGuard requireAuth={Component.requireAuth}>
                   <Component {...pageProps} />
                 </AuthGuard>
               ) : (
