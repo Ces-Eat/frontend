@@ -6,35 +6,40 @@
   @media screen and (max-width: 600px) {
     width: 80%;
   }
+}
 
-  .orderLine {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
+.act_btn {
+  background-color: transparent;
+}
+
+.orderLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.subArticle {
+  opacity: 0.6;
+}
+
+.divider {
+  margin: 10px 0;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin: 0 0 20px 0;
   }
 
-  .subArticle {
-    opacity: 0.6;
-  }
-
-  .divider {
-    margin: 10px 0;
-  }
-
-  .btnContainer {
-    display: flex;
-    justify-content: space-between;
+  @media screen and (max-width: 600px) {
+    display: block;
 
     button {
-      margin: 0 0 20px 0;
-    }
-
-    @media screen and (max-width: 600px) {
-      display: block;
-
-      button {
-        width: 100%;
-      }
+      width: 100%;
     }
   }
 }

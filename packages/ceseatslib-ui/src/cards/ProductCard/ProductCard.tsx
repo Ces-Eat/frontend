@@ -17,7 +17,14 @@ interface Props {
   onClick?: () => void;
 }
 
-const ProductCard: React.FC<Props> = ({ img, name, desc, rating, onClick }) => (
+const ProductCard: React.FC<Props> = ({
+  children,
+  img,
+  name,
+  desc,
+  rating,
+  onClick,
+}) => (
   <Card className={s.container}>
     <CardMedia component="img" src={img} className={s.img} />
     <CardContent>
@@ -30,6 +37,7 @@ const ProductCard: React.FC<Props> = ({ img, name, desc, rating, onClick }) => (
         )}
       </Container>
       <Typography variant="body2">{desc}</Typography>
+      {children}
     </CardContent>
     {onClick && (
       <AddCircleIcon

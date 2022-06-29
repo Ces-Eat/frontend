@@ -4,7 +4,6 @@ import {
   CardActions,
   CardContent,
   Container,
-  Divider,
   Typography,
 } from "@mui/material";
 // import { useRouter } from "next/router";
@@ -12,6 +11,7 @@ import { toPng } from "html-to-image";
 import Link from "next/link";
 import s from "styles/Orders.module.scss";
 import { useRef } from "react";
+import CartSummary from "src/components/Cart";
 
 const OrderPage = () => {
   // const router = useRouter();
@@ -19,20 +19,25 @@ const OrderPage = () => {
   // const { id } = router.query;
 
   const order = {
+    id: "1",
     price: 168,
+    restaurant: { id: "1" },
     summary: {
       articles: [
         {
+          id: "2",
           name: "Baguette",
           price: 2.4,
           quantity: 2,
         },
         {
+          id: "3",
           name: "Bretzel",
           price: 6,
           quantity: 1,
         },
         {
+          id: "4",
           name: "Burker",
           price: 3.6,
           quantity: 1,
@@ -40,6 +45,7 @@ const OrderPage = () => {
       ],
       menus: [
         {
+          id: "5",
           name: "BifTech2000",
           price: 14.6,
           quantity: 3,
@@ -48,11 +54,13 @@ const OrderPage = () => {
               sectionName: "Clem",
               articles: [
                 {
+                  id: "6",
                   name: "Baguette",
                   price: 2.4,
                   quantity: 2,
                 },
                 {
+                  id: "7",
                   name: "Bretzel",
                   price: 6,
                   quantity: 1,
@@ -62,6 +70,7 @@ const OrderPage = () => {
           ],
         },
         {
+          id: "8",
           name: "BifTech3000",
           price: 14.6,
           quantity: 2,
@@ -70,11 +79,13 @@ const OrderPage = () => {
               sectionName: "Clem",
               articles: [
                 {
+                  id: "9",
                   name: "Baguette",
                   price: 2.4,
                   quantity: 2,
                 },
                 {
+                  id: "10",
                   name: "Bretzel",
                   price: 6,
                   quantity: 1,
@@ -85,11 +96,13 @@ const OrderPage = () => {
               sectionName: "Clem3",
               articles: [
                 {
+                  id: "11",
                   name: "Baguette",
                   price: 2.4,
                   quantity: 2,
                 },
                 {
+                  id: "12",
                   name: "Bretzel",
                   price: 6,
                   quantity: 1,
@@ -129,50 +142,7 @@ const OrderPage = () => {
           <Typography variant="nt">Fournis par :</Typography>
         </CardContent>
         <CardContent>
-          {order.summary.articles.map((article) => (
-            <Container
-              key={`${article.name}-${article.quantity}`}
-              className={s.orderLine}
-            >
-              <Typography variant="nt">
-                {article.name}{" "}
-                {article.quantity > 1 ? `x${article.quantity}` : ""}
-              </Typography>
-              <Typography variant="nt">{article.price} €</Typography>
-            </Container>
-          ))}
-
-          {order.summary.menus.map((menu) => (
-            <>
-              <Container
-                key={`${menu.name}-${menu.quantity}`}
-                className={s.orderLine}
-              >
-                <Typography variant="nt">
-                  {menu.name} {menu.quantity > 1 ? `x${menu.quantity}` : ""}
-                </Typography>
-                <Typography variant="nt">{menu.price} €</Typography>
-              </Container>
-              {menu.content.map((c) =>
-                c.articles.map((article) => (
-                  <Typography
-                    className={s.subArticle}
-                    variant="body2"
-                    key={`${menu.name}-${article.name}`}
-                  >
-                    {article.name}
-                  </Typography>
-                ))
-              )}
-            </>
-          ))}
-
-          <Divider className={s.divider} />
-
-          <Container className={s.orderLine}>
-            <Typography variant="nt">Prix total</Typography>
-            <Typography variant="nt">{order.price} €</Typography>
-          </Container>
+          <CartSummary {...order} restaurantId={order.restaurant.id} />
         </CardContent>
       </Container>
       <CardActions className={s.btnContainer}>

@@ -39,6 +39,7 @@ module.exports = {
     "@next/next/no-html-link-for-pages": "off",
     "import/no-extraneous-dependencies": [0, { devDependencies: true }],
     "react/jsx-props-no-spreading": [0],
+    "no-underscore-dangle": [0],
   },
   ignorePatterns: [
     "**/*.js",

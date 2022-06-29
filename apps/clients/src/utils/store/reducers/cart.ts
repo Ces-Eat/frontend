@@ -2,15 +2,15 @@
 /* eslint-disable no-case-declarations */
 import { ICartAction } from "../action";
 
-interface IArticle {
-  id: string;
+export interface IArticle {
+  _id: string;
   name: string;
   price: number;
   quantity: number;
 }
 
-interface IMenu {
-  id: string;
+export interface IMenu {
+  _id: string;
   name: string;
   price: number;
   quantity: number;
@@ -24,7 +24,7 @@ export interface ICartReducer {
   [id: string]: {
     articles: IArticle[];
     menus: IMenu[];
-    total: number;
+    price: number;
   };
 }
 
@@ -49,7 +49,7 @@ const cartReducer = (
 
       if (state[id]) {
         const { articles } = state[id];
-        const articleIndex = articles.findIndex((a) => a.id === article!.id);
+        const articleIndex = articles.findIndex((a) => a._id === article!._id);
 
         if (articleIndex !== -1) {
           articles[articleIndex].quantity++;
@@ -62,7 +62,7 @@ const cartReducer = (
           [id]: {
             ...state[id],
             articles,
-            total: state[id].total + article!.price,
+            price: state[id].price + article!.price,
           },
         };
       }
@@ -71,14 +71,14 @@ const cartReducer = (
         [id]: {
           articles: [articleToAdd],
           menus: [],
-          total: article!.price,
+          price: article!.price,
         },
       };
 
     case ICartAction.REMOVE_ARTICLE:
       if (state[id]) {
         const { articles } = state[id];
-        const articleIndex = articles.findIndex((a) => a.id === article!.id);
+        const articleIndex = articles.findIndex((a) => a._id === article!._id);
 
         if (articleIndex !== -1) {
           articles[articleIndex].quantity--;
@@ -90,7 +90,7 @@ const cartReducer = (
             [id]: {
               ...state[id],
               articles,
-              total: state[id].total - article!.price,
+              price: state[id].price - article!.price,
             },
           };
         }
@@ -102,10 +102,7 @@ const cartReducer = (
 
       if (state[id]) {
         const { menus } = state[id];
-        const menuIndex = menus.findIndex(
-          (m) =>
-            m.id === payload.menu!.id && m.content === payload.menu!.content
-        );
+        const menuIndex = menus.findIndex((m) => m._id === menu!._id);
 
         if (menuIndex !== -1) {
           menus[menuIndex].quantity++;
@@ -118,7 +115,7 @@ const cartReducer = (
           [id]: {
             ...state[id],
             menus,
-            total: state[id].total + payload.menu!.price,
+            price: state[id].price + menu!.price,
           },
         };
       }
@@ -127,7 +124,7 @@ const cartReducer = (
         [id]: {
           articles: [],
           menus: [menuToAdd],
-          total: menu!.price,
+          price: menu!.price,
         },
       };
 
@@ -135,8 +132,7 @@ const cartReducer = (
       if (state[id]) {
         const { menus } = state[id];
         const menuIndex = menus.findIndex(
-          (m) =>
-            m.id === payload.menu!.id && m.content === payload.menu!.content
+          (m) => m._id === menu!._id && m.content === menu!.content
         );
 
         if (menuIndex !== -1) {
@@ -149,7 +145,7 @@ const cartReducer = (
             [id]: {
               ...state[id],
               menus,
-              total: state[id].total - payload.menu!.price,
+              price: state[id].price - menu!.price,
             },
           };
         }
