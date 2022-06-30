@@ -22,17 +22,17 @@ const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
   // if auth initialized with a valid user show protected page
   switch (requireAuth) {
     case "commercial":
-      if (isAuthenticated && user && user.role.id === 4) {
+      if (isAuthenticated && user && user?.role.id === 4) {
         return children;
       } else {
-        router.push("/home");
+        router.push("/clients");
       }
       break;
     case "technical":
-      if (isAuthenticated && user && user.role.id === 5) {
+      if (isAuthenticated && user && user?.role.id === 5) {
         return children;
       } else {
-        router.push("/home");
+        router.push("/logs");
       }
       break;
     default:

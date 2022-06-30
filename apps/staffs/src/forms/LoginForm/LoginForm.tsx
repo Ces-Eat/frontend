@@ -26,7 +26,7 @@ const LoginForm: NextPage = () => {
     axios
       .post(process.env.API_AUTH || "", formData, { withCredentials: true })
       .then(({ data }) => {
-        switch (data.roleId) {
+        switch (data.role.id) {
           case 1:
             createNotification(
               INotificationType.INFO,
@@ -50,7 +50,11 @@ const LoginForm: NextPage = () => {
               payload: data,
               type: IAuthAction.LOGIN,
             });
-            router.push("/home");
+            if (data.role.id === 4) {
+              router.push("/clients");
+            } else if (data.role.id === 5) {
+              router.push("/logs");
+            }
         }
         setIsLoading(false);
       })

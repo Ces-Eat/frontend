@@ -16,131 +16,20 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import s from "styles/Restaurant.module.scss";
 import CartSummary from "src/components/Cart";
 import Link from "next/link";
+import axios from "axios";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
+import { LoadingPage } from "@ceseatslib/template";
+import Head from "next/head";
 
 const Restaurant = () => {
   const router = useRouter();
   const { id } = router.query;
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { cart, dispatchCart } = useStore();
-
-  const restaurant = {
-    title: "Burker king",
-    img: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    rating: 4.5,
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    articles: [
-      {
-        _id: "62bacad901a7fb8d33fabed8",
-        name: "BARGUR",
-        image: null,
-        description: "A BARGUR",
-        price: 12,
-        isAvailable: true,
-        restaurantId: "62bacabd01a7fb8d33fabed4",
-        articleCategory: {
-          _id: "62bacab501a7fb8d33fabeca",
-          articleCategoryId: 2,
-          name: "Accompagnement",
-          createdAt: "2022-06-28T09:32:37.864Z",
-          updatedAt: "2022-06-28T09:32:37.864Z",
-          __v: 0,
-        },
-        deletedAt: null,
-        createdAt: "2022-06-28T09:33:13.399Z",
-        updatedAt: "2022-06-28T09:33:13.399Z",
-        __v: 0,
-      },
-      {
-        _id: "62bacad901a73fabed8",
-        name: "BARGUR 2",
-        image: null,
-        description: "A BARGUR 2",
-        price: 12,
-        isAvailable: true,
-        restaurantId: "62bacabd01a7fb8d33fabed4",
-        articleCategory: {
-          _id: "62bacab501a7fb8d33fabeca",
-          articleCategoryId: 2,
-          name: "Accompagnement",
-          createdAt: "2022-06-28T09:32:37.864Z",
-          updatedAt: "2022-06-28T09:32:37.864Z",
-          __v: 0,
-        },
-        deletedAt: null,
-        createdAt: "2022-06-28T09:33:13.399Z",
-        updatedAt: "2022-06-28T09:33:13.399Z",
-        __v: 0,
-      },
-      {
-        _id: "6233fabed8",
-        name: "BARGUR 3",
-        image: null,
-        description: "A BARGUR",
-        price: 12,
-        isAvailable: true,
-        restaurantId: "62bacabd01a7fb8d33fabed4",
-        articleCategory: {
-          _id: "62bacab5013fabeca",
-          articleCategoryId: 1,
-          name: "Boisons",
-          createdAt: "2022-06-28T09:32:37.864Z",
-          updatedAt: "2022-06-28T09:32:37.864Z",
-          __v: 0,
-        },
-        deletedAt: null,
-        createdAt: "2022-06-28T09:33:13.399Z",
-        updatedAt: "2022-06-28T09:33:13.399Z",
-        __v: 0,
-      },
-    ],
-    menus: [
-      {
-        _id: "62bacaf301a7fb8d33fabede",
-        name: "BARGUR MENU",
-        image: null,
-        description: "A BARGUR MENU",
-        price: 12,
-        isAvailable: true,
-        content: [
-          {
-            sectionName: "TEST SECTION",
-            articles: [
-              {
-                _id: "62bacad901a7fb8d33fabed8",
-                name: "BARGUR",
-                image: null,
-                description: "A BARGUR",
-                price: 12,
-                isAvailable: true,
-                restaurantId: "62bacabd01a7fb8d33fabed4",
-                articleCategory: {
-                  _id: "62bacab501a7fb8d33fabeca",
-                  articleCategoryId: 2,
-                  name: "Accompagnement",
-                  createdAt: "2022-06-28T09:32:37.864Z",
-                  updatedAt: "2022-06-28T09:32:37.864Z",
-                  __v: 0,
-                },
-                deletedAt: null,
-                createdAt: "2022-06-28T09:33:13.399Z",
-                updatedAt: "2022-06-28T09:33:13.399Z",
-                __v: 0,
-              },
-            ],
-          },
-        ],
-        restaurantId: "62bacabd01a7fb8d33fabed4",
-        deletedAt: null,
-        createdAt: "2022-06-28T09:33:39.059Z",
-        updatedAt: "2022-06-28T09:33:39.059Z",
-        __v: 0,
-      },
-    ],
-  };
-
-  const categories = restaurant.articles
-    .map((article) => article.articleCategory)
-    .filter((category, i, a) => a.indexOf(category));
+  const [isLoading, setIsLoading] = useState(true);
+  const [restaurant, setRestaurant] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const { createNotification } = useNotificationCenter();
 
   const articleCount = () => {
     let count = 0;
@@ -169,8 +58,36 @@ const Restaurant = () => {
     }
   }, [cart]);
 
+  useEffect(() => {
+    axios
+      .get(`${process.env.API_RESTAURANT}/${id}`)
+      .then(({ data }) => {
+        setRestaurant(data);
+        setCategories(
+          data.articles
+            .map((article) => article.articleCategory)
+            .filter((category, i, a) => a.indexOf(category))
+        );
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+        router.push("/restaurants");
+      });
+  }, []);
+
+  if (isLoading) return <LoadingPage />;
+
   return (
     <>
+      <Head>
+        <title>Clients - {restaurant.name}</title>
+        <meta name="description" content="Generated by create next app" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       {cart[id] && (
         <Drawer
           anchor="right"
@@ -213,8 +130,8 @@ const Restaurant = () => {
       <Container className={s.container}>
         <RestaurantHeader
           img="/assets/default/defaultRestaurant.png"
-          title={restaurant.title}
-          desc={restaurant.desc}
+          title={restaurant.name}
+          desc={restaurant.description}
         />
         <Container className={s.container}>
           {categories.map((category, i) => {

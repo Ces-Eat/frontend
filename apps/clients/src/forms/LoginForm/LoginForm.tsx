@@ -26,7 +26,7 @@ const LoginForm: NextPage = () => {
     axios
       .post(process.env.API_AUTH || "", formData, { withCredentials: true })
       .then(({ data }) => {
-        switch (data.roleId) {
+        switch (data.role.id) {
           case 2:
             createNotification(
               INotificationType.INFO,
