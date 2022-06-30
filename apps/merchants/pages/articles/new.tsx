@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Section } from "@ceseatslib/template";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,9 +8,18 @@ import { Container, Button } from "@mui/material";
 import Link from "next/link";
 import s from "styles/Article.module.scss";
 import ArticleForm from "src/forms/ArticleForm/ArticleForm";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useStore } from "src/utils/hooks";
+import IRestaurantAction from "src/utils/store/action/restaurant";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 
 const NewArticle = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const { createNotification } = useNotificationCenter();
+  const { setRestaurant } = useStore();
+  const router = useRouter();
 
   const methods = useForm<IArticle>({
     mode: "onChange",
@@ -18,20 +27,42 @@ const NewArticle = () => {
   });
 
   const formSubmitHandler: SubmitHandler<IArticle> = (data) => {
-    console.log(data);
     setIsLoading(true);
+    axios
+      .post(`${process.env.API_RESTAURANT}/me/articles`, data, {
+        withCredentials: true,
+      })
+      .then(({ data: articleData }) => {
+        setRestaurant({
+          type: IRestaurantAction.ADD_ARTICLE,
+          payload: articleData,
+        });
+        router.push("/articles");
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Impossible d'ajouter l'article"
+        );
+        setIsLoading(false);
+      });
   };
 
-  const productCategory = [
-    {
-      id: "cat_eiheiqz",
-      name: "Catégorie2",
-    },
-    {
-      id: "cat_eiheiqz2",
-      name: "Catégorie2",
-    },
-  ];
+  useEffect(() => {
+    axios
+      .get(`${process.env.API_RESTAURANT}/articles/categories`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => {
+        setCategories(data);
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Impossible d'obtenir les catégories d'articles"
+        );
+      });
+  }, []);
 
   return (
     <Section title="Article">
@@ -39,8 +70,8 @@ const NewArticle = () => {
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
           <ArticleForm
             methods={methods}
-            category={productCategory.map((cat) => ({
-              value: cat.id,
+            category={categories.map((cat) => ({
+              value: cat._id,
               label: cat.name,
             }))}
           />
@@ -51,7 +82,7 @@ const NewArticle = () => {
               </Button>
             </Link>
             <LoadingButton
-              type="button"
+              type="submit"
               variant="outlined"
               color="success"
               loading={isLoading}

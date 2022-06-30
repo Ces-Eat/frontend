@@ -36,7 +36,12 @@ const RestaurantForm: React.FC<Props> = ({ methods, restaurant }) => (
       defaultValue={restaurant?.description || ""}
       fullWidth
     />
-    <AddressInput methods={methods} name="address" label="Adresse *" />
+    <AddressInput
+      methods={methods}
+      defaultValue={restaurant?.address || undefined}
+      name="address"
+      label="Adresse *"
+    />
   </>
 );
 

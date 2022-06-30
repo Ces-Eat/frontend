@@ -9,7 +9,7 @@ interface Props {
 // @ts-ignore
 const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
   const {
-    isRestaurant,
+    restaurant,
     auth: { isAuthenticated },
   } = useStore();
   const router = useRouter();
@@ -22,7 +22,7 @@ const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
 
   if (isAuthenticated) {
     if (requireAuth === "restaurant") {
-      if (!isRestaurant) {
+      if (!restaurant) {
         router.push("/restaurant");
       }
     }

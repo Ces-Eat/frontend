@@ -58,11 +58,11 @@ const ArticleForm: React.FC<Props> = ({ methods, product, category }) => (
       ]}
     />
     <Select
-      name="articleCategoryId"
+      name="articleCategory"
       label="Catégorie"
       control={methods.control}
       className={s.select}
-      defaultValue={product?.articleCategoryId || ""}
+      defaultValue={product?.articleCategory._id || ""}
       fullWidth
       chooses={category}
     />

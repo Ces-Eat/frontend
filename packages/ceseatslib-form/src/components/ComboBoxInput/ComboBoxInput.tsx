@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Autocomplete, TextField } from "@mui/material";
 import { Control, useController } from "react-hook-form";
 
@@ -39,6 +39,7 @@ const ComboBoxInput: React.FC<ComboBoxInputProps> = ({
       value={field.value}
       onChange={(_, newValue) => field.onChange(newValue)}
       options={options}
+      defaultValue={defaultValue}
       renderInput={(params) => (
         <TextField
           {...params}

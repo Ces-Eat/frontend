@@ -35,14 +35,19 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
 
   useEffect(() => {
     if (defaultValue) {
+      const fieldsToAdd = [];
+
       for (let i = 0; i < defaultValue?.length; i += 1) {
-        append({
+        fieldsToAdd.push({
           sectionName: defaultValue[i].sectionName,
           articles: articles.filter((art) =>
-            defaultValue[i].articles.includes(art.id ? art.id : "")
+            defaultValue[i].articles
+              .map((a) => a._id)
+              .includes(art._id ? art._id : "")
           ),
         });
       }
+      append(fieldsToAdd);
     }
   }, []);
 
@@ -70,6 +75,7 @@ const ArticlesInput: React.FC<ArticlesInputProps> = ({
               options={articles}
               getOptionLabel={(option) => option.name}
               multiple
+              defaultValue={defaultValue}
               control={control}
               name={`${name}.${index}.articles`}
               label="Articles *"

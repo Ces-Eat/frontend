@@ -1,59 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Section } from "@ceseatslib/template";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { IArticle, IMenu, menuSchema } from "@ceseatslib/form";
+import { IMenu, menuSchema } from "@ceseatslib/form";
 import { Container, Button } from "@mui/material";
 import Link from "next/link";
 import s from "styles/Article.module.scss";
 import MenuForm from "src/forms/MenuForm/MenuForm";
-
-const products: IArticle[] = [
-  {
-    id: "1",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: true,
-  },
-  {
-    id: "2",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère vB",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: true,
-  },
-  {
-    id: "3",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère v3",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: false,
-  },
-  {
-    id: "4",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère v4",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: true,
-  },
-];
+import { useStore } from "src/utils/hooks";
+import { useRouter } from "next/router";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
+import IRestaurantAction from "src/utils/store/action/restaurant";
+import axios from "axios";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { createNotification } = useNotificationCenter();
+  const router = useRouter();
+  const { id } = router.query;
+  const {
+    restaurant: {
+      restaurant: { articles, menus },
+    },
+    setRestaurant,
+  } = useStore();
 
   const methods = useForm<IMenu>({
     mode: "onChange",
@@ -61,31 +32,68 @@ const Menu = () => {
   });
 
   const formSubmitHandler: SubmitHandler<IMenu> = (data) => {
-    console.log(data);
     setIsLoading(true);
+    data.content = data.content.map((c) => ({
+      ...c,
+      articles: c.articles.map((a) => a._id),
+    }));
+    axios
+      .put(`${process.env.API_RESTAURANT}/me/menus/${id}`, data, {
+        withCredentials: true,
+      })
+      .then(({ data: menuData }) => {
+        setRestaurant({
+          type: IRestaurantAction.UPDATE_MENU,
+          payload: menuData,
+        });
+        router.push("/menus");
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Impossible de modifier le menu"
+        );
+        setIsLoading(false);
+      });
   };
 
-  const menu: IMenu = {
-    id: "1",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère",
-    price: 2.4,
-    isAvailable: true,
-    content: [
-      {
-        sectionName: "Hi",
-        articles: ["1", "2", "3"],
-      },
-    ],
+  const handleDelete = () => {
+    setIsLoading(true);
+    axios
+      .delete(`${process.env.API_RESTAURANT}/me/menus/${id}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        setRestaurant({
+          type: IRestaurantAction.DELETE_MENU,
+          payload: id,
+        });
+        router.push("/menus");
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Impossible de supprimer le menu"
+        );
+        setIsLoading(false);
+      });
   };
+
+  useEffect(() => {
+    if (menus.findIndex((menu) => menu._id === id) === -1) {
+      router.push("/menus");
+    }
+  }, [menus]);
 
   return (
     <Section title="Menu">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <MenuForm methods={methods} menu={menu} articles={products} />
+          <MenuForm
+            methods={methods}
+            menu={menus.find((menu) => menu._id === id)}
+            articles={articles}
+          />
           <Container className={s.btn_container}>
             <LoadingButton
               type="submit"
@@ -101,6 +109,7 @@ const Menu = () => {
               variant="outlined"
               color="error"
               loading={isLoading}
+              onClick={handleDelete}
             >
               Supprimer
             </LoadingButton>

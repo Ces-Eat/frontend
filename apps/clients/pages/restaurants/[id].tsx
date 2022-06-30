@@ -15,6 +15,7 @@ import { useRouter } from "next/router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import s from "styles/Restaurant.module.scss";
 import CartSummary from "src/components/Cart";
+import Link from "next/link";
 
 const Restaurant = () => {
   const router = useRouter();
@@ -159,7 +160,11 @@ const Restaurant = () => {
   };
 
   useEffect(() => {
-    if (cart[id].articles.length === 0 && cart[id].menus.length === 0) {
+    if (
+      cart[id] &&
+      cart[id].articles.length === 0 &&
+      cart[id].menus.length === 0
+    ) {
       setIsCartOpen(false);
     }
   }, [cart]);
@@ -196,9 +201,11 @@ const Restaurant = () => {
               >
                 Vider
               </Button>
-              <Button className={s.pay} variant="outlined" color="success">
-                Payer
-              </Button>
+              <Link href={`/restaurants/${id}/confirm`}>
+                <Button className={s.pay} variant="outlined" color="success">
+                  Voir le panier
+                </Button>
+              </Link>
             </Container>
           </Box>
         </Drawer>

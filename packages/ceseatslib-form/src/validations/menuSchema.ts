@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { articleSchema } from "./articleSchema";
 
 export interface IMenuContent {
   sectionName: string;
@@ -47,7 +46,7 @@ export const menuSchema = yup.object().shape({
       yup.object().shape({
         sectionName: yup.string().required("Nom de la section requis"),
         articles: yup
-          .array(articleSchema)
+          .array()
           .test(
             "required",
             "Au moins un article requis",

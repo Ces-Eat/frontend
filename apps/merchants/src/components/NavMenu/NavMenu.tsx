@@ -16,7 +16,10 @@ import { useRouter } from "next/router";
 import axios from "axios";
 
 const NavMenu: React.FC = () => {
-  const { setAuth, isRestaurant } = useStore();
+  const {
+    setAuth,
+    restaurant: { restaurant },
+  } = useStore();
   const { createNotification } = useNotificationCenter();
   const router = useRouter();
 
@@ -56,7 +59,7 @@ const NavMenu: React.FC = () => {
           <ListItemText>Restaurant</ListItemText>
         </ListItem>
       </Link>
-      {isRestaurant && (
+      {restaurant && (
         <>
           <Link href="/articles">
             <ListItem>

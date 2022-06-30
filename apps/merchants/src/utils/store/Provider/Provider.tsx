@@ -1,7 +1,11 @@
-import React, { createContext, useMemo, useReducer, useState } from "react";
+import React, { createContext, useMemo, useReducer } from "react";
 import { AuthInitialState } from "../initialState";
-import { authReducer } from "../reducers";
+import { authReducer, restaurantReducer } from "../reducers";
 import { IAuthActionType, IAuthReducer } from "../reducers/auth";
+import {
+  IRestaurantActionType,
+  IRestaurantReducer,
+} from "../reducers/restaurant";
 
 interface Props {
   children: React.ReactNode;
@@ -10,24 +14,27 @@ interface Props {
 interface Context {
   auth: IAuthReducer;
   setAuth: React.Dispatch<IAuthActionType>;
-  isRestaurant: boolean;
-  setIsRestaurant: React.Dispatch<boolean>;
+  restaurant: IRestaurantReducer;
+  setRestaurant: React.Dispatch<IRestaurantActionType>;
 }
 
 export const StoreContext = createContext<Context>(null as any);
 
 export const StoreProvider: React.FC<Props> = ({ children }) => {
   const [auth, setAuth] = useReducer(authReducer, AuthInitialState);
-  const [isRestaurant, setIsRestaurant] = useState(false);
+  const [restaurant, setRestaurant] = useReducer(restaurantReducer, {
+    isFetch: false,
+    restaurant: null,
+  });
 
   const value = useMemo(
     () => ({
       auth,
       setAuth,
-      isRestaurant,
-      setIsRestaurant,
+      restaurant,
+      setRestaurant,
     }),
-    [auth, isRestaurant]
+    [auth, restaurant]
   );
 
   return (

@@ -1,0 +1,50 @@
+.loginContainer {
+  width: 100%;
+  height: calc(100vh - 64px);
+}
+
+.container {
+  position: relative;
+
+  .cart_btn {
+    position: fixed;
+    top: 85px;
+    right: 15px;
+  }
+}
+
+.cart {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  .cart_title {
+    margin: 15px 0;
+  }
+
+  .cart_content {
+    padding: 15px;
+    width: 70%;
+  }
+
+  .btn_container {
+    width: 70%;
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+
+    .wallet {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  .btn_container2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10px 0;
+  }
+}

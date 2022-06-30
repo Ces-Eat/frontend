@@ -64,7 +64,9 @@ const WalletsPage = () => {
             <ActionCard
               key={id}
               img="/assets/Wallets.png"
-              title={designation || cardNumber}
+              title={
+                designation || (cardNumber && `**** ${cardNumber.slice(-4)}`)
+              }
               desc={`Expire le ${expirationMonth}/${expirationYear}`}
             >
               <CancelIcon

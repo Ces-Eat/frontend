@@ -16,14 +16,6 @@ interface Props {
 
 const MenuForm: React.FC<Props> = ({ methods, menu, articles }) => (
   <>
-    {/* <AvatarInput
-      name="image"
-      img={menu?.image ? menu.image : "/assets/default/defaultArticle.png"}
-      control={methods.control}
-      watch={methods.watch}
-      setValue={methods.setValue}
-      clear={methods.clearErrors}
-    /> */}
     <TextInput
       name="name"
       label="Nom"
@@ -53,7 +45,7 @@ const MenuForm: React.FC<Props> = ({ methods, menu, articles }) => (
       name="isAvailable"
       label="Disponibilité"
       control={methods.control}
-      defaultValue={menu?.isAvailable || true}
+      defaultValue={(menu && menu.isAvailable) || true}
       fullWidth
       required
       chooses={[

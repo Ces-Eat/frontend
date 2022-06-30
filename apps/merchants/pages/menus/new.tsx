@@ -3,57 +3,27 @@ import { Section } from "@ceseatslib/template";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { IArticle, IMenu, menuSchema } from "@ceseatslib/form";
+import { IMenu, menuSchema } from "@ceseatslib/form";
 import { Container, Button } from "@mui/material";
 import Link from "next/link";
 import s from "styles/Article.module.scss";
 import MenuForm from "src/forms/MenuForm/MenuForm";
-
-const products: IArticle[] = [
-  {
-    id: "1",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: true,
-  },
-  {
-    id: "2",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère vB",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: true,
-  },
-  {
-    id: "3",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère v3",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: false,
-  },
-  {
-    id: "4",
-    image:
-      "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    description: "2.4 €",
-    name: "Berre Guère v4",
-    articleCategoryId: "1",
-    price: 2.4,
-    isAvailable: true,
-  },
-];
+import { useRouter } from "next/router";
+import { useStore } from "src/utils/hooks";
+import axios from "axios";
+import IRestaurantAction from "src/utils/store/action/restaurant";
+import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 
 const NewMenu = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { createNotification } = useNotificationCenter();
+  const router = useRouter();
+  const {
+    setRestaurant,
+    restaurant: {
+      restaurant: { articles },
+    },
+  } = useStore();
 
   const methods = useForm<IMenu>({
     mode: "onChange",
@@ -61,15 +31,37 @@ const NewMenu = () => {
   });
 
   const formSubmitHandler: SubmitHandler<IMenu> = (data) => {
-    console.log(data);
     setIsLoading(true);
+
+    data.content = data.content.map((v) => ({
+      ...v,
+      articles: v.articles.map((article) => article._id),
+    }));
+    axios
+      .post(`${process.env.API_RESTAURANT}/me/menus`, data, {
+        withCredentials: true,
+      })
+      .then(({ data: menuData }) => {
+        setRestaurant({
+          type: IRestaurantAction.ADD_MENU,
+          payload: menuData,
+        });
+        router.push("/menus");
+      })
+      .catch(() => {
+        createNotification(
+          INotificationType.ERROR,
+          "Impossible d'ajouter le menu"
+        );
+        setIsLoading(false);
+      });
   };
 
   return (
     <Section title="Menu">
       <Container className={s.container}>
         <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
-          <MenuForm methods={methods} articles={products} />
+          <MenuForm methods={methods} articles={articles} />
           <Container className={s.btn_container}>
             <Link href="/menus">
               <Button variant="outlined" color="warning">

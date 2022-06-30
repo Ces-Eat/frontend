@@ -1,12 +1,12 @@
 import * as yup from "yup";
 
 export interface IArticle {
-  id?: string;
+  _id?: string;
   image: string;
   name: string;
   description: string;
   price: number;
-  articleCategoryId: string;
+  articleCategory: string;
   isAvailable: boolean;
 }
 
@@ -29,6 +29,6 @@ export const articleSchema = yup.object().shape({
   name: yup.string().required("Nom requis").max(35, "Maximum 35 caractères"),
   description: yup.string().optional().max(500, "Maximum 500 caractères"),
   price: yup.number().required("Prix requis").min(0),
-  articleCategoryId: yup.string().required("Catégorie requise"),
+  articleCategory: yup.string().required("Catégorie requise"),
   isAvailable: yup.boolean().required(),
 });

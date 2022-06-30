@@ -63,7 +63,7 @@ const CartSummary: React.FC<Props> = ({
             {isEditable
               ? article.quantity
               : article.quantity > 1
-              ? `x${article.quantity}`
+              ? ` x${article.quantity}`
               : ""}
             {isEditable && (
               <Button
@@ -102,7 +102,7 @@ const CartSummary: React.FC<Props> = ({
               {isEditable
                 ? menu.quantity
                 : menu.quantity > 1
-                ? `x${menu.quantity}`
+                ? ` x${menu.quantity}`
                 : ""}
               {isEditable && (
                 <Button

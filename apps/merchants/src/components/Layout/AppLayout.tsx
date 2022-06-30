@@ -4,6 +4,7 @@ import NavMenu from "src/components/NavMenu/NavMenu";
 import { IAuthAction, useStore } from "src/utils/hooks";
 import axios from "axios";
 import { LoadingPage } from "@ceseatslib/template";
+import IRestaurantAction from "src/utils/store/action/restaurant";
 
 interface Props {
   children: React.ReactNode;
@@ -20,6 +21,7 @@ const AppLayout: React.FC<Props> = ({
   const {
     setAuth,
     auth: { isAuthenticated },
+    setRestaurant,
   } = useStore();
 
   useEffect(() => {
@@ -28,7 +30,19 @@ const AppLayout: React.FC<Props> = ({
         .get(`${process.env.API_USERS}/me`, { withCredentials: true })
         .then(({ data }) => {
           setAuth({ payload: data, type: IAuthAction.LOGIN });
-          setIsLoading(false);
+
+          axios
+            .get(`${process.env.API_RESTAURANT}/me`, { withCredentials: true })
+            .then(({ data: restaurantData }) => {
+              setRestaurant({
+                payload: restaurantData,
+                type: IRestaurantAction.SET,
+              });
+              setIsLoading(false);
+            })
+            .catch(() => {
+              setIsLoading(false);
+            });
         })
         .catch(() => {
           setIsLoading(false);
