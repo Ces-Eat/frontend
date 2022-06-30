@@ -15,7 +15,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useStore } from "src/utils/hooks";
+import { IOrderAction, useStore } from "src/utils/hooks";
 import s from "styles/Confirm.module.scss";
 
 const ConfirmPage = () => {
@@ -24,7 +24,7 @@ const ConfirmPage = () => {
   const { createNotification } = useNotificationCenter();
   const router = useRouter();
   const { id } = router.query;
-  const { cart } = useStore();
+  const { cart, dispatchOrders } = useStore();
 
   useEffect(() => {
     if (!id) {
@@ -39,7 +39,6 @@ const ConfirmPage = () => {
       .get(`${process.env.API_WALLET}`, { withCredentials: true })
       .then(({ data }) => {
         setWallets(data);
-        console.log(data);
       })
       .catch(() => {
         createNotification(
@@ -48,6 +47,34 @@ const ConfirmPage = () => {
         );
       });
   }, []);
+
+  const submitOrder = () => {
+    const formData = {
+      summary: {
+        articles: cart[id].articles.map((article) => article._id),
+        menus: cart[id].menus.map((menu) => menu._id),
+      },
+      restaurant: id,
+      address: cart.address,
+    };
+
+    axios
+      .post(`${process.env.API_ORDERS}/me`, formData, { withCredentials: true })
+      .then(({ data }) => {
+        dispatchOrders({
+          type: IOrderAction.ADD_ORDER,
+          payload: data,
+        });
+        router.push("/delivery");
+      })
+      .catch(() => {
+        console.log("error");
+        createNotification(
+          INotificationType.ERROR,
+          "Erreur, veuillez réessayer plus tard"
+        );
+      });
+  };
 
   return (
     <>
@@ -114,6 +141,7 @@ const ConfirmPage = () => {
                     variant="outlined"
                     color="success"
                     disabled={!selectedWallet}
+                    onClick={submitOrder}
                   >
                     Payer
                   </Button>

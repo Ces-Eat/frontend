@@ -15,5 +15,6 @@ module.exports = withTM({
     API_USERS: `${API_URL}/users`,
     API_AUTH: `${API_URL}/users/sessions`,
     API_RESTAURANT: `${API_URL}/restaurants`,
+    API_ORDERS: `${API_URL}/orders`,
   },
 });

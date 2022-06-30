@@ -17,5 +17,6 @@ module.exports = withTM({
     API_WALLET: `${API_URL}/users/wallets/me`,
     API_ADDRESS: `${API_URL}/users/addresses/me`,
     API_RESTAURANT: `${API_URL}/restaurants`,
+    API_ORDERS: `${API_URL}/orders`,
   },
 });

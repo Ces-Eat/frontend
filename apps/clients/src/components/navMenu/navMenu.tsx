@@ -11,6 +11,7 @@ import RoomIcon from "@mui/icons-material/Room";
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import CodeIcon from "@mui/icons-material/Code";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
@@ -66,6 +67,14 @@ const NavMenu: React.FC = () => {
             <FastfoodIcon />
           </ListItemIcon>
           <ListItemText>Commandes</ListItemText>
+        </ListItem>
+      </Link>
+      <Link href="/delivery">
+        <ListItem>
+          <ListItemIcon>
+            <DeliveryDiningIcon />
+          </ListItemIcon>
+          <ListItemText>Livraisons</ListItemText>
         </ListItem>
       </Link>
       <Link href="/wallets">

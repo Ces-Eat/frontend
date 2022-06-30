@@ -13,6 +13,7 @@ import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import axios from "axios";
 import { LoadingPage } from "@ceseatslib/template";
 import Head from "next/head";
+import { ICartAction, useStore } from "src/utils/hooks";
 
 interface IAddress {
   id: string;
@@ -24,6 +25,7 @@ interface IAddress {
 
 const Restaurants = () => {
   const { createNotification } = useNotificationCenter();
+  const { dispatchCart } = useStore();
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [addresses, setAddresses] = useState([]);
@@ -53,6 +55,16 @@ const Restaurants = () => {
         `${process.env.API_RESTAURANT}?lat=${address.latitude}&lng=${address.longitude}`
       )
       .then(({ data }) => {
+        dispatchCart({
+          type: ICartAction.SET_ADDRESS,
+          payload: {
+            address: {
+              label: address.label,
+              latitude: address.latitude,
+              longitude: address.longitude,
+            },
+          },
+        });
         setRestaurants(data);
       })
       .catch(() => {

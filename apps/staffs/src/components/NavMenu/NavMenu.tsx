@@ -8,6 +8,7 @@ import {
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import StorageIcon from "@mui/icons-material/Storage";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -66,6 +67,14 @@ const NavMenu: React.FC = () => {
                 <PeopleIcon />
               </ListItemIcon>
               <ListItemText>Clients</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/monitoring">
+            <ListItem>
+              <ListItemIcon>
+                <MonitorHeartIcon />
+              </ListItemIcon>
+              <ListItemText>Monitoring</ListItemText>
             </ListItem>
           </Link>
           <Link href="/stats">

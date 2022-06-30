@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-case-declarations */
+import { ILocalization } from "@ceseatslib/form";
 import { ICartAction } from "../action";
 
 export interface IArticle {
@@ -33,6 +34,7 @@ export interface ICartActionType {
     id: string;
     article?: IArticle;
     menu?: IMenu;
+    address?: ILocalization;
   };
   type: ICartAction;
 }
@@ -41,9 +43,15 @@ const cartReducer = (
   state: ICartReducer,
   { type, payload }: ICartActionType
 ) => {
-  const { id, article, menu } = payload;
+  const { id, article, menu, address } = payload;
 
   switch (type) {
+    case ICartAction.SET_ADDRESS:
+      return {
+        ...state,
+        address,
+      };
+
     case ICartAction.ADD_ARTICLE:
       const articleToAdd = { ...article, quantity: 1 };
 
