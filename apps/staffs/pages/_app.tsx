@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/_reset.scss";
 import type { AppProps } from "next/app";
 import { NotificationProvider } from "@ceseatslib/utils";
 import { ThemeWrapper, ITheme } from "@ceseatslib/theme";
-import { useState } from "react";
 import { StoreProvider } from "src/utils/store";
 import AppLayout from "src/components/Layout/AppLayout";
 import AuthGuard from "src/utils/AuthGuard";

@@ -74,22 +74,26 @@ const NavMenu: React.FC = () => {
           </Link>
         </>
       )}
-      <Link href="/orders">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Commandes</ListItemText>
-        </ListItem>
-      </Link>
-      <Link href="/delivery">
-        <ListItem>
-          <ListItemIcon>
-            <PeopleIcon />
-          </ListItemIcon>
-          <ListItemText>Livraison</ListItemText>
-        </ListItem>
-      </Link>
+      {id === 5 && (
+        <>
+          <Link href="/ms">
+            <ListItem>
+              <ListItemIcon>
+                <AccountBoxIcon />
+              </ListItemIcon>
+              <ListItemText>Micro Services</ListItemText>
+            </ListItem>
+          </Link>
+          <Link href="/logs">
+            <ListItem>
+              <ListItemIcon>
+                <AccountBoxIcon />
+              </ListItemIcon>
+              <ListItemText>Logs</ListItemText>
+            </ListItem>
+          </Link>
+        </>
+      )}
       <ListItem onClick={handleLogout}>
         <ListItemIcon>
           <PeopleIcon color="error" />

@@ -32,8 +32,8 @@ const HomePage = () => {
         { isSuspended: suspensionStatus },
         { withCredentials: true }
       )
-      .then(() => {
-        setClients(clients.filter((client) => client));
+      .then(({ data }) => {
+        setClients(clients.map((client) => client.id === data.id));
       })
       .catch(() => {
         createNotification(INotificationType.ERROR, "Erreur suspension client");
