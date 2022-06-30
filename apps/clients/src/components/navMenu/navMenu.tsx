@@ -12,6 +12,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import CodeIcon from "@mui/icons-material/Code";
 import StorefrontIcon from "@mui/icons-material/Storefront";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 import { IAuthAction, useStore } from "src/utils/hooks";
 import { useRouter } from "next/router";
@@ -101,7 +102,7 @@ const NavMenu: React.FC = () => {
       </Link>
       <ListItem onClick={handleLogout}>
         <ListItemIcon>
-          <PeopleIcon color="error" />
+          <LogoutIcon color="error" />
         </ListItemIcon>
         <ListItemText disableTypography>
           <Typography color="error">Deconnexion</Typography>

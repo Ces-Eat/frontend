@@ -8,7 +8,9 @@ import {
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PeopleIcon from "@mui/icons-material/People";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
 import { IAuthAction, useStore } from "src/utils/hooks";
@@ -48,6 +50,14 @@ const NavMenu: React.FC = () => {
           <ListItemText>Mon compte</ListItemText>
         </ListItem>
       </Link>
+      <Link href="/home">
+        <ListItem>
+          <ListItemIcon>
+            <DeliveryDiningIcon />
+          </ListItemIcon>
+          <ListItemText>Dashboard</ListItemText>
+        </ListItem>
+      </Link>
       <Link href="/orders">
         <ListItem>
           <ListItemIcon>
@@ -74,7 +84,7 @@ const NavMenu: React.FC = () => {
       </Link>
       <ListItem onClick={handleLogout}>
         <ListItemIcon>
-          <PeopleIcon color="error" />
+          <LogoutIcon color="error" />
         </ListItemIcon>
         <ListItemText disableTypography>
           <Typography color="error">Deconnexion</Typography>

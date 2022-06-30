@@ -7,6 +7,10 @@ import {
 } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import StorageIcon from "@mui/icons-material/Storage";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 import { IAuthAction, useStore } from "src/utils/hooks";
 import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
@@ -59,7 +63,7 @@ const NavMenu: React.FC = () => {
           <Link href="/clients">
             <ListItem>
               <ListItemIcon>
-                <AccountBoxIcon />
+                <PeopleIcon />
               </ListItemIcon>
               <ListItemText>Clients</ListItemText>
             </ListItem>
@@ -67,7 +71,7 @@ const NavMenu: React.FC = () => {
           <Link href="/stats">
             <ListItem>
               <ListItemIcon>
-                <AccountBoxIcon />
+                <QueryStatsIcon />
               </ListItemIcon>
               <ListItemText>Statistiques</ListItemText>
             </ListItem>
@@ -79,7 +83,7 @@ const NavMenu: React.FC = () => {
           <Link href="/ms">
             <ListItem>
               <ListItemIcon>
-                <AccountBoxIcon />
+                <StorageIcon />
               </ListItemIcon>
               <ListItemText>Micro Services</ListItemText>
             </ListItem>
@@ -87,7 +91,7 @@ const NavMenu: React.FC = () => {
           <Link href="/logs">
             <ListItem>
               <ListItemIcon>
-                <AccountBoxIcon />
+                <ReceiptIcon />
               </ListItemIcon>
               <ListItemText>Logs</ListItemText>
             </ListItem>
@@ -96,7 +100,7 @@ const NavMenu: React.FC = () => {
       )}
       <ListItem onClick={handleLogout}>
         <ListItemIcon>
-          <PeopleIcon color="error" />
+          <LogoutIcon color="error" />
         </ListItemIcon>
         <ListItemText disableTypography>
           <Typography color="error">Deconnexion</Typography>

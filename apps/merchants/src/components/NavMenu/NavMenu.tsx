@@ -6,9 +6,14 @@ import {
   Typography,
 } from "@mui/material";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
 import PeopleIcon from "@mui/icons-material/People";
+import IcecreamIcon from "@mui/icons-material/Icecream";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import HistoryIcon from "@mui/icons-material/History";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Link from "next/link";
 import { IAuthAction, useStore } from "src/utils/hooks";
 import { INotificationType, useNotificationCenter } from "@ceseatslib/utils";
@@ -54,7 +59,7 @@ const NavMenu: React.FC = () => {
       <Link href="/restaurant">
         <ListItem>
           <ListItemIcon>
-            <FastfoodIcon />
+            <StorefrontIcon />
           </ListItemIcon>
           <ListItemText>Restaurant</ListItemText>
         </ListItem>
@@ -64,7 +69,7 @@ const NavMenu: React.FC = () => {
           <Link href="/articles">
             <ListItem>
               <ListItemIcon>
-                <FastfoodIcon />
+                <IcecreamIcon />
               </ListItemIcon>
               <ListItemText>Articles</ListItemText>
             </ListItem>
@@ -72,7 +77,7 @@ const NavMenu: React.FC = () => {
           <Link href="/menus">
             <ListItem>
               <ListItemIcon>
-                <CreditCardIcon />
+                <FastfoodIcon />
               </ListItemIcon>
               <ListItemText>Menus</ListItemText>
             </ListItem>
@@ -80,7 +85,7 @@ const NavMenu: React.FC = () => {
           <Link href="/orders">
             <ListItem>
               <ListItemIcon>
-                <PeopleIcon />
+                <LocalShippingIcon />
               </ListItemIcon>
               <ListItemText>Commandes</ListItemText>
             </ListItem>
@@ -88,7 +93,7 @@ const NavMenu: React.FC = () => {
           <Link href="/orders">
             <ListItem>
               <ListItemIcon>
-                <PeopleIcon />
+                <HistoryIcon />
               </ListItemIcon>
               <ListItemText>Historique</ListItemText>
             </ListItem>
@@ -96,7 +101,7 @@ const NavMenu: React.FC = () => {
           <Link href="/stats">
             <ListItem>
               <ListItemIcon>
-                <PeopleIcon />
+                <QueryStatsIcon />
               </ListItemIcon>
               <ListItemText>Statistique</ListItemText>
             </ListItem>
@@ -113,7 +118,7 @@ const NavMenu: React.FC = () => {
       </Link>
       <ListItem onClick={handleLogout}>
         <ListItemIcon>
-          <PeopleIcon color="error" />
+          <LogoutIcon color="error" />
         </ListItemIcon>
         <ListItemText disableTypography>
           <Typography color="error">Deconnexion</Typography>

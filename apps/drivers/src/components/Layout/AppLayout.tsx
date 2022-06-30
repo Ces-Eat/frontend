@@ -43,7 +43,7 @@ const AppLayout: React.FC<Props> = ({
       <AppBar
         changeTheme={changeTheme}
         isLightTheme={isLightTheme}
-        link={isAuthenticated ? "/restaurants" : "/"}
+        link={isAuthenticated ? "/home" : "/"}
         showMenu={isAuthenticated}
       >
         {isAuthenticated && <NavMenu />}
