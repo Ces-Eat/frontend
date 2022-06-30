@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React from "react";
 import { useStore } from "../hooks";
 
 interface Props {
@@ -7,17 +7,11 @@ interface Props {
 }
 
 // @ts-ignore
-const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
+const AuthGuard: React.FC<Props> = ({ children, requireAuth = "" }) => {
   const {
     auth: { isAuthenticated, user },
   } = useStore();
   const router = useRouter();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      router.push("/");
-    }
-  }, []);
 
   // if auth initialized with a valid user show protected page
   switch (requireAuth) {
@@ -41,6 +35,7 @@ const AuthGuard: React.FC<Props> = ({ children, requireAuth }) => {
       }
   }
 
+  router.push("/");
   /* otherwise don't return anything, will do a redirect from useEffect */
   return <div />;
 };

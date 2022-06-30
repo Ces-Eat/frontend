@@ -40,6 +40,7 @@ const LoginForm: NextPage = () => {
             );
             break;
           case 4:
+          case 5:
             createNotification(
               INotificationType.INFO,
               "Connectez-vous en tant que administrateur ici http://localhost:4003/"

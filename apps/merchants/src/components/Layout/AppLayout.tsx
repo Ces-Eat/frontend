@@ -30,25 +30,27 @@ const AppLayout: React.FC<Props> = ({
         .get(`${process.env.API_USERS}/me`, { withCredentials: true })
         .then(({ data }) => {
           setAuth({ payload: data, type: IAuthAction.LOGIN });
-
-          axios
-            .get(`${process.env.API_RESTAURANT}/me`, { withCredentials: true })
-            .then(({ data: restaurantData }) => {
-              setRestaurant({
-                payload: restaurantData,
-                type: IRestaurantAction.SET,
-              });
-              setIsLoading(false);
-            })
-            .catch(() => {
-              setIsLoading(false);
-            });
         })
         .catch(() => {
           setIsLoading(false);
         });
     }
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${process.env.API_RESTAURANT}/me`, { withCredentials: true })
+      .then(({ data: restaurantData }) => {
+        setRestaurant({
+          payload: restaurantData,
+          type: IRestaurantAction.SET,
+        });
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+      });
+  }, [isAuthenticated]);
 
   if (isLoading) return <LoadingPage />;
 
