@@ -2,39 +2,34 @@ import { Section } from "@ceseatslib/template";
 import { Container } from "@mui/material";
 import Head from "next/head";
 import s from "styles/Wallets.module.scss";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { IOrderAction, useStore } from "src/utils/hooks";
 import { ActionCard } from "@ceseatslib/ui";
 import axios from "axios";
 
 const DeliveryPage = () => {
   const { orders, dispatchOrders } = useStore();
+  const timer = useRef();
 
   useEffect(() => {
-    const timer = [];
+    timer.current = setInterval(() => {
+      axios
+        .get(`${process.env.API_ORDERS}/me?completed=false`, {
+          withCredentials: true,
+        })
+        .then(({ data }) => {
+          dispatchOrders({
+            payload: data,
+            type: IOrderAction.SET_ORDER,
+          });
+        })
+        .catch(() => {
+          console.log("error");
+        });
+    }, 3000);
 
-    for (let i = 0; i < orders.orders.length; i++) {
-      timer.push(
-        setInterval(() => {
-          axios
-            .get(`${process.env.API_ORDERS}/me?completed=false`, {
-              withCredentials: true,
-            })
-            .then(({ data }) => {
-              dispatchOrders({
-                payload: data,
-                type: IOrderAction.SET_ORDER,
-              });
-            })
-            .catch(() => {
-              console.log("error");
-            });
-        }, 3000)
-      );
-    }
-
-    return timer.map((t) => clearInterval(t));
-  }, []);
+    return () => clearTimeout(timer.current);
+  }, [orders]);
 
   return (
     <>
@@ -45,14 +40,15 @@ const DeliveryPage = () => {
       </Head>
       <Section title="Livraisons">
         <Container className={s.container}>
-          {orders.orders.map((o, i) => (
-            <ActionCard
-              key={o._id}
-              img="/assets/default/defaultOrder.png"
-              title={`Order ${i + 1}`}
-              desc={o.orderStatus.title}
-            />
-          ))}
+          {orders.order.length !== 0 &&
+            orders.order.map((o, i) => (
+              <ActionCard
+                key={o._id}
+                img="/assets/default/defaultOrder.png"
+                title={`Order ${o.code ? o.code : i + 1}`}
+                desc={o.orderStatus.title}
+              />
+            ))}
         </Container>
       </Section>
     </>

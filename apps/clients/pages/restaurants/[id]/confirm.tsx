@@ -49,10 +49,17 @@ const ConfirmPage = () => {
   }, []);
 
   const submitOrder = () => {
+    console.log(cart);
     const formData = {
       summary: {
-        articles: cart[id].articles.map((article) => article._id),
-        menus: cart[id].menus.map((menu) => menu._id),
+        articles: cart[id].articles.map((article) => ({
+          _id: article._id,
+          quantity: article.quantity,
+        })),
+        menus: cart[id].menus.map((menu) => ({
+          _id: menu._id,
+          quantity: menu.quantity,
+        })),
       },
       restaurant: id,
       address: cart.address,

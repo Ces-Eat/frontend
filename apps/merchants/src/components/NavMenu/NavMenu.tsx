@@ -10,6 +10,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import IcecreamIcon from "@mui/icons-material/Icecream";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import StorefrontIcon from "@mui/icons-material/Storefront";
+import DeliveryDiningIcon from "@mui/icons-material/DeliveryDining";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import HistoryIcon from "@mui/icons-material/History";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
@@ -72,6 +73,15 @@ const NavMenu: React.FC = () => {
                 <IcecreamIcon />
               </ListItemIcon>
               <ListItemText>Articles</ListItemText>
+            </ListItem>
+          </Link>
+
+          <Link href="/dashboard">
+            <ListItem>
+              <ListItemIcon>
+                <DeliveryDiningIcon />
+              </ListItemIcon>
+              <ListItemText>Dashboard</ListItemText>
             </ListItem>
           </Link>
           <Link href="/menus">

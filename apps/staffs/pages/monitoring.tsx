@@ -57,7 +57,7 @@ const MonitoringPage = () => {
     {
       field: "driverId",
       headerName: "DriverId",
-      valueGetter: (params) => params.row.driver?.id,
+      valueGetter: (params) => params.row.driver?._id,
       minWidth: 200,
       editable: true,
     },

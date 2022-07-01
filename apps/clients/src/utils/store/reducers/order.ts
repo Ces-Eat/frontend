@@ -23,12 +23,7 @@ const orderReducer = (
     case IOrderAction.SET_ORDER:
       return {
         ...state,
-        order: state.order.map((order) => {
-          if (order._id === payload._id) {
-            return payload;
-          }
-          return order;
-        }),
+        order: payload,
       };
     case IOrderAction.REMOVE_ORDER:
       return {

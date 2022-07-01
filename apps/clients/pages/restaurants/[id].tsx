@@ -63,11 +63,15 @@ const Restaurant = () => {
       .get(`${process.env.API_RESTAURANT}/${id}`)
       .then(({ data }) => {
         setRestaurant(data);
-        setCategories(
-          data.articles
-            .map((article) => article.articleCategory)
-            .filter((category, i, a) => a.indexOf(category))
-        );
+        let cat = data.articles
+          .map((article) => article.articleCategory)
+          .filter((category, i, a) => a.indexOf(category));
+
+        if (cat.length === 0 && data.articles.length > 0) {
+          cat = [data.articles[0].articleCategory];
+        }
+
+        setCategories(cat);
         setIsLoading(false);
       })
       .catch((err) => {

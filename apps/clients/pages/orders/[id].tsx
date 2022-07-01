@@ -31,7 +31,6 @@ const OrderPage = () => {
         setOrder(data.find((o) => o._id === id));
       })
       .catch(() => {
-        console.log("error");
         router.push("/orders");
       });
   }, []);

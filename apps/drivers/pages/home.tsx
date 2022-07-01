@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Section } from "@ceseatslib/template";
 import { Button, Container, Typography } from "@mui/material";
@@ -6,6 +6,7 @@ import { AddressInput, addressSchema, IAddress } from "@ceseatslib/form";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import s from "styles/DriverHome.module.scss";
+import Dashboard from "@components/dashboard";
 
 const HomePage = () => {
   const [isListening, setIsListening] = useState(false);
@@ -14,12 +15,10 @@ const HomePage = () => {
     resolver: yupResolver(addressSchema),
   });
 
-  useEffect(() => {
-    console.log("useEffect");
-    if (isListening) {
-      console.log("listening");
-    }
-  }, [isListening]);
+  const startListening = (isOkay) => {
+    setIsListening(isOkay);
+  };
+
   return (
     <div>
       <Head>
@@ -44,12 +43,13 @@ const HomePage = () => {
           <Button
             variant="outlined"
             color={isListening ? "warning" : "success"}
-            onClick={() => setIsListening(!isListening)}
+            onClick={() => startListening(!isListening)}
             disabled={!methods.formState.isValid}
           >
             {isListening ? "Arrêter d'écouter" : "Se mettre en écoute"}
           </Button>
         </Container>
+        {isListening && <Dashboard address={methods.getValues("address")} />}
       </Section>
     </div>
   );
